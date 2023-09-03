@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Document
+    </title>
+</head>
+
+<body>
+    <script>
+    var obj = {
+        a: { b: 'old' },
+        c: undefined,
+        d: function() {},
+        e: Symbol(''),
+        f: 44
+    }
+    var o={
+        q:1,
+        w:2,
+        e:3,
+    }
+
+console.log(copy(o))
+    function copy(obj) {
+        // 需要克隆的参数不是对象或者是null直接return,
+        // 方法入参必须是对象
+        if (!obj || typeof obj !== 'object') {
+            return
+        }
+        // 走到这一步，说明参数是数组 或 对象
+        // 通过参数的构造函数判断是数组还是对象，初始化newObj
+        var newObj = obj.constructor === Array ? [] : {}
+        // 遍历对象参数
+        for (var key in obj) {
+            // 对象上的键 非原型上的键
+            if (obj.hasOwnProperty(key)) {
+                if (typeof obj[key] === 'object' && obj[key]) {
+                    // 对象上的键对应的值如果还是对象，回调
+                    newObj[key] = copy(obj[key])
+                } else {
+                    newObj[key] = obj[key]
+                }
+            }
+        }
+        return newObj
+    }
+    let newObj = copy(obj)
+    console.log(newObj)
+    newObj.d = [9]
+    console.log(newObj)
+    console.log(obj)
+    </script>
+</body>
+
+</html>

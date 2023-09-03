@@ -1,0 +1,83 @@
+/deep/ .el-collapse {
+  border: 0;
+
+  .el-collapse-item__header {
+    height: 30px;
+    background: $blueColor;
+    border: none;
+    padding: 0 12px;
+    color: $whiteColor;
+    border-radius: 10px;
+  }
+
+  .is-active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .el-collapse-item__wrap {
+    border: 0;
+    background: $blueColor;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    .el-collapse-item__content {
+      color: $whiteColor;
+    }
+  }
+
+  .el-collapse-item {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.gus-trace-buy {
+  background: #ffffff;
+  box-shadow: 0px 17px 34px 0px rgba(38, 51, 88, 0.07);
+  border-radius: 9px;
+  padding: 3% 5% 0 5% ;
+  box-sizing: border-box;
+  .gas-title {
+    font-size: 20px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #3f5896;
+    padding: 0 7px 0 0;
+    line-height: 28px;
+    .symbolStyle {
+      float: right;
+      width: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+
+  /deep/ .el-tabs__nav-wrap::after {
+    width: 0;
+  }
+
+  /deep/ .el-tabs__item:hover {
+    color: #0fb2ab;
+    cursor: pointer;
+  }
+
+  /deep/ .el-tabs__item {
+    color: #3f5896;
+    cursor: pointer;
+    font-weight: 400;
+    font-family: PingFangSC-Regular, PingFang SC;
+  }
+
+  /deep/ .el-tabs__item.is-active {
+    color: #0fb2ab;
+    cursor: pointer;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+  }
+
+  /deep/ .el-tabs__active-bar {
+    background-color: #0fb2ab;
+  }
+}

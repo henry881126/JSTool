@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    // 2.JSON对象序列化方法
+    // 这个方法明显是简单得多，但是有个弊端，就是不能复制函数
+    //var obj = {
+    //    a: 1,
+    //    b: 2
+    //}
+    //var newObj = JSON.parse(JSON.stringify(obj));
+    //obj.c = 3;
+    console.log(obj, newObj);
+    // var obj = {
+    // a: 1,
+    // b: 2
+    // }
+    // var newObj = JSON.parse(JSON.stringify(obj));
+    // obj.c = 3;
+    // console.log(obj, newObj);
+    //4.es6新方法—— Object.assign  浅copy
+    // var obj = {
+    //   a: 1,
+    //   b: 2
+    // }
+    // var newObj = Object.assign({}, obj);
+    // obj.c = 3;
+    // console.log(obj, newObj);
+    // 扩展运算符 ... 浅copy
+    // var obj = {
+    //   a: 1,
+    //   b: 2
+    // }
+    // var newObj = {...obj}
+    // obj.c = 3;
+    // console.log(obj, newObj);
+
+    function deepClone(origin, target) {
+        // 必须有个目标对象
+        var target = target || {},
+            //使用Object.prototype.toString方法来判断类型
+            toStr = Object.prototype.toString,
+            // toString数组的字符串常量
+            arrStr = "[object Array]";
+        for (var prop in origin) {
+            // 不遍历origin原型上的
+            if (origin.hasOwnProperty(prop)) {
+                //判断对象上这个属性不能为null且typeof为object  （typeof为object的有数组和对象  function为function）
+                //是对象进入if
+                if (origin[prop] !== "null" && typeof(origin[prop]) == 'object') {
+                    //typeof是对象，然后用toString方法来检验是数组还是对象
+                    if (toStr.call(origin[prop]) == arrStr) {
+                        target[prop] = [];
+                    } else {
+                        target[prop] = {}
+                    }
+                    // 回调
+                    deepClone(origin[prop], target[prop]);
+                } else {
+                    target[prop] = origin[prop]
+                }
+            }
+        }
+        return target;
+    }
+    var o1 = {
+        name: 0,
+        arr: [1, 2, 3],
+        arr1: [{
+            n: 1,
+            m: 2
+        }],
+        fn: function() {
+            console.log('11')
+        },
+        ob: {
+            na: 12,
+            a: [
+                1, 2, 3
+            ]
+        }
+    }
+    var o2 = {};
+    deepClone(o1, o2)
+    console.log(o2)
+    </script>
+</body>
+
+</html>

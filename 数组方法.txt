@@ -1,0 +1,209 @@
+--------------------------改变原数组-----------------
+1.push() 后增
+
+末尾添加，返回长度，改变原数组
+
+var a = [1,2,3]
+var b = a.push(4)
+console.log(a)  // [1,2,3,4] 
+console.log(b)  // 4
+
+2.pop() 后删
+尾部删除，返回被删除的元素，改变原数组
+var a = [1,2,3]
+var b = a.pop()
+console.log(a) // [1,2]
+console.log(b) // 3
+
+3.shift() 前删
+shift() 用于删除并返回首个元素
+删除首部元素，返回被删元素，改变原数组
+var a = [1,2,3]
+var b = a.shift()
+console.log(a) // [2,3]
+console.log(b) // 1
+
+4.unshift() 前增
+首部添加，返回长度，改变原数组
+var a = [2,3,4]
+var b = a.unshift(0,1)
+console.log(a)  // [0,1,2,3,4]
+console.log(b)  // 5
+
+5. splice() 修该删除
+
+splice(index,length,增加的元素1,增加的元素2....,增加的元素N) 表示从index开始删除length个元素，并从index开始新增元素1~N，
+返回被删除的元素组成的数组
+对数组进行删除修改，返回被删除的元素组成的数组，改变原数组
+
+var a = [1,2,3]
+var b = a.splice(1,1,3,[2,3,4],5)
+console.log(a)  // [1,3,[2,3,4],5,3]
+console.log(b)  // [2]
+
+9.sort() 排序
+按ascii码排序
+改变原数组，返回排序后的数组
+var a = ['a','b','d','c']
+console.log(a.sort())  // ['a','b','c','d']
+console.log(a)  // ['a','b','c','d']
+
+10.reverse() 颠倒顺序
+reverse() 方法用于颠倒数组中元素的顺序。
+返回的是颠倒后的数组，会改变原数组。
+var a  = [1,3,2,7,6]
+console.log(a.reverse())  // [6,7,2,3,1]
+console.log(a)  // [6,7,2,3,1]
+----------------------------------------------------不改变原数组--------------
+6.concat() 拼接
+concat() 方法用来合并两个或多个数组
+合并两个或多个数组，返回新数组，不会改变原数组
+var a = [1,2,3]
+var b = [4,5]
+var c = a.concat(b)
+console.log(a) // [1,2,3]
+console.log(b) // [4,5]
+console.log(c) // [1,2,3,4,5] 
+
+ 7.slice() 剪切 
+slice(startIndex,endIndex)  返回从startIndex开始(包括)，到endIndex(不包括)之间的原属组成的数组
+返回新数组，不改变原数组
+var a = [1,2,3]
+var b = a.slice(0,1)
+// 不填参数则表示剪切整个数组  
+var c = a.slice() 
+console.log(a) // [1,2,3] 
+console.log(b) // [1]
+console.log(c) // [1,2,3]    
+console.log(a===c)  // false // 注意 a !== c 
+ 
+// 负数表示从后往前数
+var d = a.slice(-1,-2)   
+console.log(d) // []   从左向右截取，所以说为[]
+var e = a.slice(-1)  
+console.log(e)  // [3]
+
+8.join()
+join() 方法用来将数组转换为字符串
+不改变原数组，返回转换后的字符串
+
+var a = [1,2,3,4,5]
+console.log(a.join(','))  // 1,2,3,4,5
+console.log(a)  // [1,2,3,4,5]
+ 
+
+11.indexOf()和lastIndexOf()
+indexOf(某元素,startIndex) 从startIndex开始，查找某元素在数组中的位置，若存在，则返回第一个位置的下标,否则返回-1
+lastIndexOf(某元素，startIndex) 和indexOf()相同，区别在于从尾部向首部查询
+不会改变原数组，返回找到的index,否则返回-1
+若不使用下标，则一般通过includes()方法代替indexOf()
+var a = [1,2,4,3,4,5]
+console.log(a.indexOf(4))  // 2
+console.log(a.indexOf(4,3)) // 4
+
+12.filter() 过滤
+filter() 方法返回数组中满足条件的元素组成的新数组，原数组不变
+filter()的参数是一个方法
+var a = [1,2,3,4,11]
+// 第一个参数为一个方法，有三个参数，current:当前值 index:当前值下标 array:这个数组对象
+var b = a.filter(function(current,index,array){
+    return current < 10
+})
+console.log(b) // [1,2,3,4]
+console.log(a) // [1,2,3,4,11]
+
+13.map() 格式化数组
+map() 方法来根据需求格式化原数组，返回格式化后的数组。原数组不变
+
+var a = [1,2,3,4,5]
+// 参数同filter方法
+var b = a.map(function(current,index,array){
+    return current + 1
+})
+console.log(b) // [2,3,4,5,6]
+console.log(a) // [1,2,3,4,5]
+
+14.every() 
+ 对数组的每一项都运行给定的函数，若每一项都返回 ture,则返回 true
+var a = [1,2,3,4,5]
+var b = a.every(function(current,index,array){
+       return current < 6
+})
+var c = a.every(function(current,index,array){
+       return current < 3
+})
+console.log(b)  // true 
+console.log(c)  // false 
+
+15.some()
+对数组的每一项都运行给定的函数，若存在一项或多项返回 ture,则返回 true
+var a = [1,2,3,4,5]
+var b = a.some(function(current,index,array){
+       return current > 4
+})
+var c = a.some(function(current,index,array){
+       return current > 5
+})
+console.log(b)  // true 
+console.log(c)  // false 
+
+16.forEach()  数组遍历
+遍历整个数组，中途不能中断
+var arr = ['a','b','c']
+var copy = []
+arr.forEach(function(item){
+     copy.push(item)   
+})
+console.log(copy)
+
+
+ES6新增的方法
+
+1. find()  
+找到数组中第一次满足条件的元素，并返回，若找不到则返回undefined。不改变原数组。
+和filter()方法的区别在于：filter返回值是所有满足条件的元素组成的数组，
+一般在需要使用找到的元素时，用find()方法
+var a = [1,2,3,4]
+// b在下面需要使用，则一般用find
+var b = a.find(function(ele,index,array){
+    return ele == 1
+})
+ 
+var c = 3
+var d = b + c
+console.log(a) // [1,2,3,4]
+console.log(b) // 1
+console.log(d) // 4
+ 
+// 若只需判断元素是否存在
+// 若果是简单数组(非对象数组)，则一般使用Array.includes(value)方法
+// 如果为对象数组，则可以使用Array.some()方法
+var a = [1,2,3]
+console.log(a.includes(1))  // true
+var a = [{"name": "xiaoming" },{"name": "xiaohong"}]
+console.log(a.some(function(ele){
+    return ele.name == 'xiaoming'
+}))                            // true
+ 
+2.findIndex()方法
+findIndex()的作用同indexOf()，返回第一个满足条件的下标，并停止寻找。
+区别是findIndex() 的参数为一个回调函数,且一般用于对象数组
+var a = [1,2,3,4]
+var b = a.findIndex(function(ele,index,array){
+    return ele === 2
+})
+var c = a.indexOf(2)  
+console.log(a)  // [1,2,3,4]
+console.log(b)  // 1
+console.log(c)  // 1
+
+3.includes() 
+includes()方法,返回一个布尔值。 参数是一个value,一般用于简单数组。
+对于复杂数组，则可以使用some()方法替代includes()方法
+var a = [1,2,3]
+console.log(a.includes(1))  // true
+
+4.Array.isArray()方法
+用来判断一个元素是否为数组
+Array.isArray([])  // true
+Array.isArray({})  // false

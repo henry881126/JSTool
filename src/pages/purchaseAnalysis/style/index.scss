@@ -1,0 +1,453 @@
+@import "@/assets/styles/mixins";
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .container-wrap {
+        .container-one {
+            background-image: url('~@/assets/img/over-bg.png');
+            font-size: $px23;
+            color: $whiteColor;
+            font-family: $fontFamily;
+            height: 405px;
+            padding: 17px 63px;
+
+            .title {
+                font-weight: $fontweight500;
+                font-size: $fontSize24;
+                color: $whiteColor;
+                padding-bottom: $padding-bottom-17;
+                width: 112px;
+            }
+
+            /deep/ .el-input__inner {
+                height: 30px;
+                line-height: 30px;
+            }
+
+            /deep/ .el-input__icon {
+                line-height: 30px;
+            }
+
+            .widget-wrap {
+                .btn-wrap {
+                    height: 30px;
+                    width: 30px;
+                }
+
+                .btn-wrap-month {
+                    margin-right: 9px;
+                }
+
+                .btn-wrap-year {
+                    margin-right: 14px;
+                }
+
+                /deep/ .el-button {
+                    padding: 8px;
+                    font-size: $middleFontSize;
+                    border-radius: 40px;
+                    background: $whiteBgColor0_1;
+                    color: $whiteColor;
+                    border-color: $whiteBgColor0_1;
+                }
+
+                /deep/ .el-button--primary {
+                    background-color: #0CB2AB;
+                    border-color: #0CB2AB;
+                }
+
+                .month-wrap {
+                    /deep/ .el-range-editor.el-input__inner {
+                        padding: 3px 15px;
+                    }
+
+                    /deep/ .el-date-editor--monthrange.el-input,
+                    .el-date-editor--monthrange.el-input__inner {
+                        width: 210px;
+                    }
+
+                    /deep/ .el-input__inner {
+                        background-color: $whiteBgColor0_1;
+                        border-radius: 20px;
+                        border: #ffffff00;
+                        height: 30px;
+                        line-height: 30px;
+
+                        .el-range__icon {
+                            margin-top: -8px;
+                        }
+
+                        .el-range__close-icon {
+                            margin-top: -8px;
+                        }
+
+                        input {
+                            background-color: #ffffff00;
+                            color: $whiteColor;
+                        }
+
+                        .el-range-separator {
+                            color: $whiteColor;
+                            margin-top: -8px;
+                        }
+                    }
+                }
+
+                /deep/ .el-radio {
+                    @include elRadio1920;
+                    // font-weight: $fontweight400;
+                    // font-size: $middleFontSize;
+                    // font-family: $fontFamily;
+                    // color: $whiteColor;
+
+                    // .el-radio__input.is-checked+.el-radio__label {
+                    //     color: $whiteColor;
+                    // }
+                }
+
+                .year-wrap {
+                    width: fit-content;
+                    background: $whiteBgColor0_1;
+                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+
+                    /deep/ .el-date-editor.el-input,
+                    .el-date-editor.el-input__inner {
+                        width: 80px;
+
+
+                    }
+
+                    /deep/ .el-date-editor.el-input.el-input--prefix {
+                        /deep/ .el-input__inner {
+                            padding-left: 33px !important;
+                        }
+                    }
+
+                    /deep/ .el-date-editor.el-input.el-input--suffix {
+                        /deep/ .el-input__inner {
+                            padding-right: 0px !important;
+                        }
+                    }
+
+                    /deep/ .el-input__inner {
+                        background-color: #ffffff00;
+                        border-radius: 20px;
+                        border: #ffffff00;
+                        color: $whiteColor;
+
+                        input {
+                            background-color: #ffffff00;
+                        }
+                    }
+                }
+            }
+
+            .echart {
+                width: auto;
+                height: 240px;
+            }
+        }
+
+        .container-two {
+            max-height: 700px;
+
+            .title-table-wrap {
+                max-height: 710px;
+                width: 96%;
+                margin-top: $margin-top--44;
+                background-color: $whiteColor;
+                border-radius: 9px;
+                margin-bottom: 30px;
+
+                .title-wrap {
+                    margin: 10px 0px 0px 14px;
+                }
+
+                .table-wrap-row {
+                    max-height: 550px;
+
+                    .table-wrap {
+                        height: 500px;
+                        overflow: auto;
+
+                        /deep/ .el-table .cell {
+                            font-size: $px14;
+                        }
+                    }
+                }
+
+                .tag-wrap {
+
+                    .tag {
+                        cursor: pointer;
+                        border: 0px;
+                        background-color: $whiteColor;
+                        font-size: $middleFontSize;
+                    }
+
+                    /deep/ .el-tag {
+                        margin: 0 10px 0px 0px;
+                        color: #565582;
+                    }
+
+                    .unit {
+                        width: 80px;
+                        height: 22px;
+                        font-size: $px14;
+                        font-family: $fontFamily;
+                        font-weight: $fontweight600;
+                        color: $fontColor666666;
+                        margin-top: $margin-top-13;
+                        margin-left: $margin-left-10;
+                        margin-bottom: $margin-bottom-15;
+                    }
+                }
+
+                .btn-wrap {
+                    margin-top: $px7;
+                    width: $px55;
+                    margin-right: $px28;
+
+                    /deep/ .el-button--primary {
+                        color: $fontColor0CB2AB;
+                        background-color: $whiteColor;
+                        border-color: $fontColor0CB2AB;
+                        padding: 4px 12px;
+                    }
+
+                    /deep/ .el-button {
+                        border-radius: $border-radius20;
+                        font-size: $middleFontSize;
+                    }
+                }
+            }
+
+        }
+
+        .actived {
+            color: #18AEA9;
+            border-bottom: solid 4px #18AEA9 !important;
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .container-wrap {
+        .container-one {
+            background-image: url('~@/assets/img/over-bg.png');
+            font-size: $fontSize28;
+            color: $whiteColor;
+            font-family: $fontFamily;
+            height: 540px;
+
+            .title {
+                font-weight: $fontweight500;
+                font-size: $fontSize28;
+                color: $whiteColor;
+                padding-bottom: $padding-bottom-17;
+                width: 112px;
+            }
+
+            .widget-wrap {
+                .btn-wrap {
+                    height: 40px;
+                    width: 40px;
+                }
+
+                .btn-wrap-month {
+                    margin-right: 12px;
+                }
+
+                .btn-wrap-year {
+                    margin-right: 18px;
+                }
+
+                /deep/ .el-button {
+                    padding: 10px;
+                    font-size: $middleFontSize;
+                    border-radius: 40px;
+                    background: $whiteBgColor0_1;
+                    color: $whiteColor;
+                    border-color: $whiteBgColor0_1;
+                }
+
+                /deep/ .el-button--primary {
+                    background-color: #0CB2AB;
+                    border-color: #0CB2AB;
+                }
+
+                .month-wrap {
+                    /deep/ .el-range-editor.el-input__inner {
+                        padding: 3px 15px;
+                    }
+
+                    /deep/ .el-date-editor--monthrange.el-input,
+                    .el-date-editor--monthrange.el-input__inner {
+                        width: 240px;
+                    }
+
+                    /deep/ .el-input__inner {
+                        background-color: $whiteBgColor0_1;
+                        border-radius: 20px;
+                        border: #ffffff00;
+
+                        input {
+                            background-color: #ffffff00;
+                            color: $whiteColor;
+                        }
+
+                        .el-range-separator {
+                            color: $whiteColor;
+                        }
+                    }
+                }
+
+                /deep/ .el-radio {
+                    @include elRadio1920;
+                    // font-weight: $fontweight400;
+                    // font-size: $middleFontSize;
+                    // font-family: $fontFamily;
+                    // color: $whiteColor;
+
+                    // .el-radio__input.is-checked+.el-radio__label {
+                    //     color: $whiteColor;
+                    // }
+                }
+
+                .year-wrap {
+                    width: fit-content;
+                    background: $whiteBgColor0_1;
+                    border-radius: 20px;
+
+                    /deep/ .el-date-editor.el-input,
+                    .el-date-editor.el-input__inner {
+                        width: 115px;
+
+
+                    }
+
+                    /deep/ .el-date-editor.el-input.el-input--prefix {
+                        .el-input__prefix {
+                            left: 10px;
+                        }
+
+                        .el-input__suffix {
+                            left: 10px;
+                        }
+
+                        /deep/ .el-input__inner {
+                            padding-left: 50px;
+                        }
+                    }
+
+                    /deep/ .el-date-editor.el-input.el-input--suffix {
+                        /deep/ .el-input__inner {
+                            padding-right: 0px;
+                        }
+                    }
+
+
+                    /deep/ .el-input__inner {
+                        background-color: #ffffff00;
+                        border-radius: 20px;
+                        border: #ffffff00;
+                        color: $whiteColor;
+
+                        input {
+                            background-color: #ffffff00;
+                        }
+                    }
+                }
+            }
+
+            .echart {
+                width: auto;
+                height: 380px;
+            }
+        }
+
+        .container-two {
+            max-height: 812px;
+
+            .title-table-wrap {
+                max-height: 814px;
+                width: 96%;
+                margin-top: $margin-top--25;
+                background-color: $whiteColor;
+                border-radius: 20px;
+                margin-bottom: 26px;
+
+                /deep/ .el-table thead {
+                    color: #505356;
+                }
+
+                /deep/ .el-table {
+                    color: #333333
+                }
+
+                .title-wrap {
+                    margin: $margin-top-24 0px 0px $margin-left-41;
+                }
+
+                .table-wrap-row {
+                    max-height: 600px;
+
+                    .table-wrap {
+                        height: 590px;
+                        overflow: auto;
+
+                        /deep/ .el-table .cell {
+                            font-size: $middleFontSize;
+                        }
+                    }
+                }
+
+                .tag-wrap {
+                    .tag {
+                        cursor: pointer;
+                        border: 0px;
+                        background-color: $whiteColor;
+                        font-size: $fontSize20;
+                    }
+
+                    /deep/ .el-tag {
+                        margin: 0 18px 0px 0px;
+                        color: #565582;
+                    }
+
+                    .unit {
+                        width: 80px;
+                        height: 22px;
+                        font-size: $middleFontSize;
+                        font-family: $fontFamily;
+                        font-weight: $fontweight600;
+                        color: $fontColor666666;
+                        margin-top: $margin-top-13;
+                        margin-bottom: $margin-bottom-15;
+                    }
+                }
+
+                .btn-wrap {
+                    margin-top: $margin-top-7;
+
+                    /deep/ .el-button--primary {
+                        color: $fontColor0CB2AB;
+                        background-color: $whiteColor;
+                        border-color: $fontColor0CB2AB;
+                    }
+
+                    /deep/ .el-button {
+                        border-radius: $border-radius20;
+                        font-size: $middleFontSize;
+                    }
+                }
+            }
+
+        }
+
+        .actived {
+            color: #18AEA9;
+            border-bottom: solid 4px #18AEA9 !important;
+        }
+    }
+}

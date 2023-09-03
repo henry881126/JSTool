@@ -1,0 +1,174 @@
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .container-wrap {
+        .title-one {
+            padding-top: 16px;
+            padding-bottom: $px20;
+            font-size: $px16;
+            font-family: PingFangSC-Medium,
+                PingFang SC;
+            font-weight: 500;
+            color: #3F5896;
+            height: $px28 !important;
+        }
+
+        .blueColor {
+            color: #2777d4 !important;
+        }
+
+        .common {
+            font-size: $px14;
+            height: $px38;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            border-radius: $px32;
+
+            .width1 {
+                width: 30%;
+            }
+
+            .width2 {
+                width: 50%;
+            }
+
+            .padding-left {
+                padding-left: $px73;
+            }
+        }
+
+        .common:nth-child(even) {
+            background-color: #F2F4F8;
+            border-width: $px1;
+        }
+
+        .block-one-wrap {
+            padding-left: 8px;
+            padding-right: $px48;
+
+            /deep/ .el-button {
+                background-color: $color0FB2AB;
+                color: $whiteColor;
+                width: 45px;
+                height: 20px;
+                padding: 3px;
+                border-radius: 10px;
+                font-size: 12px;
+            }
+
+            /deep/ .el-button:hover {
+                background-color: #0CCAC2;
+            }
+
+            /deep/ .el-button:focus {
+                background-color: #1A928D;
+            }
+        }
+
+        .block-two-wrap {
+            padding-left: $px0;
+            padding-right: $px0;
+            padding-top: $px90;
+            width: $px2;
+
+            .split-line {
+                width: $px0;
+                height: $px286;
+                border-left: $px2;
+                border-right: $px0;
+                border-color: #B6B8BD;
+                border-style: dashed;
+            }
+        }
+
+        .block-three-wrap {
+            padding-left: $px48;
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .container-wrap {
+        .title-one {
+            padding-top: 10px;
+            padding-bottom: $px28;
+            font-size: $px20;
+            font-family: $fontFamily;
+            font-weight: 500;
+            color: #3F5896;
+            height: $px28 !important;
+        }
+
+        .blueColor {
+            color: #2777d4 !important;
+        }
+
+        .common {
+            font-size: $px16;
+            height: $px50;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            border-radius: $px32;
+
+            .width1 {
+                width: 30%;
+            }
+
+            .width2 {
+                width: 50%;
+            }
+
+            .padding-left {
+                padding-left: $px73;
+            }
+        }
+
+        .common:nth-child(even) {
+            background-color: #F2F4F8;
+            border-width: $px1;
+        }
+
+        .block-one-wrap {
+            padding-left: 8px;
+            padding-right: $px48;
+
+            /deep/ .el-button {
+                background-color: $color0FB2AB;
+                color: $whiteColor;
+                width: 45px;
+                height: 20px;
+                padding: 3px;
+                border-radius: 10px;
+                font-size: 12px;
+            }
+
+            /deep/ .el-button:hover {
+                background-color: #0CCAC2;
+            }
+
+            /deep/ .el-button:focus {
+                background-color: #1A928D;
+            }
+        }
+
+        .block-two-wrap {
+            padding-left: $px0;
+            padding-right: $px0;
+            padding-top: $px90;
+            width: $px2;
+
+            .split-line {
+                width: $px0;
+                height: $px286;
+                border-left: $px2;
+                border-right: $px0;
+                border-color: #B6B8BD;
+                border-style: dashed;
+            }
+        }
+
+        .block-three-wrap {
+            padding-left: $px65;
+        }
+    }
+}

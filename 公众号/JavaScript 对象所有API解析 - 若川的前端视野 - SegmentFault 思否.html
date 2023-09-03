@@ -1,0 +1,1428 @@
+
+<!-- saved from url=(0043)https://segmentfault.com/a/1190000010753942 -->
+<html lang="zh" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="webkit" name="renderer">
+        <meta content="15317273575564615446375" property="qc:admins">
+        <meta property="og:image" content="https://assets.segmentfault.com/v-5de60fd7/global/img/touch-icon.png">
+                    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                <meta content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ" name="alexaVerifyID">
+        <meta content="app-id=958101793, app-argument=" name="apple-itunes-app">
+                    <title>JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否</title>
+                            <meta name="description" content="之前看到【深度长文】JavaScript数组所有API全解密和JavaScript字符串所有API全解密这两篇高质量的文章。发现没写对象API解析（估计是博主觉得简单，就没写）。刚好我看到《JavaScript面向对象编程指南（第2版）》，觉得有必要写（或者说chao）一下，也好熟悉下对象的所有API用法。">
+        
+                    <meta name="keywords" content="javascript">
+        
+        <style type="text/css">svg:not(:root).svg-inline--fa {
+  overflow: visible;
+}
+
+.svg-inline--fa {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.225em;
+}
+.svg-inline--fa.fa-w-1 {
+  width: 0.0625em;
+}
+.svg-inline--fa.fa-w-2 {
+  width: 0.125em;
+}
+.svg-inline--fa.fa-w-3 {
+  width: 0.1875em;
+}
+.svg-inline--fa.fa-w-4 {
+  width: 0.25em;
+}
+.svg-inline--fa.fa-w-5 {
+  width: 0.3125em;
+}
+.svg-inline--fa.fa-w-6 {
+  width: 0.375em;
+}
+.svg-inline--fa.fa-w-7 {
+  width: 0.4375em;
+}
+.svg-inline--fa.fa-w-8 {
+  width: 0.5em;
+}
+.svg-inline--fa.fa-w-9 {
+  width: 0.5625em;
+}
+.svg-inline--fa.fa-w-10 {
+  width: 0.625em;
+}
+.svg-inline--fa.fa-w-11 {
+  width: 0.6875em;
+}
+.svg-inline--fa.fa-w-12 {
+  width: 0.75em;
+}
+.svg-inline--fa.fa-w-13 {
+  width: 0.8125em;
+}
+.svg-inline--fa.fa-w-14 {
+  width: 0.875em;
+}
+.svg-inline--fa.fa-w-15 {
+  width: 0.9375em;
+}
+.svg-inline--fa.fa-w-16 {
+  width: 1em;
+}
+.svg-inline--fa.fa-w-17 {
+  width: 1.0625em;
+}
+.svg-inline--fa.fa-w-18 {
+  width: 1.125em;
+}
+.svg-inline--fa.fa-w-19 {
+  width: 1.1875em;
+}
+.svg-inline--fa.fa-w-20 {
+  width: 1.25em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: 0.3em;
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: 0.3em;
+  width: auto;
+}
+.svg-inline--fa.fa-border {
+  height: 1.5em;
+}
+.svg-inline--fa.fa-li {
+  width: 2em;
+}
+.svg-inline--fa.fa-fw {
+  width: 1.25em;
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: #ff253a;
+  border-radius: 1em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  height: 1.5em;
+  line-height: 1;
+  max-width: 5em;
+  min-width: 1.5em;
+  overflow: hidden;
+  padding: 0.25em;
+  right: 0;
+  text-overflow: ellipsis;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: 0;
+  right: 0;
+  top: auto;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: 0;
+  left: 0;
+  right: auto;
+  top: auto;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  right: 0;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: 0;
+  right: auto;
+  top: 0;
+  -webkit-transform: scale(0.25);
+          transform: scale(0.25);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.fa-lg {
+  font-size: 1.3333333333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: 2.5em;
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: -2em;
+  position: absolute;
+  text-align: center;
+  width: 2em;
+  line-height: inherit;
+}
+
+.fa-border {
+  border: solid 0.08em #eee;
+  border-radius: 0.1em;
+  padding: 0.2em 0.25em 0.15em;
+}
+
+.fa-pull-left {
+  float: left;
+}
+
+.fa-pull-right {
+  float: right;
+}
+
+.fa.fa-pull-left,
+.fas.fa-pull-left,
+.far.fa-pull-left,
+.fal.fa-pull-left,
+.fab.fa-pull-left {
+  margin-right: 0.3em;
+}
+.fa.fa-pull-right,
+.fas.fa-pull-right,
+.far.fa-pull-right,
+.fal.fa-pull-right,
+.fab.fa-pull-right {
+  margin-left: 0.3em;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+          animation: fa-spin 2s infinite linear;
+}
+
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+          animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
+.fa-flip-both, .fa-flip-horizontal.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(-1, -1);
+          transform: scale(-1, -1);
+}
+
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical,
+:root .fa-flip-both {
+  -webkit-filter: none;
+          filter: none;
+}
+
+.fa-stack {
+  display: inline-block;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: #fff;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: 0.4;
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: 0.4;
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse {
+  color: #fff;
+}</style><link href="https://segmentfault.com/opensearch.xml" rel="search" title="SegmentFault" type="application/opensearchdescription+xml">
+        <link rel="shortcut icon" href="https://assets.segmentfault.com/v-5de60fd7/global/img/favicon.ico">
+        <link rel="apple-touch-icon" href="https://assets.segmentfault.com/v-5de60fd7/global/img/touch-icon.png">
+
+        <meta content="#009a61" name="msapplication-TileColor">
+        <meta name="msapplication-square150x150logo" content="https://assets.segmentfault.com/v-5de60fd7/global/img/touch-icon.png">
+        <meta content="bcf7fd80dca60d53d46d5b46e1b990ca" name="baidu_union_verify">
+
+        
+        <link href="https://segmentfault.com/feeds/questions" rel="alternate" title="SegmentFault 最新问题" type="application/atom+xml">
+        <link href="https://segmentfault.com/feeds/blogs" rel="alternate" title="SegmentFault 最新文章" type="application/atom+xml">
+        
+        
+        
+        
+        
+                    <link rel="stylesheet" href="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/global.css">
+            <link rel="stylesheet" href="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/vendors.css">
+                            <link rel="stylesheet" href="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/detail.css">
+        
+
+        
+        <script async="" defer="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/f.txt"></script><script type="text/javascript" async="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/analytics.js.下载"></script><script async="" defer="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/fl.js.下载"></script><script async="" defer="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/spc.php"></script><script async="" defer="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/spcjs.php"></script><script>
+var _oa = [], OA_google = true;
+
+function OA_script(src, cb) {
+    var s = document.createElement('script'), m = document.getElementsByTagName('script')[0];
+    
+    if (cb) {
+        s.onload = cb;
+    }
+    
+    s.async = 1;
+    s.defer = 1;
+    s.src = src;
+    m.parentNode.insertBefore(s, m);
+}
+
+function OA_show(name) {
+    _oa.push(name);
+    document.write('<div id="OA_holder_' + name + '"></div>');
+}
+
+OA_script('https://sponsor.segmentfault.com/spcjs.php?id=1&block=1&repu=0&tag=javascript&v=5dcd2518');
+</script>
+
+
+                    <!-- 推荐引擎 -->
+            <script charset="utf-8" id="ParadigmSDK" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/ParadigmSDK_v2.js.下载" data="216" defsi="594">
+            </script>
+            <script>
+              ParadigmSDK.init("46e957bd9dea4acdaa15b4b64aff728f");
+              ParadigmSDK.trackDetailPageShow();
+            </script>
+                            </head>
+    <body><div class="custome-alert alert alert-warning topframe text-center my-0 sticky-top d-none rounded-0">
+                <span class="alert-content"></span>
+                <button type="button" class="close">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+<nav id="sf-header" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand text-hide sf-header-logo" href="https://segmentfault.com/">SegmentFault</a>
+
+                    <a class="btn btn-primary d-lg-none ml-auto mr-2" href="https://segmentfault.com/user/login">注册登录</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav font-weight-bold">
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/" class="nav-link ">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/questions" class="nav-link ">问答</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/blogs" class="nav-link active">专栏</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/lives" class="nav-link ">课程</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://segmentfault.com/events" class="nav-link ">活动</a>
+                </li>
+                <li class="nav-item dropdown hover-down">
+                    <a href="https://segmentfault.com/a/1190000010753942###" id="navbarDiscover" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link  dropdown-toggle ">发现</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDiscover">
+                        <a class="dropdown-item" href="https://segmentfault.com/groups">圈子</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/tags">标签</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/groups?tab=jobs">酷工作</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/users">排行榜</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/badges">徽章</a>
+                        <a class="dropdown-item" href="https://segmentfault.com/notes">笔记</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://docs.segmentfault.com/" target="_blank">开发手册</a>
+                        <a class="dropdown-item" href="https://business.segmentfault.com/ads?utm_source=sf-header" target="_blank">广告投放<svg class="svg-inline--fa fa-external-link-square fa-w-14 ml-2 text-warning" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="external-link-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 80v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48zm-64 47.111C384 109.929 370.071 96 352.889 96H220.667c-12.887 0-23.333 10.447-23.333 23.334v14.904c0 13.138 10.843 23.686 23.976 23.324l56.002-1.588L69.908 361.908c-7.858 7.802-7.88 20.504-.05 28.334l19.899 19.899c7.83 7.83 20.532 7.808 28.334-.05l205.935-207.404-1.588 56.003c-.362 13.133 10.186 23.976 23.324 23.976h14.904c12.887 0 23.334-10.447 23.334-23.333V127.111z"></path></svg><!-- <i class="ml-2 text-warning fas fa-external-link-square"></i> --></a>
+                    </div>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0 flex-fill d-none d-xl-block px-4" action="https://segmentfault.com/search">
+                <input class="form-control w-100" id="searchBox" name="q" type="search" value="" placeholder="搜索关键字" aria-label="搜索">
+            </form>
+
+            <ul class="navbar-nav navbar-user ml-auto align-self-center">
+                                    <li class="nav-item d-none d-lg-flex">
+                        <a href="https://segmentfault.com/user/login" class="btn btn-link mr-2">立即登录</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-flex">
+                        <a href="https://segmentfault.com/user/register" class="btn btn-primary">免费注册</a>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</nav>
+
+    <input id="articleId" value="1190000010753942" class="hidden">
+    <div class="text-center d-none d-xl-block">
+        <script type="text/javascript">
+            OA_show(2);
+        </script><div id="OA_holder_2"><div style="line-height: 0; background: #FAFAFA">
+<div class="container text-center" style="position: relative;">
+<!--<a href="https://segmentfault.com/user/login" class="small text-muted" style="position: absolute; top: 10px; right: 15px;">登录免广告</a>--><script async="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/f.txt"></script>
+<!-- 导航下横幅广告（大型） -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6330872677300335" data-ad-slot="6450634185"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div id="beacon_989d794cdc" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></div>
+</div>
+</div>
+    </div>
+    <div class="position-relative">
+        <div class="container my-4">
+            <div class="row">
+                                <div class="col-12 col-xl w-0">
+                    <div class="card border-0 mb-4">
+                        <div class="card-body p-lg-30">
+                            <div class="d-flex justify-content-between align-items-center font-size-14 mb-3">
+                                <div class="information d-flex align-items-center">
+                                    <a class="d-flex align-items-centers mr-1" href="https://segmentfault.com/u/lxchuan12">
+                                        <picture class="mr-2">
+                                            <img class="d-inline-block rounded-circle" width="24" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/2211965068-5cf3a535a13d9_big64" aria-hidden="true">
+                                        </picture>
+                                        <strong>若川</strong>
+                                    </a>
+                                    <ul class="list-inline mb-0 authentication-info">
+                                                                                        <li class="list-inline-item">
+                                                <svg class="svg-inline--fa fa-dice-d8 fa-w-16" style="color: #BF7158;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dice-d8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M225.53 2.52L2.36 233.83c-4.21 4.37-2.56 11.71 3.1 13.77l234.13 85.06V8.39c-.01-7.49-8.91-11.21-14.06-5.87zm284.11 231.31L286.47 2.52C281.32-2.82 272.41.9 272.41 8.4v324.27l234.13-85.06c5.66-2.07 7.31-9.42 3.1-13.78zM33.53 310.38l192 199.1c5.15 5.34 14.06 1.62 14.06-5.88V368.29L42.13 296.61c-8.21-2.98-14.72 7.43-8.6 13.77zm436.34-13.77l-197.46 71.68V503.6c0 7.5 8.91 11.22 14.06 5.88l192-199.1c6.12-6.34-.39-16.75-8.6-13.77z"></path></svg><!-- <i class="fas fa-dice-d8" style="color:#BF7158"></i> -->
+                                                <span style="color: #BF7158;font-weight:bold">5.9k</span>
+                                            </li>
+                                                                                                                                            <li class="list-inline-item">
+                                                    <a class="text-body" href="https://github.com/lxchuan12" target="_blank"><svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> --></a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                            </ul>
+                                </div>
+                                
+                            </div>
+                            <div class="functional-area-left sticky-top d-none d-lg-block"><div class="text-center"><button class="func-btn mainLike btn btn-light 
+                            column" data-id="1190000010753942">
+                            <svg class="svg-inline--fa fa-thumbs-up fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M466.27 286.69C475.04 271.84 480 256 480 236.85c0-44.015-37.218-85.58-85.82-85.58H357.7c4.92-12.81 8.85-28.13 8.85-46.54C366.55 31.936 328.86 0 271.28 0c-61.607 0-58.093 94.933-71.76 108.6-22.747 22.747-49.615 66.447-68.76 83.4H32c-17.673 0-32 14.327-32 32v240c0 17.673 14.327 32 32 32h64c14.893 0 27.408-10.174 30.978-23.95 44.509 1.001 75.06 39.94 177.802 39.94 7.22 0 15.22.01 22.22.01 77.117 0 111.986-39.423 112.94-95.33 13.319-18.425 20.299-43.122 17.34-66.99 9.854-18.452 13.664-40.343 8.99-62.99zm-61.75 53.83c12.56 21.13 1.26 49.41-13.94 57.57 7.7 48.78-17.608 65.9-53.12 65.9h-37.82c-71.639 0-118.029-37.82-171.64-37.82V240h10.92c28.36 0 67.98-70.89 94.54-97.46 28.36-28.36 18.91-75.63 37.82-94.54 47.27 0 47.27 32.98 47.27 56.73 0 39.17-28.36 56.72-28.36 94.54h103.99c21.11 0 37.73 18.91 37.82 37.82.09 18.9-12.82 37.81-22.27 37.81 13.489 14.555 16.371 45.236-5.21 65.62zM88 432c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z"></path></svg><!-- <i class="far fa-thumbs-up"></i> -->
+                            <span class="mainLikeNum">28</span>
+                        </button><button class="func-btn mainBookmark btn btn-light 
+                                column " data-id="1190000010753942">
+                                <svg class="svg-inline--fa fa-bookmark fa-w-12" aria-hidden="true" focusable="false" data-prefix="far" data-icon="bookmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112 192 112V48c0-26.51-21.49-48-48-48zm0 428.43l-144-84-144 84V54a6 6 0 0 1 6-6h276c3.314 0 6 2.683 6 5.996V428.43z"></path></svg><!-- <i class="far fa-bookmark"></i> -->
+                                
+                            </button><a class="func-btn show-column btn btn-light
+                             column " href="https://segmentfault.com/a/1190000010753942#comment-area">
+                            <svg class="svg-inline--fa fa-comment-alt-lines fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment-alt-lines" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 7.1 5.8 12 12 12 2.4 0 4.9-.7 7.1-2.4L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64zm16 352c0 8.8-7.2 16-16 16H288l-12.8 9.6L208 428v-60H64c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h384c8.8 0 16 7.2 16 16v288zm-96-216H144c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16v-16c0-8.8-7.2-16-16-16zm-96 96H144c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16v-16c0-8.8-7.2-16-16-16z"></path></svg><!-- <i class="far fa-comment-alt-lines"></i> -->
+                            
+                        </a><div class="dropdown dropup d-inline-block">
+                        <button class="func-btn btn btn-light
+                        column" id="func_share" data-toggle="dropdown">
+                        <svg class="svg-inline--fa fa-share-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="far" data-icon="share-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M352 320c-25.6 0-48.9 10-66.1 26.4l-98.3-61.5c5.9-18.8 5.9-39.1 0-57.8l98.3-61.5C303.1 182 326.4 192 352 192c53 0 96-43 96-96S405 0 352 0s-96 43-96 96c0 9.8 1.5 19.6 4.4 28.9l-98.3 61.5C144.9 170 121.6 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.6 0 48.9-10 66.1-26.4l98.3 61.5c-2.9 9.4-4.4 19.1-4.4 28.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96zm0-272c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zM96 304c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm256 160c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"></path></svg><!-- <i class="far fa-share-alt"></i> -->
+                        
+                        </button>
+                        <div class="dropdown-menu shareContent" aria-labelledby="func_share">
+                            <div class="text-center mt-2" style="cursor: auto">
+                                <div class="qr"><img crossorigin="anonymous" src="data:image/png;base64,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" width="147.5" height="147.5" style="width: 118px; height: 118px;"></div>
+                                微信扫一扫
+                            </div>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item share_weibo" data-share="weibo" href="http://weibo.com/segmentfault" target="_blank"><svg class="svg-inline--fa fa-weibo fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg><!-- <i class="fab fa-weibo fa-fw"></i> --> 新浪微博</a><a class="dropdown-item share_twitter" data-share="twitter" href="https://twitter.com/segment_fault" target="_blank"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw"></i> --> Twitter</a><a class="dropdown-item share_facebook" data-share="facebook" href="javascript:;" target="_blank"><svg class="svg-inline--fa fa-facebook-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg><!-- <i class="fab fa-facebook-square fa-fw"></i> --> Facebook</a></div>
+                    </div></div></div>
+                            <h1 class="h2 mb-3">
+                                <a class="text-body" href="https://segmentfault.com/a/1190000010753942">JavaScript 对象所有API解析</a>
+                            </h1>
+                            <div class="d-flex flex-wrap align-items-center mb-4">
+                                <div class="m-n1"><a class="m-1 badge-tag" href="https://segmentfault.com/t/javascript" data-toggle="popover" data-img="https://avatar-static.segmentfault.com/195/823/1958237468-1040000000089436_big64" data-placement="top" data-original-title="javascript" data-id="1040000000089436">
+                                                                                        javascript
+                                        </a></div>
+                                <div class="font-size-14">
+                                   <span class="text-secondary ml-2">&nbsp;阅读约 28 分钟</span>
+                                                                                                        </div>
+                            </div>
+                            <article class="article fmt article__content" data-id="1190000010753942" data-license="cc">
+                                
+<blockquote>之前看到<a href="http://louiszhai.github.io/2017/04/28/array/" rel="nofollow noreferrer">【深度长文】JavaScript数组所有API全解密</a>和<a href="http://louiszhai.github.io/2016/01/12/js.String/" rel="nofollow noreferrer">JavaScript字符串所有API全解密</a>这两篇高质量的文章。发现没写对象API解析（估计是博主觉得简单，就没写）。刚好我看到《JavaScript面向对象编程指南（第2版）》，觉得有必要写（或者说chao）一下，也好熟悉下对象的所有API用法。</blockquote>
+<p>创建对象的两种方式：</p>
+<pre><code>var o = new Object();
+var o = {}; // 推荐</code></pre>
+<p>该构造器可以接受任何类型的参数，并且会自动识别参数的类型，并选择更合适的构造器来完成相关操作。比如：</p>
+<pre><code>var o = new Object('something');
+o.constructor; // ƒ String() { [native code] }
+var n = new Object(123);
+n.constructor; // ƒ Number() { [native code] }</code></pre>
+<h2 id="item-1">一、Object构造器的成员</h2>
+<h3 id="item-1-1">Object.prototype</h3>
+<p>该属性是所有对象的原型（包括 <code>Object</code>对象本身），语言中的其他对象正是通过对该属性上添加东西来实现它们之间的继承关系的。所以要小心使用。<br>比如：</p>
+<pre><code>var s = new String('xuanyuan');
+Object.prototype.custom = 1;
+console.log(s.custom); // 1</code></pre>
+<h2 id="item-2">二、Object.prototype 的成员</h2>
+<h3 id="item-2-2">Object.prototype.constructor</h3>
+<p>该属性指向用来构造该函数对象的构造器，在这里为<code>Object()</code></p>
+<pre><code>Object.prototype.constructor === Object; // true
+var o = new Object();
+o.constructor === Object; // true</code></pre>
+<h3 id="item-2-3">Object.prototype.toString(radix)</h3>
+<p>该方法返回的是一个用于描述目标对象的字符串。特别地，当目标是一个Number对象时，可以传递一个用于进制数的参数<code>radix</code>，该参数<code>radix</code>，该参数的默认值为10。</p>
+<pre><code>var o = {prop:1};
+o.toString(); // '[object Object]'
+var n = new Number(255);
+n.toString(); // '255'
+n.toString(16); // 'ff'</code></pre>
+<h3 id="item-2-4">Object.prototype.toLocaleString()</h3>
+<p>该方法的作用与<code>toString()</code>基本相同，只不过它做一些本地化处理。该方法会根据当前对象的不同而被重写，例如<code>Date()</code>,<code>Number()</code>,<code>Array()</code>,它们的值都会以本地化的形式输出。当然，对于包括<code>Object()</code>在内的其他大多数对象来说，该方法与<code>toString()</code>是基本相同的。<br>在浏览器环境下，可以通过<code>BOM</code>对象<code>Navigator</code>的<code>language</code>属性（在<code>IE</code>中则是<code>userLanguage</code>）来了解当前所使用的语言：</p>
+<pre><code style="word-break: break-word; white-space: initial;">navigator.language; //'en-US'</code></pre>
+<h3 id="item-2-5">Object.prototype.valueOf()</h3>
+<p>该方法返回的是用基本类型所表示的<code>this</code>值，如果它可以用基本类型表示的话。如果<code>Number</code>对象返回的是它的基本数值，而<code>Date</code>对象返回的是一个时间戳（<code>timestamp</code>）。如果无法用基本数据类型表示，该方法会返回<code>this</code>本身。</p>
+<pre><code>// Object
+var o = {};
+typeof o.valueOf(); // 'object'
+o.valueOf() === o; // true
+// Number
+var n = new Number(101);
+typeof n; // 'object'
+typeof n.vauleOf; // 'function'
+typeof n.valueOf(); // 'number'
+n.valueOf() === n; // false
+// Date
+var d = new Date();
+typeof d.valueOf(); // 'number'
+d.valueOf(); // 1503146772355</code></pre>
+<h3 id="item-2-6">Object.prototype.hasOwnProperty(prop)</h3>
+<p>该方法仅在目标属性为对象自身属性时返回<code>true</code>,而当该属性是从原型链中继承而来或根本不存在时，返回<code>false</code>。</p>
+<pre><code>var o = {prop:1};
+o.hasOwnProperty('prop'); // true
+o.hasOwnProperty('toString'); // false
+o.hasOwnProperty('formString'); // false</code></pre>
+<h3 id="item-2-7">Object.prototype.isPrototypeOf(obj)</h3>
+<p>如果目标对象是当前对象的原型，该方法就会返回<code>true</code>，而且，当前对象所在原型上的所有对象都能通过该测试，并不局限与它的直系关系。</p>
+<pre><code>var s = new String('');
+Object.prototype.isPrototypeOf(s); // true
+String.prototype.isPrototypeOf(s); // true
+Array.prototype.isPrototypeOf(s); // false</code></pre>
+<h3 id="item-2-8">Object.prototype.propertyIsEnumerable(prop)</h3>
+<p>如果目标属性能在<code>for in</code>循环中被显示出来，该方法就返回<code>true</code></p>
+<pre><code>var a = [1,2,3];
+a.propertyIsEnumerable('length'); // false
+a.propertyIsEnumerable(0); // true</code></pre>
+<h2 id="item-3">三、在<code>ES5</code>中附加的<code>Object</code>属性</h2>
+<p>在<code>ES3</code>中，除了一些内置属性（如：<code>Math.PI</code>），对象的所有的属性在任何时候都可以被修改、插入、删除。在<code>ES5</code>中，我们可以设置属性是否可以被改变或是被删除——在这之前，它是内置属性的特权。<code>ES5</code>中引入了<strong>属性描述符</strong>的概念，我们可以通过它对所定义的属性有更大的控制权。这些<strong>属性描述符</strong>（特性）包括：</p>
+<blockquote>
+<code>value</code>——当试图获取属性时所返回的值。<br><code>writable</code>——该属性是否可写。<br><code>enumerable</code>——该属性在<code>for in</code>循环中是否会被枚举<br><code>configurable</code>——该属性是否可被删除。<br><code>set()</code>——该属性的更新操作所调用的函数。<br><code>get()</code>——获取属性值时所调用的函数。<br>另外，<strong>数据描述符</strong>（其中属性为：<code>enumerable</code>，<code>configurable</code>，<code>value</code>，<code>writable</code>）与<strong>存取描述符</strong>（其中属性为<code>enumerable</code>，<code>configurable</code>，<code>set()</code>，<code>get()</code>）之间是有互斥关系的。在定义了<code>set()</code>和<code>get()</code>之后，描述符会认为存取操作已被 定义了，其中再定义<code>value</code>和<code>writable</code>会<strong>引起错误</strong>。<br>以下是<em>ES3</em>风格的属性定义方式：</blockquote>
+<pre><code>var person = {};
+person.legs = 2;</code></pre>
+<p>以下是等价的ES5通过<strong>数据描述符</strong>定义属性的方式：</p>
+<pre><code>var person = {};
+Object.defineProperty(person, 'legs', {
+    value: 2,
+    writable: true,
+    configurable: true,
+    enumerable: true
+});</code></pre>
+<p>其中， 除了value的默认值为<code>undefined</code>以外，其他的默认值都为<code>false</code>。这就意味着，如果想要通过这一方式定义一个可写的属性，必须显示将它们设为<code>true</code>。<br>或者，我们也可以通过<code>ES5</code>的存储描述符来定义：</p>
+<pre><code>var person = {};
+Object.defineProperty(person, 'legs', {
+    set:function(v) {
+        return this.value = v;
+    },
+    get: function(v) {
+        return this.value;
+    },
+    configurable: true,
+    enumerable: true
+});
+person.legs = 2;</code></pre>
+<p>这样一来，多了许多可以用来描述属性的代码，如果想要防止别人篡改我们的属性，就必须要用到它们。此外，也不要忘了浏览器向后兼容<code>ES3</code>方面所做的考虑。例如，跟添加<code>Array.prototype</code>属性不一样，我们不能再旧版的浏览器中使用<code>shim</code>这一特性。<br>另外，我们还可以（通过定义<code>nonmalleable</code>属性），在具体行为中运用这些描述符：</p>
+<pre><code>var person = {};
+Object.defineProperty(person, 'heads', {value: 1});
+person.heads = 0; // 0
+person.heads; // 1  (改不了)
+delete person.heads; // false
+person.heads // 1 (删不掉)</code></pre>
+<h3 id="item-3-9">Object.defineProperty(obj, prop, descriptor) (ES5)</h3>
+<p>具体用法可参见上文，或者查看MDN。<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" rel="nofollow noreferrer">MDN Object.defineProperty(obj, descriptor)</a></p>
+<blockquote>Vue.js文档：<a href="https://cn.vuejs.org/v2/guide/reactivity.html" rel="nofollow noreferrer"><strong>如何追踪变化</strong></a> 把一个普通 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。Object.defineProperty 是仅 ES5 支持，且无法 shim 的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因。</blockquote>
+<h3 id="item-3-10">Object.defineProperties(obj, props) (ES5)</h3>
+<p>该方法的作用与<code>defineProperty()</code>基本相同，只不过它可以用来一次定义多个属性。<br>比如：</p>
+<pre><code>var glass = Object.defineProperties({}, {
+    'color': {
+        value: 'transparent',
+        writable: true
+    },
+    'fullness': {
+        value: 'half',
+        writable: false
+    }
+});
+glass.fullness; // 'half'</code></pre>
+<h3 id="item-3-11">Object.getPrototypeOf(obj) (ES5)</h3>
+<p>之前在<code>ES3</code>中，我们往往需要通过<code>Object.prototype.isPrototypeOf()</code>去猜测某个给定的对象的原型是什么，如今在<code>ES5</code>中，我们可以直接询问改对象“你的原型是什么？”</p>
+<pre><code>Object.getPrototypeOf([]) === Array.prototype; // true
+Object.getPrototypeOf(Array.prototype) === Object.prototype; // true
+Object.getPrototypeOf(Object.prototype) === null; // true</code></pre>
+<h3 id="item-3-12">Object.create(obj, descr) (ES5)</h3>
+<p>该方法主要用于创建一个新对象，并为其设置原型，用（上述）属性描述符来定义对象的原型属性。</p>
+<pre><code>var parent = {hi: 'Hello'};
+var o = Object.create(parent, {
+    prop: {
+        value: 1
+    }
+});
+o.hi; // 'Hello'
+// 获得它的原型
+Object.getPrototypeOf(parent) === Object.prototype; // true 说明parent的原型是Object.prototype
+Object.getPrototypeOf(o); // {hi: "Hello"} // 说明o的原型是{hi: "Hello"}
+o.hasOwnProperty('hi'); // false 说明hi是原型上的
+o.hasOwnProperty('prop'); // true 说明prop是原型上的自身上的属性。</code></pre>
+<p>现在，我们甚至可以用它来创建一个完全空白的对象，这样的事情在<code>ES3</code>中可是做不到的。</p>
+<pre><code>var o = Object.create(null);
+typeof o.toString(); // 'undefined'</code></pre>
+<h3 id="item-3-13">Object.getOwnPropertyDesciptor(obj, property) (ES5)</h3>
+<p>该方法可以让我们详细查看一个属性的定义。甚至可以通过它一窥那些内置的，之前不可见的隐藏属性。</p>
+<pre><code>Object.getOwnPropertyDescriptor(Object.prototype, 'toString');
+// {writable: true, enumerable: false, configurable: true, value: ƒ toString()}</code></pre>
+<h3 id="item-3-14">Object.getOwnPropertyNames(obj) (ES5)</h3>
+<p>该方法返回一个数组，其中包含了当前对象所有属性的名称（字符串），不论它们是否可枚举。当然，也可以用<code>Object.keys()</code>来单独返回可枚举的属性。</p>
+<pre><code>Object.getOwnPropertyNames(Object.prototype);
+// ["__defineGetter__", "__defineSetter__", "hasOwnProperty", "__lookupGetter__", "__lookupSetter__", "propertyIsEnumerable", "toString", "valueOf", "__proto__", "constructor", "toLocaleString", "isPrototypeOf"]
+Object.keys(Object.prototype);
+// []
+Object.getOwnPropertyNames(Object);
+// ["length", "name", "arguments", "caller", "prototype", "assign", "getOwnPropertyDescriptor", "getOwnPropertyDescriptors", "getOwnPropertyNames", "getOwnPropertySymbols", "is", "preventExtensions", "seal", "create", "defineProperties", "defineProperty", "freeze", "getPrototypeOf", "setPrototypeOf", "isExtensible", "isFrozen", "isSealed", "keys", "entries", "values"]
+Object.keys(Object);
+// []</code></pre>
+<h3 id="item-3-15">Object.preventExtensions(obj) (ES5)</h3>
+<h3 id="item-3-16">Object.isExtensible(obj) (ES5)</h3>
+<p><code>preventExtensions()</code>方法用于禁止向某一对象添加更多属性，而<code>isExtensible()</code>方法则用于检查某对象是否还可以被添加属性。</p>
+<pre><code>var deadline = {};
+Object.isExtensible(deadline); // true
+deadline.date = 'yesterday'; // 'yesterday'
+Object.preventExtensions(deadline);
+Object.isExtensible(deadline); // false
+deadline.date = 'today';
+deadline.date; // 'today'
+// 尽管向某个不可扩展的对象中添加属性不算是一个错误操作，但它没有任何作用。
+deadline.report = true;
+deadline.report; // undefined</code></pre>
+<h3 id="item-3-17">Object.seal(obj) (ES5)</h3>
+<h3 id="item-3-18">Object.isSeal(obj) (ES5)</h3>
+<p><code>seal()</code>方法可以让一个对象密封，并返回被密封后的对象。<br><code>seal()</code>方法的作用与<code>preventExtensions()</code>基本相同，但除此之外，它还会将现有属性<br>设置成不可配置。也就是说，在这种情况下，我们只能变更现有属性的值，但不能删除或（用<code>defineProperty()</code>）重新配置这些属性，例如不能将一个可枚举的属性改成不可枚举。</p>
+<pre><code>var person = {legs:2};
+// person === Object.seal(person); // true
+Object.isSealed(person); // true
+Object.getOwnPropertyDescriptor(person, 'legs');
+// {value: 2, writable: true, enumerable: true, configurable: false}
+delete person.legs; // false (不可删除，不可配置)
+Object.defineProperty(person, 'legs',{value:2});
+person.legs; // 2
+person.legs = 1;
+person.legs; // 1 (可写)
+Object.defineProperty(person, "legs", { get: function() { return "legs"; } });
+// 抛出TypeError异常</code></pre>
+<h3 id="item-3-19">Object.freeze(obj) (ES5)</h3>
+<h3 id="item-3-20">Object.isFrozen(obj) (ES5)</h3>
+<p><code>freeze()</code>方法用于执行一切不受<code>seal()</code>方法限制的属性值变更。<code>Object.freeze()</code> 方法可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。</p>
+<pre><code>var deadline = Object.freeze({date: 'yesterday'});
+deadline.date = 'tomorrow';
+deadline.excuse = 'lame';
+deadline.date; // 'yesterday'
+deadline.excuse; // undefined
+Object.isSealed(deadline); // true;
+Object.isFrozen(deadline); // true
+Object.getOwnPropertyDescriptor(deadline, 'date');
+// {value: "yesterday", writable: false, enumerable: true, configurable: false} (不可配置，不可写)
+Object.keys(deadline); // ['date'] (可枚举)</code></pre>
+<h3 id="item-3-21">Object.keys(obj) (ES5)</h3>
+<p>该方法是一种特殊的<code>for-in</code>循环。它只返回当前对象的属性（不像<code>for-in</code>），而且这些属性也必须是可枚举的（这点和<code>Object.getOwnPropertyNames()</code>不同，不论是否可以枚举）。返回值是一个字符串数组。</p>
+<pre><code>Object.prototype.customProto = 101;
+Object.getOwnPropertyNames(Object.prototype);
+// [..., "constructor", "toLocaleString", "isPrototypeOf", "customProto"]
+Object.keys(Object.prototype); // ['customProto']
+var o = {own: 202};
+o.customProto; // 101
+Object.keys(o); // ['own']</code></pre>
+<h3 id="item-3-22">四、在<code>ES6</code>中附加的<code>Object</code>属性</h3>
+<h3 id="item-3-23">Object.is(value1, value2) (ES6)</h3>
+<p>该方法用来比较两个值是否严格相等。它与严格比较运算符（===）的行为基本一致。<br>不同之处只有两个：一是<code>+0</code>不等于<code>-0</code>，而是<code>NaN</code>等于自身。</p>
+<pre><code>Object.is('xuanyuan', 'xuanyuan'); // true
+Object.is({},{}); // false
+Object.is(+0, -0); // false
++0 === -0; // true
+Object.is(NaN, NaN); // true
+NaN === NaN; // false</code></pre>
+<p><code>ES5</code>可以通过以下代码部署<code>Object.is</code></p>
+<pre><code>Object.defineProperty(Object, 'is', {
+    value: function() {x, y} {
+        if (x === y) {
+           // 针对+0不等于-0的情况
+           return x !== 0 || 1 / x === 1 / y;
+        }
+        // 针对 NaN的情况
+        return x !== x &amp;&amp; y !== y;
+    },
+    configurable: true,
+    enumerable: false,
+    writable: true
+});</code></pre>
+<h3 id="item-3-24">Object.assign(target, ...sources) (ES6)</h3>
+<p>该方法用来源对象（<code>source</code>）的所有可枚举的属性复制到目标对象（<code>target</code>）。它至少需要两个对象作为参数，第一个参数是目标对象<code>target</code>，后面的参数都是源对象（<code>source</code>）。只有一个参数不是对象，就会抛出<code>TypeError</code>错误。</p>
+<pre><code>var target = {a: 1};
+var source1 = {b: 2};
+var source2 = {c: 3};
+obj = Object.assign(target, source1, source2);
+target; // {a:1,b:2,c:3}
+obj; // {a:1,b:2,c:3}
+target === obj; // true
+// 如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+var source3 = {a:2,b:3,c:4};
+Object.assign(target, source3);
+target; // {a:2,b:3,c:4}</code></pre>
+<p><code>Object.assign</code>只复制自身属性，不可枚举的属性（<code>enumerable</code>为<code>false</code>）和继承的属性不会被复制。</p>
+<pre><code>Object.assign({b: 'c'}, 
+    Object.defineProperty({}, 'invisible', {
+        enumerable: false,
+        value: 'hello'
+    })
+);
+// {b: 'c'}</code></pre>
+<p>属性名为<code>Symbol</code>值的属性，也会被<code>Object.assign()</code>复制。</p>
+<pre><code>Object.assign({a: 'b'}, {[Symbol('c')]: 'd'});
+// {a: 'b', Symbol(c): 'd'}</code></pre>
+<p>对于嵌套的对象，<code>Object.assign()</code>的处理方法是替换，而不是添加。</p>
+<pre><code>Object.assign({a: {b:'c',d:'e'}}, {a:{b:'hello'}});
+// {a: {b:'hello'}}</code></pre>
+<p>对于数组，<code>Object.assign()</code>把数组视为属性名为0、1、2的对象。</p>
+<pre><code>Object.assign([1,2,3], [4,5]);
+// [4,5,3]</code></pre>
+<h3 id="item-3-25">Object.getOwnPropertySymbols(obj) (ES6)</h3>
+<p>该方法会返回一个数组，该数组包含了指定对象自身的（非继承的）所有 <code>symbol</code> 属性键。<br>该方法和 <code>Object.getOwnPropertyNames()</code> 类似，但后者返回的结果只会包含字符串类型的属性键，也就是传统的属性名。</p>
+<pre><code>Object.getOwnPropertySymbols({a: 'b', [Symbol('c')]: 'd'});
+// [Symbol(c)]</code></pre>
+<h3 id="item-3-26">Object.setPrototypeOf(obj, prototype) (ES6)</h3>
+<p>该方法设置一个指定的对象的原型 ( 即, 内部<code>[[Prototype]]</code>属性）到另一个对象或  <code>null</code>。<br><code>__proto__</code>属性用来读取或设置当前对象的<code>prototype</code>对象。目前，所有浏览器（包括<code>IE11</code>）都部署了这个属性。</p>
+<pre><code>// ES6写法
+var obj = {
+    method: function(){
+        // code ...
+    }
+};
+// obj.__proto__ = someOtherObj;
+// ES5写法
+var obj = Object.create(someOtherObj);
+obj.method = function(){
+    // code ...
+};</code></pre>
+<p>该属性没有写入<code>ES6</code>的正文，而是写入了附录。<code>__proto__</code>前后的双下划线说明它本质上是一个内部属性，而不是正式对外的一个API。无论从语义的角度，还是从兼容性的角度，都不要使用这个属性。而是使用<code>Object.setPrototypeOf()</code>（写操作），<code>Object.getPrototypeOf()</code>（读操作），或<code>Object.create()</code>（生成操作）代替。<br>在实现上，<code>__proto__</code>调用的<code>Object.prototype.__proto__</code>。<br><code>Object.setPrototypeOf()</code>方法的作用与<code>__proto__</code>作用相同，用于设置一个对象的<code>prototype</code>对象。它是<code>ES6</code>正式推荐的设置原型对象的方法。</p>
+<h2 id="item-4">五、在<code>ES8</code>中附加的<code>Object</code>属性</h2>
+<h3 id="item-4-27">Object.getOwnPropertyDescriptors(obj) (ES8)</h3>
+<p>该方法基本与<code>Object.getOwnPropertyDescriptor(obj, property)</code>用法一致，只不过它可以用来获取一个对象的所有自身属性的描述符。</p>
+<pre><code>Object.getOwnPropertyDescriptor(Object.prototype, 'toString');
+// {writable: true, enumerable: false, configurable: true, value: ƒ toString()}
+Object.getOwnPropertyDescriptors(Object.prototype); // 可以自行在浏览器控制台查看效果。</code></pre>
+<h3 id="item-4-28">Object.values(obj) (ES8)</h3>
+<p><code>Object.values()</code> 方法与<code>Object.keys</code>类似。返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用<code>for...in</code>循环的顺序相同 ( 区别在于<code>for-in</code>循环枚举原型链中的属性 )。</p>
+<pre><code>var obj = {a:1,b:2,c:3};
+Object.keys(obj); // ['a','b','c']
+Object.values(obj); // [1,2,3]</code></pre>
+<h3 id="item-4-29">Object.entries(obj) (ES8)</h3>
+<p><code>Object.entries()</code> 方法返回一个给定对象自己的可枚举属性<code>[key，value]</code>对的数组，数组中键值对的排列顺序和使用 <code>for...in</code> 循环遍历该对象时返回的顺序一致（区别在于一个<code>for-in</code>循环也枚举原型链中的属性）。</p>
+<pre><code>var obj = {a:1,b:2,c:3};
+Object.keys(obj); // ['a','b','c']
+Object.values(obj); // [1,2,3]
+Object.entries(obj); // [['a',1],['b',2],['c',3]]</code></pre>
+<h2 id="item-5">小结</h2>
+<p>您可能会发现MDN上还有一些API，本文没有列举到。因为那些是非标准的API。熟悉对象的API对理解原型和原型链相关知识会有一定帮助。常用的API主要有<code>Object.prototype.toString()</code>，<code>Object.prototype.hasOwnProperty()</code>， <code>Object.getPrototypeOf(obj)</code>，<code>Object.create()</code>，<code>Object.defineProperty</code>，<code>Object.keys(obj)</code>，<code>Object.assign()</code>。</p>
+<h2 id="item-6">参考资料</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object" rel="nofollow noreferrer">MDN Object API</a><br><a href="https://book.douban.com/subject/26302623/" rel="nofollow noreferrer">JavaScript面向对象编程指南（第2版）（豆瓣读书链接）</a><br><a href="http://es6.ruanyifeng.com/" rel="nofollow noreferrer">阮一峰 ES6标准入门2</a></p>
+<h2 id="item-7">关于</h2>
+<p>作者：常以<del>轩辕Rowboat</del><strong>若川</strong>为名混迹于江湖。前端路上 | PPT爱好者 | 所知甚少，唯善学。<br><a href="https://lxchuan12.github.io/" rel="nofollow noreferrer">个人博客</a><br><a href="https://segmentfault.com/blog/lxchuan12"><code>segmentfault</code>前端视野专栏</a>，开通了<strong>前端视野</strong>专栏，欢迎关注<br><a href="https://juejin.im/user/57974dc55bbb500063f522fd/posts" rel="nofollow noreferrer">掘金专栏</a>，欢迎关注<br><a href="https://zhuanlan.zhihu.com/lxchuan12" rel="nofollow noreferrer">知乎前端视野专栏</a>，开通了<strong>前端视野</strong>专栏，欢迎关注<br><a href="https://github.com/lxchuan12" rel="nofollow noreferrer">github</a>，欢迎<code>follow</code>~</p>
+
+                            </article>
+                            <div class="text-secondary font-size-14 mb-5 d-flex justify-content-between">
+                                                            <div>阅读 5.3k<span class="split-dot"></span><span data-toggle="tooltip" data-placement="top" title="" data-original-title="发布于 2017-08-20 ">更新于 1月31日</span></div>
+                                                            <div class="operation">
+                                                                                                                                                                                                                        
+                                                                                                        </div>
+                            </div>
+
+                            
+                                                                                    
+                            <div class="functional-area-bottom"><div class="text-center"><button class="func-btn mainLike btn btn-light 
+                            mr-2" data-id="1190000010753942">
+                            <svg class="svg-inline--fa fa-thumbs-up fa-w-16" aria-hidden="true" focusable="false" data-prefix="far" data-icon="thumbs-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M466.27 286.69C475.04 271.84 480 256 480 236.85c0-44.015-37.218-85.58-85.82-85.58H357.7c4.92-12.81 8.85-28.13 8.85-46.54C366.55 31.936 328.86 0 271.28 0c-61.607 0-58.093 94.933-71.76 108.6-22.747 22.747-49.615 66.447-68.76 83.4H32c-17.673 0-32 14.327-32 32v240c0 17.673 14.327 32 32 32h64c14.893 0 27.408-10.174 30.978-23.95 44.509 1.001 75.06 39.94 177.802 39.94 7.22 0 15.22.01 22.22.01 77.117 0 111.986-39.423 112.94-95.33 13.319-18.425 20.299-43.122 17.34-66.99 9.854-18.452 13.664-40.343 8.99-62.99zm-61.75 53.83c12.56 21.13 1.26 49.41-13.94 57.57 7.7 48.78-17.608 65.9-53.12 65.9h-37.82c-71.639 0-118.029-37.82-171.64-37.82V240h10.92c28.36 0 67.98-70.89 94.54-97.46 28.36-28.36 18.91-75.63 37.82-94.54 47.27 0 47.27 32.98 47.27 56.73 0 39.17-28.36 56.72-28.36 94.54h103.99c21.11 0 37.73 18.91 37.82 37.82.09 18.9-12.82 37.81-22.27 37.81 13.489 14.555 16.371 45.236-5.21 65.62zM88 432c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z"></path></svg><!-- <i class="far fa-thumbs-up"></i> -->
+                            <span class="ml-1">赞</span> <span class="mainLikeNum ml-1">28</span>
+                        </button><button class="func-btn mainBookmark btn btn-light 
+                                mr-2 " data-id="1190000010753942">
+                                
+                                <span class="ml-1">收藏</span> <span class="bookmarkNum ml-1">77</span>
+                            </button><button class="func-btn show-row article__reward-btn btn btn-light
+                        mr-2 ">
+                        <svg class="svg-inline--fa fa-yen-sign fa-w-12" aria-hidden="true" focusable="false" data-prefix="far" data-icon="yen-sign" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M347.983 32h-44.065a12.001 12.001 0 0 0-10.555 6.291l-73.76 133.313c-13.96 29.825-27.286 64.725-27.286 64.725h-1.269s-13.326-34.901-27.287-64.725L90.689 38.328A12 12 0 0 0 80.115 32H36.017c-9.157 0-14.94 9.844-10.481 17.843L119.746 216H68c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h77.18l14.775 26.267V312H68c-6.627 0-12 5.373-12 12v24c0 6.627 5.373 12 12 12h91.955v108c0 6.627 5.373 12 12 12h39.456c6.627 0 12-5.373 12-12V360H316c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-92.589v-21.733L238.185 264H316c6.627 0 12-5.373 12-12v-24c0-6.627-5.373-12-12-12h-52.367L358.45 49.87c4.485-7.999-1.296-17.87-10.467-17.87z"></path></svg><!-- <i class="far fa-yen-sign"></i> -->
+                        <span class="ml-1">赞赏</span>
+                    </button><div class="dropdown dropup d-inline-block">
+                        <button class="func-btn btn btn-light
+                        " id="func_share" data-toggle="dropdown">
+                        <svg class="svg-inline--fa fa-share-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="far" data-icon="share-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M352 320c-25.6 0-48.9 10-66.1 26.4l-98.3-61.5c5.9-18.8 5.9-39.1 0-57.8l98.3-61.5C303.1 182 326.4 192 352 192c53 0 96-43 96-96S405 0 352 0s-96 43-96 96c0 9.8 1.5 19.6 4.4 28.9l-98.3 61.5C144.9 170 121.6 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.6 0 48.9-10 66.1-26.4l98.3 61.5c-2.9 9.4-4.4 19.1-4.4 28.9 0 53 43 96 96 96s96-43 96-96-43-96-96-96zm0-272c26.5 0 48 21.5 48 48s-21.5 48-48 48-48-21.5-48-48 21.5-48 48-48zM96 304c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm256 160c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"></path></svg><!-- <i class="far fa-share-alt"></i> -->
+                        <span class="ml-1 show-row">分享</span>
+                        </button>
+                        <div class="dropdown-menu shareContent" aria-labelledby="func_share">
+                            <div class="text-center mt-2" style="cursor: auto">
+                                <div class="qr"><img crossorigin="anonymous" src="data:image/png;base64,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" width="147.5" height="147.5" style="width: 118px; height: 118px;"></div>
+                                微信扫一扫
+                            </div>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item share_weibo" data-share="weibo" href="http://weibo.com/segmentfault" target="_blank"><svg class="svg-inline--fa fa-weibo fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg><!-- <i class="fab fa-weibo fa-fw"></i> --> 新浪微博</a><a class="dropdown-item share_twitter" data-share="twitter" href="https://twitter.com/segment_fault" target="_blank"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw"></i> --> Twitter</a><a class="dropdown-item share_facebook" data-share="facebook" href="javascript:;" target="_blank"><svg class="svg-inline--fa fa-facebook-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"></path></svg><!-- <i class="fab fa-facebook-square fa-fw"></i> --> Facebook</a></div>
+                    </div></div></div>
+
+                            <div class="text-center mb-5 mt-3 text-secondary font-size-14">
+                                本作品系
+                                原创
+                                 ，
+                                                                    <a target="_blank" class="text-secondary" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">采用《署名-非商业性使用-禁止演绎 4.0 国际》许可协议</a>
+                                                            </div>
+                            <div class="article-author d-flex flex-column flex-sm-row align-items-center pt-4 border-top">
+                                <div class="d-flex align-items-center flex-grow-1 author-left">
+                                    <a href="https://segmentfault.com/u/lxchuan12">
+                                        <img class="rounded-circle mr-3" width="64" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/2211965068-5cf3a535a13d9_big64" aria-hidden="true">
+                                    </a>
+                                    <div>
+                                        <h5><a href="https://segmentfault.com/u/lxchuan12" class="text-body">若川</a></h5>
+                                        <ul class="list-inline mb-0 authentication-info">
+                                                                                        <li class="list-inline-item">
+                                                <svg class="svg-inline--fa fa-dice-d8 fa-w-16" style="color: #BF7158;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="dice-d8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M225.53 2.52L2.36 233.83c-4.21 4.37-2.56 11.71 3.1 13.77l234.13 85.06V8.39c-.01-7.49-8.91-11.21-14.06-5.87zm284.11 231.31L286.47 2.52C281.32-2.82 272.41.9 272.41 8.4v324.27l234.13-85.06c5.66-2.07 7.31-9.42 3.1-13.78zM33.53 310.38l192 199.1c5.15 5.34 14.06 1.62 14.06-5.88V368.29L42.13 296.61c-8.21-2.98-14.72 7.43-8.6 13.77zm436.34-13.77l-197.46 71.68V503.6c0 7.5 8.91 11.22 14.06 5.88l192-199.1c6.12-6.34-.39-16.75-8.6-13.77z"></path></svg><!-- <i class="fas fa-dice-d8" style="color:#BF7158"></i> -->
+                                                <span style="color: #BF7158; font-size:16px; font-weight:bold">5.9k</span>
+                                            </li>
+                                                                                                                                            <li class="list-inline-item">
+                                                    <a class="text-body" href="https://github.com/lxchuan12" target="_blank"><svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> --></a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                            </ul>
+                                    </div>
+                                </div>
+                                <div class="author-right flex-shrink-0">
+                                                                                                                <button type="button" class="btn btn-primary follow-user sf_do" data-dotype="post" data-content="{&quot;type&quot;:&quot;state&quot;,&quot;state&quot;:false,&quot;true&quot;:&quot;\u5173\u6ce8\u4f5c\u8005&quot;,&quot;false&quot;:&quot;\u6b63\u5728\u5173\u6ce8&quot;}" data-api="/iteration/api/user/1030000004068910/follow">关注作者
+                                        </button>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-lg-block">
+                    <script type="text/javascript">
+                      OA_show(3);
+                    </script><div id="OA_holder_3"><div style="text-align: center; line-height: 0"><script async="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/f.txt"></script>
+<!-- 中部横幅广告位 -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6330872677300335" data-ad-slot="5598290435"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div id="beacon_9919e5aa4e" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></div>
+</div>
+                    </div>
+                                                            <div id="comment-area" class="my-4" data-type="article" data-id="1190000010753942" data-page="1" data-user="null"><div class="d-flex justify-content-between mb-2">
+                <div id="comment-total" class="h5 mb-0">
+                    0 条评论
+                </div>
+                <div>
+                    <a href="javascript:;" class="sort text-dark" data-sort="default">得票</a><span class="split-dot"></span><a href="javascript:;" class="sort text-secondary" data-sort="desc">时间</a>
+                </div>
+            </div><div class="card border-0">
+                <div class="card-body">
+                    <div class="media">
+                        <img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/user-128.png" class="rounded-circle mr-3" width="38" aria-hidden="true">          
+                        <form class="media-body" action="https://segmentfault.com/api/article/1190000010753942/comments/add">
+                            <div class="form-group">
+                                <textarea autoheight="true" class="form-control comment-text" rows="1" placeholder="撰写评论 ..." style=";" name="text"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button data-js-replay-submit-btn="" type="button" submit-type="comment" class="btn btn-primary float-right" disabled="">提交评论</button>
+                                <input type="hidden" name="objectId" value="1190000010753942" autocomplete="off">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="comment-body"><div class="text-center text-secondary p-3"><svg class="svg-inline--fa fa-spinner fa-w-16 fa-spin" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="spinner" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"></path></svg><!-- <i class="fas fa-spin fa-spinner"></i> --> 评论加载中...</div></div><div class="sflex-center comment-pagination"></div>
+                </div>
+            </div></div>
+                                        <h5 class="mt-4">推荐阅读</h5>
+                    <div class="card border-0 mb-4">
+                        <div class="list-group list-group-flush" id="paradigm-article-related"><a href="http://segmentfault.com/a/1190000006057194" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">JS高程读书笔记--第五章引用类型</h5>
+                            <p class="mb-2 text-truncate text-secondary">创建Object实例的方式有两种。第一种是使用new操作符后跟Object构造函数，另一种方式是使用对象字面量表示法。在通过对象字面量定义对象时，实际上不会调用Object构造函数访问对象属性时可以使用点表示法和方括号表示法。使用方括号语法时，应该要将访问的属性以字符串的形式放在方括号中。方括号表示法的优点是可以通过变量来访问属性。ECMAScript数组的每一项可以保存任何类型的数据，并它的大小</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">多喝热水早点睡</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>7</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000008539638" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">JavaScript创建对象的5种模式</h5>
+                            <p class="mb-2 text-truncate text-secondary">原文链接面向对象的语言有一个标志，即拥有类的概念，抽象实例对象的公共属性与方法，基于类可以创建任意多个实例对象，一般具有封装、继承、多态的特性！但JS中对象与纯面向对象语言中的对象是不同的，ECMA标准定义JS中对象：无序属性的集合，其属性可以包含基本值、对象或者函数。可以简单理解为JS的对象是一组无序的值，其中的属性或方法都有一个名字，根据这个名字可以访问相映射的值（值可以是基本值对象方法）。创</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">小小赵老汉</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>91</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000004655308" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">学习笔记：对象，原型和继承（1）</h5>
+                            <p class="mb-2 text-truncate text-secondary">一：创建对象1工厂模式2构造函数模式3原型模式不过以上方法太过于麻烦每次都要写重复的prototypeconstructor属性不再指向Person了指向Object于是可以这样原型的动态性重写原型对象切断了现有原型与任何之前已经存在的对象实例之间的联系；它们引用的仍然是最初的原型。原型模式也不是没有缺点。首先，它省略了为构造函数传递初始化参数这一环节，结果所有实例在默认情况下都将取得相同的属性值</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">nevar</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>12</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000013460102" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">【基础系列】javascript中的对象</h5>
+                            <p class="mb-2 text-truncate text-secondary">对象是一种特殊的数据类型，这种数据类型还有其他的很多叫法，比如“散列”，“散列表”，“字典”，“关联数组”。对象按照创建者的角度，可以分为三类：内置对象：是由javascript语言本身自定义的对象，大多数是一些预定好的构造函数类，比如Array，Date，Function宿主对象：是指javascript解释器所嵌入的宿主环境定义的对象，比如HTMLElement就是宿主对象。自定义对象：是指由</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">bradwang</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>846</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000012207091" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">javascript基础之判断变量类型</h5>
+                            <p class="mb-2 text-truncate text-secondary">javaSctipt数据类型7种:Number,String,Boolean,Null,Undefined,Object,Symbol可能返回的值如下注意:typeof的能力有限，其对于null,Date、RegExp类型返回的都是object使用场景:区分对象和原始类型,要区分一种对象类型和另一种对象类型,可以使用:instanceof运算符或对象contructor属性用法:左边的运算数是一个</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">funnycoderstar</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>599</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000002406071" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">JavaScript学习笔记(二) 对象与函数</h5>
+                            <p class="mb-2 text-truncate text-secondary">引言：当理解了对象和函数的基本概念，你可能会发现，在JavaScript中有很多原以为理所当然（或盲目接受）的事情开始变得更有意义了。大多数面向对象（简称OO）语言都定义了某种基本的Object对象类型，其它所有的对象都源于这个对象类型。JavaScript的基本对象也是作为其它对象的基础，但是从基本层面上来看，JavaScript的Object对象与其它大部分的OO语言所定义的基本对象很不同。对</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">omgdog</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>650</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000010764292" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">JavaScript之Object</h5>
+                            <p class="mb-2 text-truncate text-secondary">Object构造函数创建一个对象包装器。如果给定值是nullorundefined，将会创建并返回一个空对象，否则，将返回一个与给定值对应类型的对象。布尔值、数值、字符串分别转成对应的包装对象时，它们的原始值都在包装对象的内部属性PrimitiveValue上面。只有字符串的包装对象，会产生可枚举属性。当以非构造函数形式被调用时，Object等同于newObject()。Object.assign</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">lijinxieyang</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>16</span>
+                            </p>
+                        </a><a href="http://segmentfault.com/a/1190000014001219" target="_blank" class="list-group-item list-group-item-action py-3">
+                            <h5 class="text-body">JavaScript的面向对象</h5>
+                            <p class="mb-2 text-truncate text-secondary">JavaScript的面向对象与其他语言的面向对象，其实有很大的区别。JavaScript是基于原型的面向对象系统，而传统语言(比如java)的面向对象都是基于类的。在这个常见的构造函数写法中，我们需要知道以下几点：1.Person这个函数被定义后，会自带一个prototype属性，这个属性指向一个对象，既原型对象，这个对象同时有一个constructor属性，指向Person注意的是，所有函数都</p>
+                            <p class="text-secondary mb-0 font-size-14">
+                                <span class="text-primary">深红</span>
+                                <span class="split-dot"></span>
+                                阅读
+                                <span>11</span>
+                            </p>
+                        </a></div>
+                    </div>
+                    
+                </div>
+                
+                                <div class="col-12 col-xl-auto">
+                    <div class="w-xl-300">
+                                                <div class="blog card mb-4 border-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="media-avatar rounded mr-3" aria-hidden="true"></div>
+                                    <div style="flex:1">
+                                        <h5><a class="text-body" href="https://segmentfault.com/blog/lxchuan12">若川的前端视野</a></h5>
+                                        <span class="badge badge-primary" style="background-color: #007bff">用户专栏</span>
+                                    </div>
+                                </div>
+                                <p class="text-secondary text-truncate-2">发布前端技术文章和随笔等。</p>
+                                <div class="d-flex mb-3">
+                                    <div class="mr-4">
+                                        <strong id="blog-followers-count" class="followNum">172</strong>
+                                        <span class="text-secondary">人关注</span>
+                                    </div>
+                                    <div>
+                                        <strong>18</strong>
+                                        <span class="text-secondary">篇文章</span>
+                                    </div>
+                                </div>
+                                                                <div class="d-flex">
+                                                                            <button type="button" class="btn btn-primary mr-2 sf_do" data-number-tag-class="followNum" data-dotype="post" data-content="{&quot;type&quot;:&quot;state&quot;,&quot;state&quot;:false,&quot;true&quot;:&quot;\u5173\u6ce8\u4e13\u680f&quot;,&quot;false&quot;:&quot;\u6b63\u5728\u5173\u6ce8&quot;}" data-api="/iteration/api/blog/1200000015248017/follow">关注专栏
+                                        </button>
+                                    
+                                    <a class="btn btn-outline-primary" href="https://segmentfault.com/blog/lxchuan12">专栏主页</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / 专栏信息 -->
+                        
+                        <div class="card border-0 overflow-hidden d-none d-xl-flex justify-content-center align-items-center float-ads">
+                            <script type="text/javascript">
+                                OA_show(1);
+                            </script><div id="OA_holder_1"><script async="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/f.txt"></script>
+<!-- 侧栏矩形 -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6330872677300335" data-ad-slot="9674628595"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div id="beacon_92efacf4fd" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div>
+                        </div>
+                        <!-- / 矩形广告位 -->
+                        
+                        <div class="card border-0 mt-4">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <div class="mb25 hidden-md hidden-sm hidden-xs">
+    <img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/20191208.png" alt="Planets" usemap="#gridsMap" width="255" height="136">
+    <map name="gridsMap" id="gridsMap"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000020994504)" coords="102,0,119,17" href="http://www.zzsgzn.com/?sf" stitle="专业的.net类库SDK，接口简单，功能强大，提供技术支持，免费下载试用"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021089098)" coords="17,85,170,136" href="https://www.59dun.com/" stitle="五九盾云安全专业防护DDOS/CC攻击，T级清洗，智慧安全。"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021114979)" coords="0,34,255,68" href="https://www.bt.cn/?invite_code=MV9wcGJuaWI=" stitle="运维要高效，装宝塔，一键管理服务器！"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021186206)" coords="85,68,102,85" href="https://creatorsdaily.com/" stitle="唯有创造才是快乐。只有创造的生灵才是生灵。"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021189038)" coords="0,0,17,17" href="https://www.aliyun.com/minisite/goods?userCode=mrbq2fmx" stitle="云服务器低至89元/年，阿里云回馈用户，云产品1折起"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021191454)" coords="170,0,187,17" href="https://github.com/AobingJava/JavaFamily" stitle="【互联网大厂面经】敖丙火遍全网的系列，通俗易懂面试必备。"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021192031)" coords="238,0,255,17" href="http://gridmanager.lovejavascript.com/" stitle="快速、灵活的让Table标签充满活力"><area shape="rect" target="_blank" onmouseover="SFGridAd.d(this)" onmouseout="SFGridAd.e(this)" onclick="SFGridAd.c(1750000021200924)" coords="187,119,255,136" href="https://www.openinstall.io/" stitle="Android/iOS 一个包走天下！"></map>
+    <div style="text-align: center;"><a style="text-align:center; color:#9E9E9E; font-size:12px" href="https://segmentfault.com/sponsor">广告位促销，月曝光三千万，10 元/天</a></div>
+            <script async="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/20191208.js.下载"></script>
+    </div>
+                                </div>
+
+                                <div class="side-promote-link">
+                                    <script type="text/javascript">
+                                        OA_show(7);
+                                        OA_show(9);
+                                        OA_show(10);
+                                        OA_show(15);
+                                        OA_show(16);
+                                    </script><div id="OA_holder_7"><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=56__zoneid=7__cb=9ca0331d87__oadest=https%3A%2F%2Fsegmentfault.com%2Fls%2F1650000011318558" target="_blank"><strong>大神的PHP 进阶之路</strong><br>
+<small style="color: #999">亿级 PV 项目的架构梳理，性能提升实战</small></a><div id="beacon_9ca0331d87" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div><div id="OA_holder_9"><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=53__zoneid=9__cb=c6f6609458__oadest=https%3A%2F%2Fsegmentfault.com%2Fls%2F1650000016424063" target="_blank"><strong>iView 实战系列课程</strong><br>
+<small style="color: #999"><span style="color: #F7A700">[限时优惠]</span> 知名开源组件库作者讲授</small></a><div id="beacon_c6f6609458" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(4).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div><div id="OA_holder_10"><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=47__zoneid=10__cb=8faddf8697__oadest=https%3A%2F%2Fsegmentfault.com%2Fls%2F1650000016221751" target="_blank"><strong>Vue 技术栈开发实战</strong><br>
+<small style="color: #999">iView 核心开发者带你掌握 Vue 精髓</small></a><div id="beacon_8faddf8697" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(5).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div><div id="OA_holder_15"><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=57__zoneid=15__cb=c4e6806327__oadest=https%3A%2F%2Fsegmentfault.com%2Fls%2F1650000011387052" target="_blank"><strong> Java 微服务实践课</strong><br>
+<small style="color: #999">上千人学习过的微服务实栈课</small></a><div id="beacon_c4e6806327" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(6).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div><div id="OA_holder_16"><div id="beacon_4dfde7a784" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(7).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / 格子广告、链接广告 -->
+                        
+                        <div class="card border-0 mt-4 overflow-hidden d-none d-xl-flex" data-article-nav="" style="">
+                            <div class="card-body">
+                                <h6 class="card-title">目录</h6>
+                                <nav id="article-nav-list" data-article-nav-list="" class="font-size-14 my-n1">
+
+                                <a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-1" data-offsettop="0">一、Object构造器的成员</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-1-1" data-offsettop="0">Object.prototype</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2" data-offsettop="0">二、Object.prototype 的成员</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-2" data-offsettop="0">Object.prototype.constructor</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-3" data-offsettop="0">Object.prototype.toString(radix)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-4" data-offsettop="0">Object.prototype.toLocaleString()</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-5" data-offsettop="0">Object.prototype.valueOf()</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-6" data-offsettop="0">Object.prototype.hasOwnProperty(prop)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-7" data-offsettop="0">Object.prototype.isPrototypeOf(obj)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-2-8" data-offsettop="0">Object.prototype.propertyIsEnumerable(prop)</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3" data-offsettop="0">三、在ES5中附加的Object属性</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-9" data-offsettop="0">Object.defineProperty(obj, prop, descriptor) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-10" data-offsettop="0">Object.defineProperties(obj, props) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-11" data-offsettop="0">Object.getPrototypeOf(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-12" data-offsettop="0">Object.create(obj, descr) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-13" data-offsettop="0">Object.getOwnPropertyDesciptor(obj, property) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-14" data-offsettop="0">Object.getOwnPropertyNames(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-15" data-offsettop="0">Object.preventExtensions(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-16" data-offsettop="0">Object.isExtensible(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-17" data-offsettop="0">Object.seal(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-18" data-offsettop="0">Object.isSeal(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-19" data-offsettop="0">Object.freeze(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-20" data-offsettop="0">Object.isFrozen(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-21" data-offsettop="0">Object.keys(obj) (ES5)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-22" data-offsettop="0">四、在ES6中附加的Object属性</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-23" data-offsettop="0">Object.is(value1, value2) (ES6)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-24" data-offsettop="0">Object.assign(target, ...sources) (ES6)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-25" data-offsettop="0">Object.getOwnPropertySymbols(obj) (ES6)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-3-26" data-offsettop="0">Object.setPrototypeOf(obj, prototype) (ES6)</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-4" data-offsettop="0">五、在ES8中附加的Object属性</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-4-27" data-offsettop="0">Object.getOwnPropertyDescriptors(obj) (ES8)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-4-28" data-offsettop="0">Object.values(obj) (ES8)</a><a class="nav-link text-secondary py-0 pr-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-4-29" data-offsettop="0">Object.entries(obj) (ES8)</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-5" data-offsettop="0">小结</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-6" data-offsettop="0">参考资料</a><a class="nav-link text-secondary p-0 my-1 text-truncate" href="https://segmentfault.com/a/1190000010753942#item-7" data-offsettop="0">关于</a></nav>
+                            </div>
+                        </div>
+                        <!-- / 目录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      var ARTICLE = {
+        articleId: 1190000010753942,
+        title: "JavaScript 对象所有API解析",
+        isLiked: false,
+        votes: 28,
+        isBookmarked: false,
+        bookmarks: 77,
+        canReward: true
+      }
+    </script>
+
+    
+
+
+
+
+
+
+
+<script type="text/javascript">
+  OA_show(4);
+</script><div id="OA_holder_4"><div id="beacon_9589703b2b" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/lg(8).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</div>
+
+<footer id="footer" class="bg-white py-5 font-size-14">
+    <div class="container">
+        <div class="row">
+            <dl class="col-4 col-md-2">
+                <dt class="h6">产品</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/questions/hottest?utm_source=sf-footer" target="_blank">热门问答</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blogs/hottest?utm_source=sf-footer" target="_blank">热门专栏</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives?utm_source=sf-footer" target="_blank">热门课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/events?utm_source=sf-footer" target="_blank">最新活动</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/groups?utm_source=sf-footer" target="_blank">技术圈</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/groups?tab=jobs&amp;utm_source=sf-footer" target="_blank">酷工作</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/app?utm_source=sf-footer" target="_blank">移动客户端</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2">
+                <dt class="h6">课程</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?tag=java&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">Java 开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?tag=php&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">PHP 开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?tag=python&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">Python 开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/edu?category=1&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">前端开发课程</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/lives/study?category=3&amp;sort=hottest&amp;utm_source=sf-footer" target="_blank">移动开发课程</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2 ">
+                <dt class="h6">资源</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/weekly?utm_source=sf-footer" target="_blank">每周精选</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/users?utm_source=sf-footer" target="_blank">用户排行榜</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/badges?utm_source=sf-footer" target="_blank">徽章</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/faq?utm_source=sf-footer" target="_blank">帮助中心</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/repu?utm_source=sf-footer" target="_blank">声望与权限</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/community?utm_source=sf-footer" target="_blank">社区服务中心</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2">
+                <dt class="h6">合作</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://about.segmentfault.com/?utm_source=sf-footer" target="_blank">关于我们</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://business.segmentfault.com/ads?utm_source=sf-footer" target="_blank">广告投放</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/groups?tab=jobs&amp;utm_source=sf-footer" target="_blank">职位发布</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://jinshuju.net/f/HK5r9K?utm_source=sf-footer" target="_blank">讲师招募</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://about.segmentfault.com/contact.html?utm_source=sf-footer" target="_blank">联系我们</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/link?utm_source=sf-footer" target="_blank">合作伙伴</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2">
+                <dt class="h6">关注</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/segmentfault?utm_source=sf-footer" target="_blank">产品技术日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/community_admin?utm_source=sf-footer" target="_blank">社区运营日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/segmentfault_news?utm_source=sf-footer" target="_blank">市场运营日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/segmentfault_team?utm_source=sf-footer" target="_blank">团队日志</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/blog/interview?utm_source=sf-footer" target="_blank">社区访谈</a></dd>
+                            </dl>
+
+            <dl class="col-4 col-md-2" id="license">
+                <dt class="h6">条款</dt>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/tos?utm_source=sf-footer" target="_blank">服务条款</a></dd>
+                                <dd class="my-1"><a class="text-secondary" href="https://segmentfault.com/privacy?utm_source=sf-footer" target="_blank">隐私政策</a></dd>
+                                <dd class="my-1">
+                    <a class="text-secondary" href="https://segmentfault.com/app?utm_source=sf-footer"><img width="60" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/appQrcode.png" class="app-qrcode"><br>下载 App</a>
+                </dd>
+            </dl>
+        </div>
+        <hr class="mt-2 mb-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-secondary">
+                    <p class="mb-1">Copyright © 2011-2019 SegmentFault. 当前呈现版本 19.02.27</p>
+                    <p class="mb-1">
+                        <a class="text-secondary mr-2" target="_blank" href="http://beian.miit.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a>
+                        <a class="text-secondary mr-2" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+                        杭州堆栈科技有限公司版权所有
+                    </p>
+                    <p class="mb-0">CDN 存储服务由 <a class="text-secondary" target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 赞助提供 </p>
+                </div>
+            </div>
+            <div class="col-md-4 text-right">
+                <div class="shareContent ">
+                <a class="share_weixin" data-share="weixin" href="javascript:;" data-original-title="" title=""><svg class="svg-inline--fa fa-weixin fa-w-18 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weixin" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M385.2 167.6c6.4 0 12.6.3 18.8 1.1C387.4 90.3 303.3 32 207.7 32 100.5 32 13 104.8 13 197.4c0 53.4 29.3 97.5 77.9 131.6l-19.3 58.6 68-34.1c24.4 4.8 43.8 9.7 68.2 9.7 6.2 0 12.1-.3 18.3-.8-4-12.9-6.2-26.6-6.2-40.8-.1-84.9 72.9-154 165.3-154zm-104.5-52.9c14.5 0 24.2 9.7 24.2 24.4 0 14.5-9.7 24.2-24.2 24.2-14.8 0-29.3-9.7-29.3-24.2.1-14.7 14.6-24.4 29.3-24.4zm-136.4 48.6c-14.5 0-29.3-9.7-29.3-24.2 0-14.8 14.8-24.4 29.3-24.4 14.8 0 24.4 9.7 24.4 24.4 0 14.6-9.6 24.2-24.4 24.2zM563 319.4c0-77.9-77.9-141.3-165.4-141.3-92.7 0-165.4 63.4-165.4 141.3S305 460.7 397.6 460.7c19.3 0 38.9-5.1 58.6-9.9l53.4 29.3-14.8-48.6C534 402.1 563 363.2 563 319.4zm-219.1-24.5c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.8 0 24.4 9.7 24.4 19.3 0 10-9.7 19.6-24.4 19.6zm107.1 0c-9.7 0-19.3-9.7-19.3-19.6 0-9.7 9.7-19.3 19.3-19.3 14.5 0 24.4 9.7 24.4 19.3.1 10-9.9 19.6-24.4 19.6z"></path></svg><!-- <i class="fab fa-weixin fa-fw"></i> --> </a><a class="share_weibo" data-share="weibo" href="http://weibo.com/segmentfault" target="_blank"><svg class="svg-inline--fa fa-weibo fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="weibo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M407 177.6c7.6-24-13.4-46.8-37.4-41.7-22 4.8-28.8-28.1-7.1-32.8 50.1-10.9 92.3 37.1 76.5 84.8-6.8 21.2-38.8 10.8-32-10.3zM214.8 446.7C108.5 446.7 0 395.3 0 310.4c0-44.3 28-95.4 76.3-143.7C176 67 279.5 65.8 249.9 161c-4 13.1 12.3 5.7 12.3 6 79.5-33.6 140.5-16.8 114 51.4-3.7 9.4 1.1 10.9 8.3 13.1 135.7 42.3 34.8 215.2-169.7 215.2zm143.7-146.3c-5.4-55.7-78.5-94-163.4-85.7-84.8 8.6-148.8 60.3-143.4 116s78.5 94 163.4 85.7c84.8-8.6 148.8-60.3 143.4-116zM347.9 35.1c-25.9 5.6-16.8 43.7 8.3 38.3 72.3-15.2 134.8 52.8 111.7 124-7.4 24.2 29.1 37 37.4 12 31.9-99.8-55.1-195.9-157.4-174.3zm-78.5 311c-17.1 38.8-66.8 60-109.1 46.3-40.8-13.1-58-53.4-40.3-89.7 17.7-35.4 63.1-55.4 103.4-45.1 42 10.8 63.1 50.2 46 88.5zm-86.3-30c-12.9-5.4-30 .3-38 12.9-8.3 12.9-4.3 28 8.6 34 13.1 6 30.8.3 39.1-12.9 8-13.1 3.7-28.3-9.7-34zm32.6-13.4c-5.1-1.7-11.4.6-14.3 5.4-2.9 5.1-1.4 10.6 3.7 12.9 5.1 2 11.7-.3 14.6-5.4 2.8-5.2 1.1-10.9-4-12.9z"></path></svg><!-- <i class="fab fa-weibo fa-fw"></i> --> </a><a class="share_github" data-share="github" href="https://github.com/SegmentFault" target="_blank"><svg class="svg-inline--fa fa-github fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github fa-fw"></i> --> </a><a class="share_twitter" data-share="twitter" href="https://twitter.com/segment_fault" target="_blank"><svg class="svg-inline--fa fa-twitter fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter fa-fw"></i> --> </a></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  window.serverTime = 1575782518000;
+</script>
+<script>
+  (function (w) {
+    w.SF = {
+      staticUrl: "https://assets.segmentfault.com/v-5de60fd7/"
+    };
+    w.SF.token = (function () {
+    var _OQLJ = ''///*'K'*/'K'
++'ce9'//'iPE'
++/* '0m'//'0m' */''+//'Pxi'
+'0a4'+//'89D'
+'11'+//'Y'
+'2b'+'bfc'//'bu'
++'pe'//'pe'
++'b73'//'W'
++//'n'
+'0a7'+//'D'
+'74'+/* 'Qb'//'Qb' */''+/* '1S'//'1S' */''+'56c'//'k'
++//'6W'
+'7'+'26'//'WN'
++//'Q'
+'3'+''///*'ra'*/'ra'
++'7'//'q2N'
++//'U'
+'f93', _t0n = [[13,15]];
+
+    for (var i = 0; i < _t0n.length; i ++) {
+        _OQLJ = _OQLJ.substring(0, _t0n[i][0]) + _OQLJ.substring(_t0n[i][1]);
+    }
+
+    return _OQLJ;
+})();;
+  })(window);
+
+        var lock = {
+    type: "",
+    text: '',
+    table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+  };
+
+    var ddosMode = false;
+  
+    (function (currentUrl) {
+    if (typeof URL != 'undefined') {
+      var baseUrl = new URL('https://segmentfault.com');
+
+      if (baseUrl.protocol != currentUrl.protocol
+        || baseUrl.host != currentUrl.host) {
+        window.location.href = baseUrl.protocol + '//' + baseUrl.host
+          + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+      }
+    }
+  })(window.location);
+  </script>
+<script src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/jquery.js.下载"></script>
+<script src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/vendors.js.下载"></script>
+<script src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/detail.bundle.js.下载"></script><div class="tui-tooltip" style="display: none;"><div class="arrow"></div><span class="text"></span></div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/js"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-918487-8');
+</script>
+
+
+<iframe id="p_analyse_iframe" src="./JavaScript 对象所有API解析 - 若川的前端视野 - SegmentFault 思否_files/saved_resource.html" style="display: none;"></iframe><button type="button" id="fixedTools" class="btn btn-light d-none" title="回顶部">
+            ▲
+        </button><div id="fatkun-drop-panel">
+        <a id="fatkun-drop-panel-close-btn">×</a>
+            <div id="fatkun-drop-panel-inner">
+                <div class="fatkun-content">
+                    <svg class="fatkun-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5892"><path d="M494.933333 782.933333c2.133333 2.133333 4.266667 4.266667 8.533334 6.4h8.533333c6.4 0 10.666667-2.133333 14.933333-6.4l2.133334-2.133333 275.2-275.2c8.533333-8.533333 8.533333-21.333333 0-29.866667-8.533333-8.533333-21.333333-8.533333-29.866667 0L533.333333 716.8V128c0-12.8-8.533333-21.333333-21.333333-21.333333s-21.333333 8.533333-21.333333 21.333333v588.8L249.6 475.733333c-8.533333-8.533333-21.333333-8.533333-29.866667 0-8.533333 8.533333-8.533333 21.333333 0 29.866667l275.2 277.333333zM853.333333 874.666667H172.8c-12.8 0-21.333333 8.533333-21.333333 21.333333s8.533333 21.333333 21.333333 21.333333H853.333333c12.8 0 21.333333-8.533333 21.333334-21.333333s-10.666667-21.333333-21.333334-21.333333z" p-id="5893"></path></svg>
+                    <div class="fatkun-title">拖拽到此处</div>
+                    <div class="fatkun-desc">图片将完成下载</div>
+                </div>
+            </div>
+    </div><div id="download_plus_animation"></div></body></html>

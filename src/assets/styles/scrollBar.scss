@@ -1,0 +1,31 @@
+/*控制整个滚动条*/
+
+/* 整个滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    // background-clip: padding-box;
+}
+
+
+
+/*滚动条两端方向按钮*/
+
+::-webkit-scrollbar-button {
+    // background-color: transparent;
+}
+
+
+/*滚动条中间滑动部分*/
+
+::-webkit-scrollbar-thumb {
+    background-color: #D8D8D8;
+    border-radius: 4px;
+}
+
+
+/*滚动条右下角区域*/
+
+::-webkit-scrollbar-corner {
+    // background-color:  #c5cad6;
+}

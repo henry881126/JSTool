@@ -1,0 +1,67 @@
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .container-wrap {
+        .echart {
+            padding-left: 8px;
+            padding-top: 16px;
+            width: auto;
+            height: $px360;
+        }
+
+        .conclusion-wrap {
+            padding-top: $px40;
+            padding-left: $px20;
+            width: 97%;
+
+            .conclusion-title {
+                font-size: $px16;
+                font-family: $fontFamily;
+                font-weight: $fontweight500;
+                color: $color3F5896;
+                padding-bottom: $px10;
+            }
+
+            .conclusion {
+                background: $colorF0F3F9;
+                border-radius: $px3;
+                border: $px1 solid $colorEBEDF6;
+                padding: $px16 $px26 $px16 $px26;
+                font-size: $px12;
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .container-wrap {
+        .echart {
+            padding-left: 18px;
+            padding-top: 10px;
+            width: auto;
+            height: $px500;
+        }
+
+        .conclusion-wrap {
+            padding-top: $px65;
+            padding-left: $px38;
+            width: 96%;
+
+            .conclusion-title {
+                font-size: $px20;
+                font-family: $fontFamily;
+                font-weight: $fontweight500;
+                color: $color3F5896;
+                padding-bottom: $px15;
+            }
+
+            .conclusion {
+                background: $colorF0F3F9;
+                border-radius: $px3;
+                border: $px1 solid $colorEBEDF6;
+                padding: $px22 $px36 $px26 $px36;
+                font-size: $px16;
+            }
+
+        }
+    }
+}

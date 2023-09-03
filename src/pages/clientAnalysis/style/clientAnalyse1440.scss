@@ -1,0 +1,163 @@
+@media screen and (min-width: 1440px) {
+    //小分辨率，兼容1440
+    .client-analyse {
+      width: 100%;
+      height: 100vh;
+      .top-analyse {
+        
+        height: 219px;
+        color: #ffffff;
+        background: url("./../../../assets/img/over-bg.png") no-repeat;
+        background-size: 100% 100%;
+        padding: 25px 23px 0px 23px;
+        
+        box-sizing: border-box;
+        .frist-row {
+          display: flex;
+          align-items: center;
+          img {
+            height: 20px;
+            width: 50px;
+            margin-right: 20px;
+          }
+          .top-title {
+            font-size: 26px;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #ffffff;
+          }
+          .client-detail {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 68px;
+            height: 20px;
+            font-size: 12px;
+            background: #0fb2ab;
+            border-radius: 13px;
+            color: #ffffff;
+            margin-left: 20px;
+          }
+        }
+        .second-row {
+          display: flex;
+          align-items: center;
+          span {
+            display: inline-block;
+            font-size: 12px;
+            margin-right: 45px;
+            line-height: 45px;
+            height: 45px;
+          }
+        }
+        .third-row {
+          display: flex;
+          align-items: center;
+          img {
+            height: 19px;
+            width: 95px;
+          }
+          span {
+            display: inline-block;
+            height: 19px;
+            line-height: 19px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 20px;
+            padding: 0px 10px;
+            border: 1px solid #ffffff;
+          }
+        }
+      }
+      .body-analyse {
+        height: calc(100% - 150px);
+        box-sizing: border-box;
+        margin: -70px 20px 0px 20px;
+        border-radius: 6px 6px 4px 4px;
+        .top-btn {
+          margin-top: -40px;
+          margin-left: 14px;
+          background: transparent;
+          .btn-groups {
+            display: inline-block;
+            width: auto;
+            span {
+              background: #869bc4;
+              color: #ffffff;
+              width: 123px;
+              height: 40px;
+              font-size: 14px;
+              font-family: PingFangSC-Medium, PingFang SC;
+              
+              line-height: 40px;
+              display: inline-block;
+              margin-right: 8px;
+              border-radius: 4px 4px 0px 0px;
+              text-align: center;
+            }
+            .is-active {
+              background: #ffffff;
+              color: #333333;
+              font-weight: 500;
+            }
+          }
+        }
+        .analyse-content {
+          border-radius: 10px 10px 5px 5px;
+          background: #ffffff;
+          height: calc(100% - 65px);
+          padding: 18px;
+          box-sizing: border-box;
+          .content-head {
+            // margin-bottom: 12px;
+            li {
+              display: inline-block;
+              height: 25px;
+              font-size: 14px;
+              font-family: PingFangSC-Regular, PingFang SC;
+              font-weight: 400;
+              color: $themeFontColor;
+              margin-right: 30px;
+            }
+            .is-active {
+              font-weight: 600;
+              color: $greenColor;
+              border-bottom: 2px solid $greenColor;
+            }
+          }
+          .content-body {
+            height: calc(100% - 30px);
+            overflow: auto;
+          }
+        }
+      }
+      .is-project-map {
+        height: 900px;
+        margin-bottom: 20px;
+      }
+    }
+    .client-detail-dialog {
+      padding: 17px 5px 17px 17px;
+      .detail-span {
+        font-size: 12px;
+        display: inline-flex;
+        align-items: center;
+        box-sizing: border-box;
+        width: calc(50% - 12px);
+        margin-right: 12px;
+        height: 38px;
+        border-radius: 20px;
+        .el-col-9 {
+          padding-left: 26px;
+        }
+        .el-col-15 {
+          padding-left: 12px;
+        } 
+          
+      }
+      .is-even {
+        background: #F2F4F8;
+      }
+     
+    }
+  }

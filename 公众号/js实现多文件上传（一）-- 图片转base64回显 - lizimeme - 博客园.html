@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/lizimeme/p/8086753.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="这里实现的是用&amp;lt;input type=&amp;#39;file&amp;#39;&amp;gt;元素实现多文件上传 演示地址 第一步： html: input元素加上mutiple属性 css: &amp;lt;style&amp;">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园</title>
+    
+    <link rel="stylesheet" href="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/bundle-stylepink.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/bundle-stylepink-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/lizimeme/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/lizimeme/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/lizimeme/wlwmanifest.xml">
+    <script src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/amp4ads-host-v0.js"></script><script src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/pubads_impl_rendering_2019112501.js"></script><script async="" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/analytics.js"></script><script type="text/javascript" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/encoder.js"></script><script src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/jquery-2.2.0.min.js"></script>
+    <script src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/blog-common.min.js"></script>
+    <script>
+        var currentBlogId = 333703;
+        var currentBlogApp = 'lizimeme';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+<link rel="preload" href="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/integrator.js" as="script"><script type="text/javascript" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/integrator.js"></script><script src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/pubads_impl_2019112501.js" async=""></script></head>
+<body>
+    <a name="top"></a>
+    
+    <!--done-->
+<div id="banner">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/lizimeme/">lizimeme</a>
+<br>
+		<div class="headerDis">
+
+</div>
+	</div>
+</div>
+
+</div>
+<div id="main">
+	<!-- right starts -->
+	<div id="right">
+		<div id="right_content">
+			<div id="mystats">
+				
+					<!--done-->
+<div class="blogStats">
+随笔- 
+23&nbsp;
+文章- 
+1&nbsp;
+评论- 
+2&nbsp;
+
+</div>
+
+
+				
+			</div>
+			<div id="mylinks">
+
+<a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+&nbsp;&nbsp;
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/lizimeme/">
+首页</a>
+&nbsp;&nbsp;
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+&nbsp;&nbsp;
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/lizimeme">
+联系</a>&nbsp;&nbsp;
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+&nbsp;&nbsp;
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/lizimeme/rss/">
+订阅</a>&nbsp;
+<a id="blog_nav_rss_image" href="https://www.cnblogs.com/lizimeme/rss/">
+    <img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/xml.gif" alt="订阅">
+</a>
+
+</div>
+			<div id="topics">
+				<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/lizimeme/p/8086753.html">js实现多文件上传（一）-- 图片转base64回显</a>
+
+	</div>
+	
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p>这里实现的是用&lt;input type='file'&gt;元素实现多文件上传</p>
+<p><a href="http://runjs.cn/detail/in9x8rcp" target="_blank">演示地址</a></p>
+<p>第一步：</p>
+<p>html:</p>
+<p>input元素加上mutiple属性</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">form </span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="file"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="choose-file"</span><span style="color: #ff0000;"> multiple</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="javascript:;"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="upload"</span><span style="color: #0000ff;">&gt;</span>上传<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">ul </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="file-list"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">ul</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">form</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>css:</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;25150c22-b3df-45bb-a771-e0ca08884748&#39;)"><img id="code_img_closed_25150c22-b3df-45bb-a771-e0ca08884748" class="code_img_closed" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_25150c22-b3df-45bb-a771-e0ca08884748" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;25150c22-b3df-45bb-a771-e0ca08884748&#39;,event)" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_25150c22-b3df-45bb-a771-e0ca08884748" class="cnblogs_code_hide">
+<pre><span style="color: #800000;">&lt;style&gt;
+       .file-list</span>{<span style="color: #ff0000;">
+           padding</span>:<span style="color: #0000ff;"> 20px</span>;<span style="color: #ff0000;">
+           background</span>:<span style="color: #0000ff;"> lightblue</span>;<span style="color: #ff0000;">
+           list-style-type</span>:<span style="color: #0000ff;"> none</span>;
+       }<span style="color: #800000;">
+        .file-list img</span>{<span style="color: #ff0000;">
+            max-width</span>:<span style="color: #0000ff;"> 70px</span>;<span style="color: #ff0000;">
+            vertical-align</span>:<span style="color: #0000ff;"> middle</span>;
+        }<span style="color: #800000;">
+        .file-list .file-item</span>{<span style="color: #ff0000;">margin-bottom</span>:<span style="color: #0000ff;"> 10px</span>}<span style="color: #800000;">
+        .file-list .file-item .file-name</span>{<span style="color: #ff0000;">margin-left</span>:<span style="color: #0000ff;"> 20px</span>}<span style="color: #800000;">
+        .file-list .file-item .file-del</span>{<span style="color: #ff0000;">
+            color</span>:<span style="color: #0000ff;"> red</span>;<span style="color: #ff0000;">
+            margin-left</span>:<span style="color: #0000ff;"> 200px</span>;}<span style="color: #800000;">
+    &lt;/style&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>第二步：</p>
+<p>js:</p>
+<p>声明变量</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> $button = $('#upload'<span style="color: #000000;">),
+         </span><span style="color: #008000;">//</span><span style="color: #008000;">选择文件按钮</span>
+         $file = $("#choose-file"<span style="color: #000000;">),
+         </span><span style="color: #008000;">//</span><span style="color: #008000;">回显的列表</span>
+         $list = $('.file-list'<span style="color: #000000;">),
+         </span><span style="color: #008000;">//</span><span style="color: #008000;">选择要上传的所有文件</span>
+         fileList =<span style="color: #000000;"> [],
+         sendList </span>=<span style="color: #000000;"> [];
+     </span><span style="color: #008000;">//</span><span style="color: #008000;">当前选择上传的文件</span>
+     <span style="color: #0000ff;">var</span> curFile ;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;选择按钮change事件，实例化fileReader,调它的readAsDataURL并把原生File对象传给它，监听它的onload事件，load完读取的结果就在它的result属性里了。它是一个base64格式的，可直接赋值给一个img的src.</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><em id="__mceDel"><span style="color: #000000;">&nbsp;$file.on('change',function<span>(){</span>       <br>  </span><span style="color: #008000;">//</span><span style="color: #008000;">原生的文件对象，相当于$file.get(0).files[0];</span>
+         curFile = <span style="color: #0000ff;">this</span><span style="color: #000000;">.files;<br>         //将FileList对象变成数组
+         fileList </span>=<span style="color: #000000;"> fileList.concat(Array.from(curFile));
+         </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i=0,len = curFile.length;i &lt; len;i++<span style="color: #000000;">){
+             reviewFile(curFile[i])
+         }
+
+     })
+     </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> reviewFile(file){<br>         //实例化fileReader,
+         let  fd </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> FileReader();<br>         //获取当前选择文件的类型
+         let fileType </span>=<span style="color: #000000;"> file.type;<br>         //调它的readAsDataURL并把原生File对象传给它，
+         fd.readAsDataURL(file);</span><span style="color: #008000;">//</span><span style="color: #008000;">base64<br>         //监听它的onload事件，load完读取的结果就在它的result属性里了<br></span>
+         fd.onload = <span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+
+             </span><span style="color: #0000ff;">if</span>(/^image\/[jpeg|png|jpg|gif]/<span style="color: #000000;">.test(fileType)){
+                 $list.append(</span>'&lt;li class="file-item"&gt;&lt;img src="'+<span style="color: #0000ff;">this</span>.result+'" alt=""&gt;&lt;span class="file-name"&gt;'+file.name+'&lt;/span&gt;&lt;span class="file-del"&gt;删除&lt;/span&gt;&lt;/li&gt;'<span style="color: #000000;">)
+             }</span><span style="color: #0000ff;">else</span><span style="color: #000000;">{
+                 $list.append(</span>'&lt;li class="file-item"&gt;&lt;span class="file-name"&gt;'+file.name+'&lt;/span&gt;&lt;span class="file-del"&gt;删除&lt;/span&gt;&lt;/li&gt;'<span style="color: #000000;">)
+             }
+         }
+     }</span></em></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>点击删除按钮事件：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;cd15e3b6-5f22-4e3a-967b-42479c80e9c2&#39;)"><img id="code_img_closed_cd15e3b6-5f22-4e3a-967b-42479c80e9c2" class="code_img_closed" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_cd15e3b6-5f22-4e3a-967b-42479c80e9c2" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;cd15e3b6-5f22-4e3a-967b-42479c80e9c2&#39;,event)" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_cd15e3b6-5f22-4e3a-967b-42479c80e9c2" class="cnblogs_code_hide">
+<pre>$(".file-list").on('click','.file-del',<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+         let $parent </span>= $(<span style="color: #0000ff;">this</span><span style="color: #000000;">).parent();
+         let index </span>=<span style="color: #000000;"> $parent.index();
+         fileList.splice(index,</span>1<span style="color: #000000;">);
+         $parent.remove()
+     });</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>点击上传按钮事件：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;757985dd-b5de-4c4c-a9cd-eec811a00efc&#39;)"><img id="code_img_closed_757985dd-b5de-4c4c-a9cd-eec811a00efc" class="code_img_closed" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_757985dd-b5de-4c4c-a9cd-eec811a00efc" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;757985dd-b5de-4c4c-a9cd-eec811a00efc&#39;,event)" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_757985dd-b5de-4c4c-a9cd-eec811a00efc" class="cnblogs_code_hide">
+<pre> $button.on('click',<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+
+         </span><span style="color: #0000ff;">if</span>(fileList.length&gt;0<span style="color: #000000;">){
+             </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i=0,len = fileList.length;i &lt; len;i++<span style="color: #000000;">){
+                 let formData </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> FormData();
+                 formData.append(</span>'file'<span style="color: #000000;">,fileList[i]);
+                 $.ajax({
+                     url:</span>'/oss/file/uploadFiles'<span style="color: #000000;">,
+                     type:</span>'post'<span style="color: #000000;">,
+                     data:formData,
+                     processData:</span><span style="color: #0000ff;">false</span><span style="color: #000000;">,
+                     contentType:</span><span style="color: #0000ff;">false</span><span style="color: #000000;">,
+                     success:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(data,statusText,headers){
+                         </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.success){
+                             </span><span style="color: #0000ff;">var</span> filed = data.data[0<span style="color: #000000;">];
+                             sendList.push(filed);
+                         }
+                     }
+                 })
+             }
+
+         }</span><span style="color: #0000ff;">else</span><span style="color: #000000;">{
+             alert(</span>"请选择文件！"<span style="color: #000000;">)
+         }
+         </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+
+     })</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature" style="display: block;">Live and learn ;)</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(8086753,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;33fd685c-d4ec-e611-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/lizimeme/" target="_blank"><img src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/20170221094137.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/lizimeme/">lizimeme</a><br>
+            <a href="https://home.cnblogs.com/u/lizimeme/followees/">关注 - 24</a><br>
+            <a href="https://home.cnblogs.com/u/lizimeme/followers/">粉丝 - 15</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;33fd685c-d4ec-e611-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(8086753,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(8086753,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+	<div class="postDesc">posted on 
+<span id="post-date">2017-12-22 16:50</span>&nbsp;
+<a href="https://www.cnblogs.com/lizimeme/">lizimeme</a>&nbsp;
+阅读(<span id="post_view_count">...</span>)&nbsp;
+评论(<span id="post_comment_count">...</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=8086753" rel="nofollow">
+    编辑
+</a>
+<a href="javascript:void(0)" onclick="AddToWz(8086753);return false;">收藏</a></div>
+</div>
+
+
+<script src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 333703, cb_blogApp = 'lizimeme', cb_blogUserGuid = '33fd685c-d4ec-e611-845c-ac853d9f53ac';
+    var cb_entryId = 8086753, cb_entryCreatedDate = '2017-12-22 16:50', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"><div style="color:green;margin:50px 0;font-weight:bold;">努力加载评论中...</div></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/lizimeme/p/8086753.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/lizimeme/p/8086753.html#top">返回顶部</a></div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/act/seckill?fromSource=gwzcw.3168381.3168381.3168381&amp;utm_medium=cpc&amp;utm_id=gwzcw.3168381.3168381.3168381" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【推荐】腾讯云热门云产品限时秒杀，爆款1核2G云服务器99元/年！</a><br><a href="http://click.aliyun.com/m/1000081987/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云&#39;)">【推荐】阿里云双11返场来袭，热门产品低至一折等你来抢！</a><br><a href="https://www.ctyun.cn/activity/20191111?hmsr=%E7%9C%8B%E7%9C%8B-%E5%8D%9A%E5%AE%A2%E5%9B%AD-%E5%8F%8C11-1106&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-天翼云&#39;)">【推荐】天翼云双十一翼降到底，云主机11.11元起，抽奖送大礼</a><br><a href="https://www.jdcloud.com/cn/activity/year-end?utm_source=DMT_cnblogs&amp;utm_medium=CH&amp;utm_campaign=q4vm&amp;utm_term=Virtual-Machines" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-京东云&#39;)">【活动】京东云服务器_云主机低于1折，低价高性能产品备战双11</a><br><a href="https://www.qiniu.com/events/20191111?utm_campaign=2019_1111&amp;utm_content=cnblogs_1111&amp;utm_medium=banner&amp;utm_source=cnblogs&amp;utm_term=cnblogs_1111" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-七牛云&#39;)">【优惠】七牛云采购嘉年华，云存储、CDN等云产品低至1折</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CLn-r-GqpeYCFdNiYAod_ekNNg"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" data-google-container-id="1" style="border: 0px; vertical-align: bottom;" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="JS 图片转Base64" href="https://www.cnblogs.com/wujingtao/p/5196836.html" target="_blank" onclick="clickRecomItmem(5196836)">JS 图片转Base64</a><br>·  <a title="图片上传base64格式" href="https://www.cnblogs.com/jinsuo/p/9415077.html" target="_blank" onclick="clickRecomItmem(9415077)">图片上传base64格式</a><br>·  <a title="上传图片，多图上传，预览功能，js原生无依赖" href="https://www.cnblogs.com/woodyblog/p/6508524.html" target="_blank" onclick="clickRecomItmem(6508524)">上传图片，多图上传，预览功能，js原生无依赖</a><br>·  <a title="js 实现图片上传 续" href="https://www.cnblogs.com/tongbiao/p/6785637.html" target="_blank" onclick="clickRecomItmem(6785637)">js 实现图片上传 续</a><br>·  <a title="input实现多文件上传及图片预览" href="https://www.cnblogs.com/Bideam/p/5597326.html" target="_blank" onclick="clickRecomItmem(5597326)">input实现多文件上传及图片预览</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/8086753">更多推荐...</a><div id="cnblogs_t5"><a href="https://developer.aliyun.com/article/718649?utm_content=g_1000088936" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T5-阿里云开发者社区&#39;)">这6种编码方法，你掌握了几个？</a></div></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CLr-r-GqpeYCFdNiYAod_ekNNg">
+            
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" data-google-container-id="2" style="border: 0px; vertical-align: bottom;" src="./js实现多文件上传（一）-- 图片转base64回显 - lizimeme - 博客园_files/saved_resource(1).html"></iframe></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/651596/" target="_blank">哈勃拍到旋转星系NGC 5468正视图 部分亮点为超新星爆发</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/651593/" target="_blank">华为麒麟1020处理器曝光：性能提升50%，5nm制程！</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/651595/" target="_blank">红帽企业 Linux 7 和 CentOS 7 收到重要内核安全更新</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/651594/" target="_blank">新时代·云力量 | 我国首个超高清视音频国家重点实验室在沪启动建设</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/651592/" target="_blank">西班牙电信确认5G核心网使用华为设备</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div></div>
+
+
+			</div>
+		</div>
+	</div>
+	<!-- right ends -->
+	<!-- left starts -->
+	<div id="left">
+		<!-- 左侧工具部分 -->
+		<div id="left_content">
+			<div id="calendar"><div id="calendar"><div id="blog-calendar" style="display:none"></div></div>                
+                    <script>loadBlogDefaultCalendar();</script></div>
+			
+<div id="sidebar_news" class="newsItem">
+            <script>loadBlogNews();</script>
+</div>
+
+			
+				<div id="leftcontentcontainer">
+					<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+        <li>
+
+<a href="https://www.cnblogs.com/lizimeme/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+        <li>
+
+<a href="https://www.cnblogs.com/lizimeme/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+        <li>
+
+<a href="https://www.cnblogs.com/lizimeme/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+        <li>
+
+<a href="https://www.cnblogs.com/lizimeme/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+        <li>
+
+<a href="https://www.cnblogs.com/lizimeme/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+</ul>
+
+<!-- TODO: 检查是否有使用这一部分的控件，如果没有则应该删除。 -->
+<div id="itemListLin_con" style="display:none">
+    <ul>
+
+    </ul>
+</div>
+
+</div>
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+<h3>我的标签</h3>
+<div id="MyTag">
+    <ul>
+        
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/js/">js</a>(3)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/%E7%AB%8B%E6%96%B9%E4%BD%93/">立方体</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/%E8%B7%91%E9%A9%AC%E7%81%AF/">跑马灯</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/angularJS/">angularJS</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/css3/">css3</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/Grunt/">Grunt</a>(1)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/lizimeme/tag/javascript/">javascript</a>(1)
+        </li>
+
+    </ul>
+</div>
+
+</div>
+
+<!-- 积分与排名 -->
+
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+<!--done-->
+		<h1 class="catListTitle">
+
+随笔分类
+
+
+</h1>
+				<ul class="catList">
+			
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/1068567.html" rel="" target="">
+    angularjs(3)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/951240.html" rel="" target="">
+    css3(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/980339.html" rel="" target="">
+    grunt(1)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/1122493.html" rel="" target="">
+    gulp(1)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/951243.html" rel="" target="">
+    javascript(10)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/951245.html" rel="" target="">
+    jquery(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/980365.html" rel="" target="">
+    vuejs(3)
+</a>
+
+</li>
+			
+				</ul>
+		<h1 class="catListTitle">
+
+随笔档案
+
+
+</h1>
+				<ul class="catList">
+			
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2018/03.html" rel="" target="">
+    2018年3月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2018/01.html" rel="" target="">
+    2018年1月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/12.html" rel="" target="">
+    2017年12月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/11.html" rel="" target="">
+    2017年11月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/10.html" rel="" target="">
+    2017年10月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/09.html" rel="" target="">
+    2017年9月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/08.html" rel="" target="">
+    2017年8月(1)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/07.html" rel="" target="">
+    2017年7月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/05.html" rel="" target="">
+    2017年5月(3)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/04.html" rel="" target="">
+    2017年4月(1)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/03.html" rel="" target="">
+    2017年3月(2)
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/archive/2017/02.html" rel="" target="">
+    2017年2月(2)
+</a>
+
+</li>
+			
+				</ul>
+		<h1 class="catListTitle">
+
+文章分类
+
+
+</h1>
+				<ul class="catList">
+			
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/951209.html" rel="" target="">
+    angularJS
+</a>
+
+</li>
+				<li class="catListItem"> 
+<a href="https://www.cnblogs.com/lizimeme/category/951207.html" rel="" target="">
+    javascript(1)
+</a>
+
+</li>
+			
+				</ul>
+
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div id="recent_comments_wrap" class="RecentComment">
+    <h3 class="catListTitle">最新评论</h3>
+    <div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/lizimeme/p/7880650.html#4248391">1. Re:webuploader编辑时回显文件放入队列的做法</a></li>
+                    <li class="recent_comment_body">有demo吗？</li>
+                    <li class="recent_comment_author">--Code麒麟</li>
+                    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lizimeme/p/8303709.html#3928373">2. Re:vue-cli项目结合Element-ui基于cropper.js封装vue图片裁剪组件</a></li>
+                    <li class="recent_comment_body">很赞很棒！这里是别人写的原生js+vue的.分享一下：<br><a href="https://www.cnblogs.com/lizimeme/p/8086753.html" target="_blank"></a></li>
+                    <li class="recent_comment_author">--宋宇</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+</div>
+                    <script>loadBlogSideColumn();</script>
+				</div>
+			
+		</div>
+		<!-- //右侧工具部分 -->
+	</div>
+	<!-- left ends -->	
+	<div class="clear"></div>
+</div>
+<div id="footer">
+	<!--done-->
+Copyright © 2019 lizimeme
+<br><span id="poweredby">Powered by .NET Core 3.1.0 on Linux</span>
+
+
+
+</div>
+
+
+    
+
+
+</body></html>

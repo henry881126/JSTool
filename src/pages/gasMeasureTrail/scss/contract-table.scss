@@ -1,0 +1,95 @@
+@mixin common-style {
+    margin: 10px 0px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.contract-table {
+    @include common-style;
+
+    /deep/.el-table {
+        .cell {
+            // @include overText;
+        }
+
+        .el-table__body-wrapper {
+            height: calc(100% - 50px) !important;
+        }
+
+        &::before {
+            height: 0;
+        }
+
+        td {
+            border: none;
+            border: 1px solid transparent;
+        }
+
+        tr {
+            border: 1px solid #ccc;
+            background: #ffffff;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        tr:nth-child(1) {
+            td {
+                padding: 18px 0;
+
+                &:nth-child(2),
+                &:nth-child(3),
+                &:nth-child(4),
+                &:nth-child(5),
+                &:nth-child(6) {
+                    background: #d7dde9;
+                    margin-left: -3px;
+                }
+            }
+        }
+
+        thead {
+            tr:nth-child(2) {
+                th {
+
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4),
+                    &:nth-child(5) {
+                        background: #d7dde9;
+                        border-color: #d7dde9 !important;
+                    }
+                }
+            }
+        }
+
+        tr:nth-child(odd) {
+            background: #f2f4f8;
+        }
+
+        th:nth-child(2) {
+            background: #d7dde9;
+        }
+
+        /deep/ .el-table__body-wrapper {
+            //   @include scrollBarforCustomize(#c5c5c5, #eeeeee);
+        }
+    }
+
+    /deep/.el-table--enable-row-hover .el-table__body tr:hover>td {
+        background: unset !important;
+    }
+
+    /deep/.el-table--enable-row-hover .el-table__body tr:nth-child(1) {
+        &:hover>td {
+
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6) {
+                background: #d7dde9 !important;
+            }
+        }
+    }
+}

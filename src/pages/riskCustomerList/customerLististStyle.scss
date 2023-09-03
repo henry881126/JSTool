@@ -1,0 +1,102 @@
+.risk-customer-page {
+    .table-area{
+        background: #ffffff; 
+    }
+    .top-area {
+      display: flex;
+      justify-content: space-between;
+      .page-title {
+        font-weight: 500;
+        color: #3a3a3a;
+        display: inline-block;
+      }
+      .search-area {
+        display: inline-block;
+      }
+    }
+  }
+  @media screen and (max-width: 1460px) and (min-width: 1420px) {
+    .risk-customer-page {
+      padding: 30px 22px 16px 23px;
+    
+    .table-area{
+        padding: 0 22px 59px 22px;
+        border-radius: 9px;
+    }
+      .top-area {
+        .page-title {
+          font-size: 20px;
+          margin: 0 0 22px 3px;
+        }
+        /deep/ .el-input {
+          width: 192px;
+          margin-right: 12px;
+          .el-input__inner {
+            height: 37px;
+            font-size: 12px;
+            border-radius: 25px 25px 25px 25px;
+            border: none;
+            border-right: 1px solid #dcdfe6;
+          }
+          .el-input__suffix{
+              font-size: 12px;
+              width: 30px;
+              border-left: 1px solid #dcdfe6;
+              color: #0fb2ab;
+              .iconsousuo{
+                display: inline-block;
+                margin-top: 12px;
+              }
+          }
+        }
+        /deep/ .el-button{
+            width: 37px;
+            height: 37px;
+            border: none;
+            font-size: 14px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1940px) and (min-width: 1900px) {
+    .risk-customer-page {
+      padding: 40px 30px 21px 30px;
+      .table-area{
+        padding: 0 30px 79px 30px;
+        border-radius: 12px;
+      }
+      .top-area {
+        .page-title {
+          font-size: 26px;
+          margin: 0 0 30px 5px;
+        }
+        /deep/ .el-input {
+          margin-right: 16px;
+          width: 256px;
+          .el-input__inner {
+            height: 50px;
+            font-size: 16px;
+            border-radius: 33px 33px 33px 33px;
+            border: none;
+            border-right: 1px solid #dcdfe6;
+          }
+          .el-input__suffix{
+            font-size: 14px;
+              width: 40px;
+              border-left: 1px solid #dcdfe6;
+              color: #0fb2ab;
+              .iconsousuo{
+                display: inline-block;
+                margin-top: 17px;
+              }
+          }
+        }
+        /deep/ .el-button{
+            width: 50px;
+            height: 50px;
+            border: none;
+            font-size: 16px;
+        }
+      }
+    }
+  }

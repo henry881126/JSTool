@@ -1,0 +1,99 @@
+@media screen and (min-width: 1910px) {
+    .potential-analyse {
+        height: 100%;
+        overflow: auto;
+        padding: 10px 18px;
+        box-sizing: border-box;
+        .potential-top {
+          height: 70%;
+          display: flex;
+          align-items: flex-start;
+          .potential-left {
+            display: inline-block;
+            width: 55%;
+            height: 100%;
+            padding-right: 50px;
+            box-sizing: border-box;
+            .title {
+              margin-bottom: 20px;
+            }
+            .potential-table {
+              height: calc(100% - 70px);
+            }
+          }
+          .potential-right {
+            display: inline-block;
+            width: 45%;
+            height: 100%;
+            #potential-chart {
+              width:100%;
+              height: 100%;
+            }
+          }
+        }
+        .potential-bottom {
+          height: 30%;
+          box-sizing: border-box;
+          display: flex;
+          flex-flow: column;
+          .bottom-content {
+            //   height: 126px;
+            padding: 20px 30px;
+            // flex: 1;
+            margin-top: 12px;
+            background: #f0f3f9;
+            border-radius: 3px;
+            border: 1px solid #ebedf6;
+            font-size: 16px;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #505356;
+            line-height: 34px;
+          }
+        }
+      }
+      .title {
+        height: 28px;
+        font-size: 20px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #3f5896;
+        line-height: 28px;
+      }
+      ul {
+        li {
+          height: 50px;
+          line-height: 50px;
+          border-radius: 70px;
+          padding-left: 55px;
+          .el-row {
+            overflow: hidden;
+          }
+          .col-span {
+            font-size: 18px;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+          }
+    
+          .color-blue {
+            color: rgba(39, 119, 212, 1);
+          }
+          &:nth-child(odd) {
+            background: #f2f4f8;
+          }
+    
+          &:nth-child(even) {
+            background: #ffffff;
+          }
+    
+          &:first-child {
+            font-weight: 600;
+            font-size: 18px;
+            color: $tableHColor;
+            height: 60px;
+            line-height: 60px;
+          }
+        }
+      }
+}

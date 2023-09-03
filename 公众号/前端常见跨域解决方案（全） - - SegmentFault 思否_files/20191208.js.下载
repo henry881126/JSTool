@@ -1,0 +1,102 @@
+/**
+ * Created by sf on 2018/8/3.
+ */
+var areaArr = []
+
+var trackHost = 'https://segmentfault.com';
+var viewApi = trackHost + '/ad/track/view'
+var clickApi = trackHost + '/ad/track/click'
+
+function ajax(opt) {
+    opt = opt || {};//opt以数组方式存参，如果参数不存在就为空。
+    opt.method = opt.method.toUpperCase() || 'POST';//转为大写失败，就转为POST
+    opt.url = opt.url || '';//检查URL是否为空
+    opt.async = opt.async || true;//是否异步
+    opt.data = opt.data || null;//是否发送参数，如POST、GET发送参数
+    opt.success = opt.success || function () {}; //成功后处理方式
+    var xmlHttp = null;//定义1个空变量
+    if (XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();//如果XMLHttpRequest存在就新建，IE大于9&&非IE有效
+    }
+    else {
+        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');//用于低版本IE
+    }
+    var params = [];//定义1个空数组
+    for (var key in opt.data){
+        params.push(key + '=' + opt.data[key]);//将opt里的data存到push里
+    }
+    var postData = params.join('&');//追加个& params
+    if (opt.method.toUpperCase() === 'POST') {
+        xmlHttp.open(opt.method, opt.url, opt.async);//开始请求
+        xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');//发送头信息，与表单里的一样。
+        xmlHttp.send(postData);//发送POST数据
+    }
+    else if (opt.method.toUpperCase() === 'GET') {
+        xmlHttp.open(opt.method, opt.url, opt.async);//GET请求
+        xmlHttp.send(null);//发送空数据
+    }
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {//readyState有5个状态，可以百度一下看看都有什么。当请求完成，并且返回数据成功
+            opt.success(xmlHttp.responseText);//返回成功的数据
+        }
+    };
+}
+
+var sTitle="";
+window.SFGridAd = {};
+SFGridAd.d = function(o) {
+    sTitle = o.getAttribute('stitle');
+    document.getElementById("gridMapHoverBox").style.display = "block"
+}
+
+SFGridAd.e = function(o) {
+    sTitle = "";
+    document.getElementById("gridMapHoverBox").style.display = "none"
+}
+
+SFGridAd.c = function(id) {
+
+    var clickApi2 = clickApi + '?id=' + id
+
+    ajax({url: clickApi2, method: 'GET'})
+};
+
+// 这里 data 需要注入
+[{"id":"1750000020994504","user_id":"1030000012314877","box_ad_id":"0","started":"1573747200","ended":"1576166400","cycles":"4","status":"0","banner":"\/216\/415\/2164151708-5dcc15e47bcff","link":"http:\/\/www.zzsgzn.com\/?sf","title":"\u4e13\u4e1a\u7684.net\u7c7b\u5e93SDK\uff0c\u63a5\u53e3\u7b80\u5355\uff0c\u529f\u80fd\u5f3a\u5927\uff0c\u63d0\u4f9b\u6280\u672f\u652f\u6301\uff0c\u514d\u8d39\u4e0b\u8f7d\u8bd5\u7528","area_info":{"area":"G1:G1","height":"17","width":"17","left":"102","top":"0","pos":{"rowTop":1,"rowBottom":1,"columnLeft":7,"columnRight":7},"size":1},"created":"1573655811","modified":"1573656217"},{"id":"1750000021089098","user_id":"1030000021087546","box_ad_id":"0","started":"1574611200","ended":"1575820800","cycles":"2","status":"0","banner":"\/457\/675\/457675272-5dd7a278f333e","link":"https:\/\/www.59dun.com","title":"\u4e94\u4e5d\u76fe\u4e91\u5b89\u5168\u4e13\u4e1a\u9632\u62a4DDOS\/CC\u653b\u51fb\uff0cT\u7ea7\u6e05\u6d17\uff0c\u667a\u6167\u5b89\u5168\u3002","area_info":{"area":"B6:J8","height":"51","width":"153","left":"17","top":"85","pos":{"rowTop":6,"rowBottom":8,"columnLeft":2,"columnRight":10},"size":27},"created":"1574412159","modified":"1574412968"},{"id":"1750000021114979","user_id":"1030000021028074","box_ad_id":"0","started":"1574784000","ended":"1577203200","cycles":"4","status":"0","banner":"\/357\/002\/357002405-5ddc980d49315","link":"https:\/\/www.bt.cn\/?invite_code=MV9wcGJuaWI=","title":"\u8fd0\u7ef4\u8981\u9ad8\u6548\uff0c\u88c5\u5b9d\u5854\uff0c\u4e00\u952e\u7ba1\u7406\u670d\u52a1\u5668\uff01","area_info":{"area":"A3:O4","height":"34","width":"255","left":"0","top":"34","pos":{"rowTop":3,"rowBottom":4,"columnLeft":1,"columnRight":15},"size":30},"created":"1574737444","modified":"1574738016"},{"id":"1750000021186206","user_id":"1030000019069711","box_ad_id":"0","started":"1575475200","ended":"1576080000","cycles":"1","status":"0","banner":"\/241\/725\/2417251270-5de648350d38f","link":"https:\/\/creatorsdaily.com\/","title":"\u552f\u6709\u521b\u9020\u624d\u662f\u5feb\u4e50\u3002\u53ea\u6709\u521b\u9020\u7684\u751f\u7075\u624d\u662f\u751f\u7075\u3002","area_info":{"area":"F5:F5","height":"17","width":"17","left":"85","top":"68","pos":{"rowTop":5,"rowBottom":5,"columnLeft":6,"columnRight":6},"size":1},"created":"1575372389","modified":"1575372932"},{"id":"1750000021189038","user_id":"1030000021150876","box_ad_id":"0","started":"1575475200","ended":"1576080000","cycles":"1","status":"0","banner":"\/281\/898\/2818988001-5de70ff7c6e1d","link":"https:\/\/www.aliyun.com\/minisite\/goods?userCode=mrbq2fmx","title":"\u4e91\u670d\u52a1\u5668\u4f4e\u81f389\u5143\/\u5e74\uff0c\u963f\u91cc\u4e91\u56de\u9988\u7528\u6237\uff0c\u4e91\u4ea7\u54c11\u6298\u8d77","area_info":{"area":"A1:A1","height":"17","width":"17","left":"0","top":"0","pos":{"rowTop":1,"rowBottom":1,"columnLeft":1,"columnRight":1},"size":1},"created":"1575423782","modified":"1575424091"},{"id":"1750000021191454","user_id":"1030000020848792","box_ad_id":"0","started":"1575475200","ended":"1576080000","cycles":"1","status":"0","banner":"\/240\/347\/2403473286-5de72c15c4a17","link":"https:\/\/github.com\/AobingJava\/JavaFamily","title":"\u3010\u4e92\u8054\u7f51\u5927\u5382\u9762\u7ecf\u3011\u6556\u4e19\u706b\u904d\u5168\u7f51\u7684\u7cfb\u5217\uff0c\u901a\u4fd7\u6613\u61c2\u9762\u8bd5\u5fc5\u5907\u3002","area_info":{"area":"K1:K1","height":"17","width":"17","left":"170","top":"0","pos":{"rowTop":1,"rowBottom":1,"columnLeft":11,"columnRight":11},"size":1},"created":"1575431153","modified":"1575431264"},{"id":"1750000021192031","user_id":"1030000005755942","box_ad_id":"0","started":"1575475200","ended":"1576080000","cycles":"1","status":"0","banner":"\/263\/590\/2635901966-5de743d70812d","link":"http:\/\/gridmanager.lovejavascript.com\/","title":"\u5feb\u901f\u3001\u7075\u6d3b\u7684\u8ba9Table\u6807\u7b7e\u5145\u6ee1\u6d3b\u529b","area_info":{"area":"O1:O1","height":"17","width":"17","left":"238","top":"0","pos":{"rowTop":1,"rowBottom":1,"columnLeft":15,"columnRight":15},"size":1},"created":"1575436562","modified":"1575437275"},{"id":"1750000021200924","user_id":"1030000007747454","box_ad_id":"0","started":"1575648000","ended":"1576252800","cycles":"1","status":"0","banner":"\/333\/830\/3338301951-5de8687527bd9","link":"https:\/\/www.openinstall.io","title":"Android\/iOS \u4e00\u4e2a\u5305\u8d70\u5929\u4e0b\uff01","area_info":{"area":"L8:O8","height":"17","width":"68","left":"187","top":"119","pos":{"rowTop":8,"rowBottom":8,"columnLeft":12,"columnRight":15},"size":4},"created":"1575511944","modified":"1575512239"}].forEach(function(item) {
+    var html = '<area shape="rect" ' +
+        'target="_blank" ' +
+        'onmouseover="SFGridAd.d(this)" ' +
+        'onmouseout="SFGridAd.e(this)" ' +
+        'onclick="SFGridAd.c(' + item.id + ')" ' +
+        'coords="' + item.area_info.left + ',' + item.area_info.top + ',' + ((+item.area_info.left)+(+item.area_info.width)) + ',' + ((+item.area_info.top)+(+item.area_info.height)) + '" ' +
+        'href="' + item.link + '" ' +
+        'stitle="' + item.title + '" />'
+
+    areaArr.push(html)
+})
+
+document.getElementById('gridsMap').innerHTML = areaArr.join('')
+
+document.getElementById('gridsMap').onmousemove = function(e) {
+    var pos = getMousePos(e)
+
+    document.getElementById("gridMapHoverBox").style.left = pos.x + 20 + 'px'
+    document.getElementById("gridMapHoverBox").style.top = pos.y + 20 + 'px'
+
+    document.getElementById("gridMapHoverBox").innerHTML = sTitle
+}
+
+// 增加 view 统计
+setTimeout(function() {
+    isShow = document.querySelector('img[src^="https://static.segmentfault.com/sponsor"]').clientHeight > 0
+    if (isShow) ajax({url: viewApi, method: 'GET'})
+}, 0)
+
+function getMousePos(event) {
+    var e = event || window.event;
+    var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+    var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+    var x = e.pageX || e.clientX + scrollX;
+    var y = e.pageY || e.clientY + scrollY;
+    return { 'x': x, 'y': y };
+}

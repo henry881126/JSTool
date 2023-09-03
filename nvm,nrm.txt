@@ -1,0 +1,28 @@
+卸载node
+安装nvm前最好对以前安装的node进行卸载
+在控制面版或者应用列表中卸载nodejs
+删除npm的相关文件
+例如C:\Users<user>\AppData\Roaming\npm
+
+下载nvm
+cmd
+输入nvm list available可以查看可以安装的版本
+
+输入nvm install vXX.XX.XXv后面接版本号，即可安装对应版本
+
+安装node需要科学上网，若不能科学上网，打开nvm的安装根路径里的settings.txt加入下列两行
+一行为node的下载镜像，一行为npm的下载镜像
+node_mirror:https://npm.taobao.org/mirrors/node/
+npm_mirror:https://npm.taobao.org/mirrors/npm/
+
+执行nvm use XX.XX.XX即可执行和切换相应的版本
+
+输入nvm list可查看使用版本
+
+---------------------------------------
+nrm管理镜像源
+1.安装  npm i -g nrm
+2.查看可用源 nrm ls
+3.使用  nrm use
+4.测试源的速度 nrm test ...(源名称:npm。。。)
+4.添加新的源 nrm add jnpm(自己源的名称) www.jd.com(自己源的地址)

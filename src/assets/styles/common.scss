@@ -1,0 +1,143 @@
+body {
+  background: $themeColor;
+  margin: 0;
+  font-family: $fontFamily;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+/* ------------ flex ------------- */
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+/* ------------- color ------------ */
+.color-white {
+  color: $whiteColor;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-pool-blue {
+  color: $poolBlue;
+}
+
+.color-green {
+  color: $greenColor;
+}
+
+.color-black {
+  color: #000000;
+}
+
+/* ----------- bgColor ------------ */
+.green-btn {
+  background: $greenColor;
+}
+
+.white-btn {
+  background: $whiteColor;
+}
+
+.grey-btn {
+  background: #f4f4f5;
+}
+
+.white-bg {
+  background: $whiteColor;
+}
+
+/* ----------- space ------------- */
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-lr-20 {
+  margin: 0 20px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.container1 {
+  padding-left: $padding-left-76;
+  padding-top: $padding-top-23;
+  padding-right: $padding-right-76;
+  padding-bottom: $padding-bottom-49;
+}
+
+
+
+/* ---------- fontSize ------------- */
+
+.font-small {
+  font-size: $defaultFontSize;
+}
+
+.font-middle {
+  font-size: $middleFontSize;
+}
+
+.font-large {
+  font-size: $largeFontSize;
+  font-family: DI;
+}
+
+.font-bolder {
+  font-weight: bolder;
+}
+
+/* --------- text ---------------*/
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.vertical-align {
+  vertical-align: middle;
+}
+
+ul,li{
+    padding:0;margin:0;list-style:none 
+}
+
+.el-multi-ellipsis--l2{
+    display: -webkit-box;
+      word-break:break-all;
+     /*! autoprefixer: off*/
+     -webkit-box-orient:vertical;
+     /* autoprefixer: on */
+     -webkit-line-clamp:2;
+     overflow:hidden;
+     text-align: left;
+}

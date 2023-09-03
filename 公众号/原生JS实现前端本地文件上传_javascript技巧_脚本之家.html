@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://www.jb51.net/article/147092.htm -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta name="applicable-device" content="pc">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<title>原生JS实现前端本地文件上传_javascript技巧_脚本之家</title>
+<meta name="keywords" content="js前端本地文件上传,js本地上传,js本地文件上传,js文件上传">
+<meta name="description" content="这篇文章主要为大家详细介绍了原生JS实现前端本地文件上传，具有一定的参考价值，感兴趣的小伙伴们可以参考一下">
+<link rel="alternate" media="only screen and(max-width: 640px)" href="https://m.jb51.net/article/147092.htm">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://m.jb51.net/article/147092.htm">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=https://m.jb51.net/article/147092.htm">
+<script type="text/javascript" async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/auto_dup"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/osd.js"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/show_ads_impl.js" id="google_shimpl"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/hm.js"></script><script type="text/javascript" async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/pr.js" id="ijdhlwf"></script><script type="text/javascript" async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/jdhlwf.js"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/push.js"></script><script type="text/javascript">
+var tougao="lijiao",lmname="JavaScript",suoyin="no";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "https://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+<meta name="referrer" content="always">
+<link type="text/css" href="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/base.css" rel="stylesheet">
+<link type="text/css" href="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/common.css" rel="stylesheet">
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/jquery.min.js"></script>
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='/skin/js/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+    }
+</script>
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/function.js"></script> 
+<link rel="preload" href="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/integrator.js" as="script"><script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/integrator.js"></script></head>
+<body>
+<!--topTools Start -->
+<div id="topbar">
+    <div id="wrap">
+		<div class="topbarleft">
+			<a href="https://task.jb51.net/" target="_blank">脚本任务平台</a>
+			<a href="http://s.jb51.net/" target="_blank" rel="nofollow">服务器常用软件</a>
+		<a href="https://www.yuanshichang.com/" target="_blank" style="color:red">源码商城</a><a href="http://idc.jb51.net/" target="_blank" style="color:red">脚本云</a></div>
+		<div class="fr">
+			<ul>
+				<li><i class="ico-mobile"></i><a target="_blank" href="https://m.jb51.net/" rel="nofollow">手机版</a></li>
+				<li><i class="ico-contribute"></i><a href="http://tougao.jb51.net/" rel="nofollow" target="_blank">投稿中心</a></li>
+				<li id="wxHide"><i class="ico-wechat"></i><a href="javascript:void(0)" target="_blank">关注微信</a>
+					<div id="wxShow" class="wxHide_box"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/erwm.jpg" alt="扫一扫" width="84" hight="84" data-baiduimageplus-ignore=""></div>
+				</li>
+			</ul>
+			<!--快捷导航 开始 -->
+			<div class="text_d right" id="navHide">
+				<a rel="nofollow" href="javascript:void(0);">快捷导航 <i class="arrowright"></i></a>
+				<div id="navBox" class="nwebnav">
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="https://www.jb51.net/softs/" target="_blank">软件下载</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/softs/android.html" target="_blank">android</a>
+								<a rel="nofollow" href="https://www.jb51.net/softs/mac.html" target="_blank">MAC</a>
+								<a rel="nofollow" href="https://www.jb51.net/qudong/" target="_blank">驱动下载</a>
+								<a rel="nofollow" href="https://www.jb51.net/fonts/" target="_blank">字体下载</a>
+								<a rel="nofollow" href="https://www.jb51.net/dll/" target="_blank">DLL</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="https://www.jb51.net/codes/" target="_blank">源码下载</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/codes/php.html" target="_blank">PHP</a>
+								<a rel="nofollow" href="https://www.jb51.net/codes/aspnet.html" target="_blank">ASP.NET</a>
+								<a rel="nofollow" href="https://www.jb51.net/codes/asp.html" target="_blank">ASP</a>
+								<a rel="nofollow" href="https://www.jb51.net/codes/jsp.html" target="_blank">JSP</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="https://www.jb51.net/list/index_84.htm" target="_blank">软件编程</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_85_1.htm" target="_blank">C#</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_134_1.htm" target="_blank">JAVA</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_159_1.htm" target="_blank">C 语言</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_206_1.htm" target="_blank">Delphi</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_233_1.htm" target="_blank">Android</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="https://www.jb51.net/list/index_1.htm" target="_blank">网络编程</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_15_1.htm" target="_blank">PHP</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_21_1.htm" target="_blank">ASP.NET</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_2_1.htm" target="_blank">ASP</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_3_1.htm" target="_blank">JavaScript</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="http://tools.jb51.net/" target="_blank">在线工具</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/tools/cssyasuo.shtml" target="_blank">CSS格式化</a>
+								<a rel="nofollow" href="http://tools.jb51.net/tools/js_geshihua.asp" target="_blank">JS格式化</a>
+								<a rel="nofollow" href="https://www.jb51.net/tools/html-js.htm" target="_blank">Html转化为Js</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="https://www.jb51.net/list/index_104.htm" target="_blank">数据库</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_112_1.htm" target="_blank">MYSQL</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_113_1.htm" target="_blank">MSSQL</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_154_1.htm" target="_blank">oracle</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_155_1.htm" target="_blank">DB2</a>
+								<a rel="nofollow" href="https://www.jb51.net/list/list_252_1.htm" target="_blank">MARIADB</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="https://www.jb51.net/cms/" target="_blank">CMS</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/cms/list411_1.html" target="_blank">PHPCMS</a>
+								<a rel="nofollow" href="https://www.jb51.net/cms/list408_1.html" target="_blank">DEDECMS</a>
+								<a rel="nofollow" href="https://www.jb51.net/cms/list578_1.html" target="_blank">帝国CMS</a>
+								<a rel="nofollow" href="https://www.jb51.net/cms/list419_1.html" target="_blank">WordPress</a>
+							</dd>
+						</dl>
+					</div>
+					<div class="ndeallist clear_fix">
+						<h4><a rel="nofollow" href="javascript:0;" target="_blank">常用工具</a></h4>
+						<dl>
+							<dd>
+								<a rel="nofollow" href="https://www.jb51.net/zt/phphuanjing.html" target="_blank">PHP开发工具</a>
+								<a rel="nofollow" href="https://www.jb51.net/zt/python.html" target="_blank">python</a>
+								<a rel="nofollow" href="https://www.jb51.net/zt/photoshopxz.html" target="_blank">Photoshop</a>
+								<a rel="nofollow" href="https://www.jb51.net/bibei/win/index.html" target="_blank">必备软件</a>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<!--快捷导航 结束 -->
+		</div>
+    </div>
+</div>
+<!--topTools end -->
+
+<div id="header">
+	<!-- Logo start -->
+	  <div id="logo"><a href="https://www.jb51.net/"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/logo.gif" title="脚本之家" alt="脚本之家"></a></div>
+	  <div class="logom fl"><a href="http://www.jhlengku.com/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/dkwm430.gif" width="430" height="60"></a>
+</div>
+	  <div class="logor fr"><a href="http://dazibenwm.com/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/daziben2.gif" width="430" height="60"></a>
+</div>
+	<!--Logo end -->
+</div>	
+	<!--Logo end -->
+	
+	<!-- 导航开始 -->
+<div id="nav">
+	<ul>
+		<li><a href="https://www.jb51.net/">网站首页</a></li>
+		<li><a href="https://www.jb51.net/web/">网页制作</a></li>
+		<li><a href="https://www.jb51.net/list/index_1.htm">网络编程</a></li>
+		<li><a href="https://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+		<li><a href="https://www.jb51.net/jiaoben/">脚本下载</a></li>
+		<li><a href="https://www.jb51.net/list/index_104.htm">数据库</a></li>
+		<li><a href="https://www.jb51.net/list/list_82_1.htm">服务器</a></li>
+		<li><a href="https://www.jb51.net/books/">电子书籍</a></li>
+		<li><a href="https://www.jb51.net/os/">操作系统</a></li>
+		<li><a href="https://www.jb51.net/yunying/">网站运营</a></li>
+		<li><a href="https://www.jb51.net/pingmian/">平面设计</a></li>
+		<li><p><i>其它</i><span>
+			<a href="https://www.jb51.net/media/">媒体动画</a>
+			<a href="https://www.jb51.net/diannaojichu/">电脑基础</a>
+			<a href="https://www.jb51.net/hardware/">硬件教程</a>
+			<a href="https://www.jb51.net/hack/">网络安全</a>	
+		</span></p>
+		</li>
+	</ul>
+</div>
+	<!--导航结束-->
+
+
+<!-- 二级菜单开始 -->
+<div id="submenu">
+	<div class="subnav clearfix">
+<ul><li><a href="https://www.jb51.net/list/list_61_1.htm" title="基础知识">基础知识</a></li>
+<li><a href="https://www.jb51.net/list/list_23_1.htm" title="javascript类库">javascript类库</a></li>
+<li><a href="https://www.jb51.net/list/list_22_1.htm" title="表单特效">表单特效</a></li>
+<li><a href="https://www.jb51.net/list/list_18_1.htm" title="广告代码">广告代码</a></li>
+<li><a href="https://www.jb51.net/list/list_43_1.htm" title="网页特效">网页特效</a></li>
+<li><a href="https://www.jb51.net/list/list_26_1.htm" title="黑客性质">黑客性质</a></li>
+<li><a href="https://www.jb51.net/list/list_222_1.htm" title="javascript技巧">javascript技巧</a></li>
+<li><a href="https://www.jb51.net/list/list_232_1.htm" title="DOM">DOM</a></li>
+<li><a href="https://www.jb51.net/list/list_243_1.htm" title="node.js">node.js</a></li>
+<li><a href="https://www.jb51.net/list/list_248_1.htm" title="js其它">js其它</a></li>
+</ul>
+	</div>
+</div>
+<!-- 二级菜单结束 -->	
+
+<!--content Star -->
+<div id="wrapper">
+	<div id="container">
+		<div class="pt10 clearfix">
+			<div class="clearfix"><div class="mainlr"><a href="http://click.aliyun.com/m/1000091560/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/aliyun1200.png" alt="aliyun"></a></div><div class="blank5"></div><div class="mainlr"><a href="https://www.uibot.com.cn/sem/jbzj.html" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/uibot1200.gif" alt="uibot"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div class="mainlr"><a href="http://ziyuanzhan.mikecrm.com/CC2XJCQ" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/ssfb8_1200.png" alt="" width="1200" height="50"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div class="mainlr"><a href="https://bttfuli.com/?=jbzj" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/ssfb_1200.png" alt="" width="1200" height="50"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div class="mainlr"><a href="https://jq.qq.com/?_wv=1027&amp;k=5pJlGpO" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/xiongzhang_1200.png" alt="" width="1200" height="50"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div class="mainlr"><a href="http://www.398zy.com/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/398zy1200.gif" alt="" width="1200" height="50"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div id="txtlink"><ul><li><a href="http://t.cn/EoAc50J" target="_blank"><span style="color: blue;">【阿里云】产品2000元优惠券（点我）领取</span></a></li><li><a href="http://www.uujs.cc/" target="_blank"><span style="color: blue;">免费网站全球加速和防御[优优加速]</span></a></li><li><a href="https://www.95idc.com/" target="_blank"><span style="color: blue;">95IDC█香港沙田CN2服务器 599/月</span></a></li><li><a href="http://www.zh.cc/us/" target="_blank"><span style="color: blue;">香港/美国/日本/韩国/独立服务器租用</span></a></li><li><a href="https://okzy.co/" target="_blank"><span style="color: red;">OK资源站提供高清电影采集</span></a></li><li><a href="https://www.ken74.com/" target="_blank"><span style="color: red;">【稳定】ios企业签名 网站封装</span></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=6883741&amp;site=qq&amp;menu=yes" target="_blank"><span style="color: red;">高价收【网赚粉】等各类活粉Q6883741</span></a></li><li><a href="http://www.zoneidc.com/" target="_blank"><span style="color: red;">香港/美国/韩国等十五国云服务器9.9元/月起</span></a></li><li><a href="https://www.solezy.com/" target="_blank"><span style="color: blue;">★★☆搜乐资源网 同步更新最快 采集补贴☆★★</span></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1928673999&amp;site=qq&amp;menu=yes" target="_blank"><span style="color: blue;">集团高价收购，一切流量/平台资源 Q:1928673999</span></a></li><li><a href="http://www.gwidc.com/host/home/free.html" target="_blank"><span style="color: blue;">港湾网络-云虚拟主机 永久免费！~</span></a></li><li><a href="http://click.aliyun.com/m/1000082214/" target="_blank"><span style="color: blue;">【阿里云双11】亿元补贴-爆款产品一折起</span></a></li><li><a href="http://www.ku86.com/" target="_blank"><span style="color: red;">百兆 12核24线程 16G内存 2T 999/月</span></a></li><li><a href="https://www.50vm.com/" target="_blank"><span style="color: red;">宿迁100G高防VPS大带宽300元/月|创梦网络</span></a></li><li><a href="http://t.cn/E9OUxEx" target="_blank"><span style="color: red;">500G学习资源/python/php/java</span></a></li><li><a href="http://tianyi.jb51.net/" target="_blank"><span style="color: red;">天翼云，云主机，云存储，云安全</span></a></li><li><a href="https://www.wsisp.net/clientcenter/shownews_852.html?indexjb" target="_blank"><span style="color: blue;">█▇▆5M独享云主机599/年▆▇█</span></a></li><li><a href="http://www.qy.com.cn/" target="_blank"><span style="color: blue;">群英云服务器送10M带宽30G防御,49元起</span></a></li><li><a href="http://www.tuidc.com/" target="_blank"><span style="color: blue;">服务器租用/托管-域名空间/认准腾佑科技</span></a></li><li><a href="http://www.vzidc.com/cloud/" target="_blank"><span style="color: blue;">华为云4核8g限时免费送另有代金券免费送</span></a></li><li><a href="http://www.ushk.net/server.html" target="_blank"><span style="color: red;">██美港数据██高端香港服务器租用</span></a></li><li><a href="http://vps.zzidc.com/tongji/jb51w.html" target="_blank"><span style="color: red;">★☆云服务器5折，天天抽红包抵扣☆★</span></a></li><li><a href="http://www.enkj.com/idc/zuyong/6" target="_blank"><span style="color: red;">移动BGP，百兆独享带宽，399元/月</span></a></li><li><a href="https://www.tzidc.com/dist/highDefense.html#jb51" target="_blank"><span style="color: red;">██高防ip██高防服务器租用</span></a></li><li><a href="http://www.pppoevps.com/" target="_blank"><span style="color: blue;">█动态拨号IP云主机，电信ADSL独享20M█ </span></a></li><li><a href="http://www.360jq.com/hkshuang.htm" target="_blank"><span style="color: blue;">[香港双高防]无视CC★DDOS/堪比广东！</span></a></li><li><a href="http://www.cyidc.cc/" target="_blank"><span style="color: blue;">畅游网络 百独服务器 包跑满 998元</span></a></li><li><a href="http://www.wdw6.com/" target="_blank"><span style="color: blue;">bgp多线机房、大带宽</span></a></li><li><a href="http://www.ssf.cc/" target="_blank"><span style="color: red;">免备vps20/百独799/双线350/45互联</span></a></li><li><a href="http://www.zitian.cn/" target="_blank"><span style="color: red;">中原地区核心数据中心，月付299元起</span></a></li><li><a href="http://www.qy.cn/gfhd.html" target="_blank"><span style="color: red;">██群英网络██◆◆◆300G高防仅需599元◆◆◆</span></a></li><li><a href="http://www.pdidc.com/" target="_blank"><span style="color: red;">浦东数据中心上海电信4星云主机30元/月起</span></a></li><li><a href="https://www.beianidc.com/huodong/" target="_blank"><span style="color: blue;">██机房直销██每月半价抢购</span></a></li><li><a href="http://www.hkcn2.com/51.htm" target="_blank"><span style="color: blue;">**香港高防10m大带宽独服，低至999元**</span></a></li><li><a href="http://www.xiaozhiyun.com/2016/" target="_blank"><span style="color: blue;">韩国香港美国站群服务器 巨牛网络</span></a></li><li><a href="http://bb.rerezy10.com/help/" target="_blank"><span style="color: blue;">热热资源、稳定更新、采集送钱</span></a></li></ul><div class="clearfix"></div></div><div class="blank5"></div><div class="topimg"><ul><li><a href="https://www.ruixunidc.net/sale/index.html" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/ruixun235.gif"></a></li><li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1928673999&amp;site=qq&amp;menu=yes" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/seow.gif"></a></li><li><a href="https://www.7e.hk/server/buy.html" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/7ehk235.gif"></a></li><li><a href="https://activity.huaweicloud.com/free_test/index.html?bpName=54ed09c278724ec4818a27de5c29d037&amp;bindType=1&amp;salesID=chairuijie666" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/zmera235.gif"></a></li><li><a href="https://www.8a.hk/server/" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/8a210.gif"></a></li></ul></div><div class="blank5"></div><div class="mainlr"><a href="http://bb.rerezy10.com/help/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/rerezy.png" alt="aliyun"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div class="mainlr"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=629989&amp;site=qq&amp;menu=yes" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/shouliang2.png" alt="aliyun"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div><div class="mainlr"><a href="http://dlfa.vip/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/koubeidl.png" alt="uibot"><span><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tu.jpg" width="29" height="16" alt=""></span></a></div><div class="blank5"></div>
+</div>
+		</div>
+	
+		<div class="clearfix">
+			<div class="breadcrumb">
+				<i class="ico-path"></i>您的位置：<a href="https://www.jb51.net/">首页</a> → <a href="https://www.jb51.net/list/index_1.htm" title="网络编程">网络编程</a> → <a href="https://www.jb51.net/list/list_3_1.htm" title="JavaScript">JavaScript</a> → <a href="https://www.jb51.net/list/list_222_1.htm" title="javascript技巧">javascript技巧</a> → 正文内容 JS实现前端本地文件上传
+			</div>
+			<div class="search">
+			<form action="https://www.jb51.net/do/search.php" target="_blank">
+				<input type="hidden" name="s" value="10520733385329581432">
+				<input type="hidden" name="ie" value="gbk">
+				<input type="text" name="q" class="searchinput" placeholder="请输入关键词">
+				<input type="submit" value=" " class="search-button">
+			</form>
+			</div>
+		</div>
+	
+	   <div id="main" class="clearfix">
+		  <div class="main-left">
+			  <div id="article">
+			  		<h1 class="title">原生JS实现前端本地文件上传</h1>
+					<div class="info"> &nbsp;更新时间：2018年09月08日 14:55:29 &nbsp; 作者：想要飞的pig  &nbsp; <a href="https://www.jb51.net/article/147092.htm#comments"> <img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/text-message.png" width="15" height="15"> 我要评论</a></div>
+					<div class="lbd clearfix">
+</div>
+                    <div class="summary">这篇文章主要为大家详细介绍了原生JS实现前端本地文件上传，具有一定的参考价值，感兴趣的小伙伴们可以参考一下</div>
+					<div class="lbd clearfix"><div id="_mfsp0t0tue" style=""><div id="erefbsg" style="margin-right:0px;"><iframe width="820" frameborder="0" height="150" scrolling="no" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/s.html"></iframe></div></div><script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/oq.js"></script>
+</div>
+					<div id="content">
+						<p>本文实例为大家分享了JS实现前端本地文件上传的具体代码，供大家参考，具体内容如下</p>
+<p>通过input type = file来选择本地文件</p>
+<div class="jb51code">
+<div><div id="highlighter_5840" class="syntaxhighlighter  xhtml"><div class="toolbar"><span><a href="https://www.jb51.net/article/147092.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xhtml plain">&lt;</code><code class="xhtml keyword">div</code><code class="xhtml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xhtml spaces">&nbsp;&nbsp;</code><code class="xhtml plain">&lt;</code><code class="xhtml keyword">form</code><code class="xhtml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xhtml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xhtml plain">&lt;</code><code class="xhtml keyword">input</code> <code class="xhtml color1">type</code><code class="xhtml plain">=</code><code class="xhtml string">"file"</code> <code class="xhtml color1">id</code><code class="xhtml plain">=</code><code class="xhtml string">"file-input"</code> <code class="xhtml color1">name</code><code class="xhtml plain">=</code><code class="xhtml string">"fileContent"</code><code class="xhtml plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="xhtml spaces">&nbsp;&nbsp;</code><code class="xhtml plain">&lt;/</code><code class="xhtml keyword">form</code><code class="xhtml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xhtml plain">&lt;/</code><code class="xhtml keyword">div</code><code class="xhtml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<div class="jb51code">
+<div><div id="highlighter_742709" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="https://www.jb51.net/article/147092.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">fileInput = document.querySelector(</code><code class="js string">'#file-input'</code><code class="js plain">);</code></div><div class="line number2 index1 alt1"><code class="js plain">fileInput.onchange = </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">'文件名:'</code><code class="js plain">,</code><code class="js keyword">this</code><code class="js plain">.value)</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">formData = </code><code class="js keyword">new</code> <code class="js plain">FormData(</code><code class="js keyword">this</code><code class="js plain">.form);</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">console.log(formData)</code></div><div class="line number6 index5 alt1"><code class="js plain">}</code></div><div class="line number7 index6 alt2"><code class="js comments">//打印出的结果是文件名: C:\fakepath\css.jpg然后在是一个空对象</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>使用formData无法得到文件的内容，那么就使用FileReader来读取整个文件的内容</p>
+<div class="jb51code">
+<div><div id="highlighter_161790" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="https://www.jb51.net/article/147092.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">fileInput = document.querySelector(</code><code class="js string">'#file-input'</code><code class="js plain">);</code></div><div class="line number2 index1 alt1"><code class="js plain">fileInput.onchange = </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;</code><code class="js keyword">var</code> <code class="js plain">filereader = </code><code class="js keyword">new</code> <code class="js plain">FileReader();</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;</code><code class="js keyword">var</code> <code class="js plain">fileType = </code><code class="js keyword">this</code><code class="js plain">.files[0].type;</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;</code><code class="js plain">filereader.onload = </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;</code><code class="js keyword">if</code><code class="js plain">(/^image\[jpeg|png|gif]/.test(fileType)){</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js keyword">this</code><code class="js plain">.result);</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;</code><code class="js plain">}</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;</code><code class="js plain">console.log(</code><code class="js keyword">this</code><code class="js plain">.files[0]);</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;</code><code class="js plain">filereader.readAsDataURL(</code><code class="js keyword">this</code><code class="js plain">.files[0]);</code></div><div class="line number12 index11 alt1"><code class="js plain">}</code></div><div class="line number13 index12 alt2"><code class="js plain">console.dir(fileInput);</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>从打印结果来看，能清楚的知道上传的文件信息是在<strong>input type = ‘file'dom对象中的files[0]</strong>中。 <br>
+<strong>filereader.readAsDataURL</strong>是将flies[0]里的信息转换成base64方式读取。 <br>
+<strong>filereader</strong>的读取为以下格式：</p>
+<ul>
+  <li>readAsDataURL（this.files[0]） base64位读取</li>
+  <li>readAsBinaryString（this.files[0]） 以二进制方式读取读取结果是UTF-8形式（被废弃）</li>
+  <li>readAsArrayBuffer(this.flies[0]) 以二进制原始方法读取，读取结果可转换成整数的数组<br>
+  </li>
+</ul>
+<div class="jb51code">
+<div><div id="highlighter_662012" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="https://www.jb51.net/article/147092.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">files = document.getElementById(</code><code class="js string">'pic'</code><code class="js plain">).files; </code></div><div class="line number2 index1 alt1"><code class="js comments">//files是文件选择框选择的文件对象数组</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js keyword">if</code><code class="js plain">(files.length == 0) </code><code class="js keyword">return</code><code class="js plain">; </code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="js keyword">var</code> <code class="js plain">form = </code><code class="js keyword">new</code> <code class="js plain">FormData(), </code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">url = </code><code class="js string">'<a href="http://......./">http://.......</a>'</code><code class="js plain">, //服务器上传地址</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">file = files[0];</code></div><div class="line number9 index8 alt2"><code class="js plain">form.append(</code><code class="js string">'file'</code><code class="js plain">, file);</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="js keyword">var</code> <code class="js plain">xhr = </code><code class="js keyword">new</code> <code class="js plain">XMLHttpRequest();</code></div><div class="line number12 index11 alt1"><code class="js plain">xhr.open(</code><code class="js string">"post"</code><code class="js plain">, url, </code><code class="js keyword">true</code><code class="js plain">);</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1"><code class="js comments">//上传进度事件</code></div><div class="line number15 index14 alt2"><code class="js plain">xhr.upload.addEventListener(</code><code class="js string">"progress"</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(result) {</code></div><div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(result.lengthComputable) {</code></div><div class="line number17 index16 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//上传进度</code></div><div class="line number18 index17 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">percent = (result.loaded / result.total * 100).toFixed(2); </code></div><div class="line number19 index18 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number20 index19 alt1"><code class="js plain">}, </code><code class="js keyword">false</code><code class="js plain">);</code></div><div class="line number21 index20 alt2">&nbsp;</div><div class="line number22 index21 alt1"><code class="js plain">xhr.addEventListener(</code><code class="js string">"readystatechange"</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">() {</code></div><div class="line number23 index22 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">result = xhr;</code></div><div class="line number24 index23 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js keyword">if</code> <code class="js plain">(result.status != 200) { </code><code class="js comments">//error</code></div><div class="line number25 index24 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">'上传失败'</code><code class="js plain">, result.status, result.statusText, result.response);</code></div><div class="line number26 index25 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">} </code></div><div class="line number27 index26 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js keyword">else</code> <code class="js keyword">if</code> <code class="js plain">(result.readyState == 4) { </code><code class="js comments">//finished</code></div><div class="line number28 index27 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">'上传成功'</code><code class="js plain">, result);</code></div><div class="line number29 index28 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number30 index29 alt1"><code class="js plain">});</code></div><div class="line number31 index30 alt2"><code class="js plain">xhr.send(form); </code><code class="js comments">//开始上传</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>以上就是本文的全部内容，希望对大家的学习有所帮助，也希望大家多多支持脚本之家。</p>
+                        
+                        <div class="art_xg">
+                        <h4>您可能感兴趣的文章:</h4><ul><li><a href="https://www.jb51.net/article/147091.htm" title="JS实现可视化文件上传" target="_blank">JS实现可视化文件上传</a></li><li><a href="https://www.jb51.net/article/147090.htm" title="js实现文件上传功能 后台使用MultipartFile" target="_blank">js实现文件上传功能 后台使用MultipartFile</a></li><li><a href="https://www.jb51.net/article/146477.htm" title="JS+Struts2多文件上传实例详解" target="_blank">JS+Struts2多文件上传实例详解</a></li><li><a href="https://www.jb51.net/article/146304.htm" title="vue.js 图片上传并预览及图片更换功能的实现代码" target="_blank">vue.js 图片上传并预览及图片更换功能的实现代码</a></li><li><a href="https://www.jb51.net/article/145634.htm" title="php+croppic.js实现剪切上传图片功能" target="_blank">php+croppic.js实现剪切上传图片功能</a></li><li><a href="https://www.jb51.net/article/145186.htm" title="JavaScript使用享元模式实现文件上传优化操作示例" target="_blank">JavaScript使用享元模式实现文件上传优化操作示例</a></li><li><a href="https://www.jb51.net/article/145160.htm" title="JS实现图片上传多次上传同一张不生效的处理方法" target="_blank">JS实现图片上传多次上传同一张不生效的处理方法</a></li><li><a href="https://www.jb51.net/article/145157.htm" title="js实现图片上传并预览功能" target="_blank">js实现图片上传并预览功能</a></li><li><a href="https://www.jb51.net/article/144933.htm" title="vue.js图片转Base64上传图片并预览的实现方法" target="_blank">vue.js图片转Base64上传图片并预览的实现方法</a></li><li><a href="https://www.jb51.net/article/143998.htm" title="Angularjs实现多图片上传预览功能" target="_blank">Angularjs实现多图片上传预览功能</a></li><li><a href="https://www.jb51.net/article/143696.htm" title="JavaScript实现异步图像上传功能" target="_blank">JavaScript实现异步图像上传功能</a></li><li><a href="https://www.jb51.net/article/142581.htm" title="SpringBoot+Vue.js实现前后端分离的文件上传功能" target="_blank">SpringBoot+Vue.js实现前后端分离的文件上传功能</a></li><li><a href="https://www.jb51.net/article/142130.htm" title="node.js自动上传ftp的脚本分享" target="_blank">node.js自动上传ftp的脚本分享</a></li><li><a href="https://www.jb51.net/article/140484.htm" title="JS实现的文件拖拽上传功能示例" target="_blank">JS实现的文件拖拽上传功能示例</a></li><li><a href="https://www.jb51.net/article/139063.htm" title="Vue2.0实现调用摄像头进行拍照功能 exif.js实现图片上传功能" target="_blank">Vue2.0实现调用摄像头进行拍照功能 exif.js实现图片上传功能</a></li><li><a href="https://www.jb51.net/article/137465.htm" title="JS和Canvas实现图片的预览压缩和上传功能" target="_blank">JS和Canvas实现图片的预览压缩和上传功能</a></li><li><a href="https://www.jb51.net/article/137217.htm" title="JavaScript代码实现txt文件的上传预览功能" target="_blank">JavaScript代码实现txt文件的上传预览功能</a></li><li><a href="https://www.jb51.net/article/40382.htm" title="js 实现 input type=&quot;file&quot; 文件上传示例代码" target="_blank">js 实现 input type="file" 文件上传示例代码</a></li><li><a href="https://www.jb51.net/article/60941.htm" title="js实现上传图片预览的方法" target="_blank">js实现上传图片预览的方法</a></li><li><a href="https://www.jb51.net/article/36235.htm" title="Servlet+Jsp实现图片或文件的上传功能具体思路及代码" target="_blank">Servlet+Jsp实现图片或文件的上传功能具体思路及代码</a></li><li><a href="https://www.jb51.net/article/56634.htm" title="上传图片预览JS脚本 Input file图片预览的实现示例" target="_blank">上传图片预览JS脚本 Input file图片预览的实现示例</a></li><li><a href="https://www.jb51.net/article/118660.htm" title="JS实现上传图片的三种方法并实现预览图片功能" target="_blank">JS实现上传图片的三种方法并实现预览图片功能</a></li><li><a href="https://www.jb51.net/article/76651.htm" title="js实现图片上传并正常显示" target="_blank">js实现图片上传并正常显示</a></li><li><a href="https://www.jb51.net/article/51546.htm" title="一个简单的jQuery插件ajaxfileupload.js实现ajax上传文件例子" target="_blank">一个简单的jQuery插件ajaxfileupload.js实现ajax上传文件例子</a></li><li><a href="https://www.jb51.net/article/89998.htm" title="JS中使用FormData上传文件、图片的方法" target="_blank">JS中使用FormData上传文件、图片的方法</a></li><li><a href="https://www.jb51.net/article/43498.htm" title="客户端js判断文件类型和文件大小即限制上传大小" target="_blank">客户端js判断文件类型和文件大小即限制上传大小</a></li><li><a href="https://www.jb51.net/article/89653.htm" title="js获取上传文件的绝对路径实现方法" target="_blank">js获取上传文件的绝对路径实现方法</a></li><li><a href="https://www.jb51.net/article/82611.htm" title="原生JS和jQuery版实现文件上传功能" target="_blank">原生JS和jQuery版实现文件上传功能</a></li><li><a href="https://www.jb51.net/article/71417.htm" title="微信JSSDK上传图片" target="_blank">微信JSSDK上传图片</a></li><li><a href="https://www.jb51.net/article/121757.htm" title="简单实现js上传文件功能" target="_blank">简单实现js上传文件功能</a></li><li><a href="https://www.jb51.net/article/96752.htm" title="JS文件上传神器bootstrap fileinput详解" target="_blank">JS文件上传神器bootstrap fileinput详解</a></li><li><a href="https://www.jb51.net/article/35035.htm" title="js实现上传图片之上传前预览图片" target="_blank">js实现上传图片之上传前预览图片</a></li><li><a href="https://www.jb51.net/article/51125.htm" title="Javascript图片上传前的本地预览实例" target="_blank">Javascript图片上传前的本地预览实例</a></li><li><a href="https://www.jb51.net/article/79487.htm" title="学习使用AngularJS文件上传控件" target="_blank">学习使用AngularJS文件上传控件</a></li><li><a href="https://www.jb51.net/article/43247.htm" title="JS简单实现文件上传实例代码（无需插件）" target="_blank">JS简单实现文件上传实例代码（无需插件）</a></li><li><a href="https://www.jb51.net/article/147504.htm" title="分享5个好用的javascript文件上传插件" target="_blank">分享5个好用的javascript文件上传插件</a></li></ul>
+                        </div>
+						<div style="padding: 10px 0 20px 0;color:red;font-weight:bold;">如对本文有所疑义或者对本文内容提供补充建议，请联系小编<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2998481778&amp;site=jb51net&amp;menu=yes" target="_blank"><img border="0" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/button_111.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a>，本站会保留修改者版权</div><div class="lbd_bot clearfix">
+						<script async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6384567588307613" data-ad-slot="3921475131" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0px;width:728px;height:90px;" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/saved_resource.html"></iframe></ins></ins></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+						</div>
+					<p>原文链接：https://blog.csdn.net/tangjie109411/article/details/80853663</p><div class="jb51ewm"><div class="fl"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/jb51ewm.png"></div><div class="fr"><p>微信公众号搜索 “ <span>脚本之家</span> ” ，选择关注</p><p>程序猿的那些事、送书等活动等着你</p></div></div></div><!--endmain-->
+					<div class="tags clearfix">
+						<i class="icon-tag"></i>
+						<ul class="meta-tags">
+						  <li class="tag item"><a href="http://common.jb51.net/tag/js/1.htm" target="_blank" title="搜索关于js的文章" rel="nofollow">js</a></li>
+<li class="tag item"><a href="http://common.jb51.net/tag/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.htm" target="_blank" title="搜索关于文件上传的文章" rel="nofollow">文件上传</a></li>
+
+						</ul>
+					</div>
+					<div class="lbd clearfix">
+						<a href="http://www.xiaziyuan8.com/v/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tb_all.gif" class="nohref"></a>
+
+					</div>
+					<div id="shoucang"></div>
+					<div class="xgcomm clearfix">
+						<h2>相关文章</h2>
+						<ul><li class="lbd clearfix"><div id="_5cnjqynfggq" style=""><iframe width="820" frameborder="0" height="120" scrolling="no" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/s(1).html"></iframe></div><script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/hak_cq.js"></script>
+</li><li><div class="item-inner"><a href="https://www.jb51.net/article/109891.htm" title="基于JavaScript实现瀑布流效果" class="img-wrap" target="_blank"> <img alt="基于JavaScript实现瀑布流效果" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg0.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/109891.htm" title="基于JavaScript实现瀑布流效果">基于JavaScript实现瀑布流效果</a></p><div class="item-info"><div class="js">这篇文章主要为大家详细介绍了基于JavaScript实现瀑布流效果，具有一定的参考价值，感兴趣的小伙伴们可以参考一下</div><span class="lbtn" style="float:right"> 2017-03-03 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/126471.htm" title="Vue2.0+ElementUI实现表格翻页的实例" class="img-wrap" target="_blank"> <img alt="Vue2.0+ElementUI实现表格翻页的实例" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg1.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/126471.htm" title="Vue2.0+ElementUI实现表格翻页的实例">Vue2.0+ElementUI实现表格翻页的实例</a></p><div class="item-info"><div class="js">下面小编就为大家带来一篇Vue2.0+ElementUI实现表格翻页的实例。小编觉得挺不错的，现在就分享给大家，也给大家做个参考。一起跟随小编过来看看吧</div><span class="lbtn" style="float:right"> 2017-10-10 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/22957.htm" title="javascript+mapbar实现地图定位" class="img-wrap" target="_blank"> <img alt="javascript+mapbar实现地图定位" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg2.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/22957.htm" title="javascript+mapbar实现地图定位">javascript+mapbar实现地图定位</a></p><div class="item-info"><div class="js">地图定位 图吧地图定位 附javascript源码每行都有注释 </div><span class="lbtn" style="float:right"> 2010-04-04 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/35874.htm" title="如何将一个String和多个String值进行比较思路分析" class="img-wrap" target="_blank"> <img alt="如何将一个String和多个String值进行比较思路分析" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg3.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/35874.htm" title="如何将一个String和多个String值进行比较思路分析">如何将一个String和多个String值进行比较思路分析</a></p><div class="item-info"><div class="js">开发中我们经常需要将一个String和多个String值进行比较。直觉反应是使用||符号连接多个===完成，感兴趣的朋友可以了解下哈</div><span class="lbtn" style="float:right"> 2013-04-04 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/169900.htm" title="layui实现checkbox的目录树tree的例子" class="img-wrap" target="_blank"> <img alt="layui实现checkbox的目录树tree的例子" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg4.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/169900.htm" title="layui实现checkbox的目录树tree的例子">layui实现checkbox的目录树tree的例子</a></p><div class="item-info"><div class="js">今天小编就为大家分享一篇layui实现checkbox的目录树tree的例子，具有很好的参考价值，希望对大家有所帮助。一起跟随小编过来看看吧</div><span class="lbtn" style="float:right"> 2019-09-09 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/84133.htm" title="BootStrap扔进Django里的方法详解" class="img-wrap" target="_blank"> <img alt="BootStrap扔进Django里的方法详解" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg5.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/84133.htm" title="BootStrap扔进Django里的方法详解">BootStrap扔进Django里的方法详解</a></p><div class="item-info"><div class="js">这篇文章主要介绍了BootStrap扔进Django里的方法，小编认为本文介绍的不错，具有参考借鉴价值，感兴趣的朋友一起学习吧</div><span class="lbtn" style="float:right"> 2016-05-05 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/21389.htm" title="javascript与asp.net(c#)互相调用方法" class="img-wrap" target="_blank"> <img alt="javascript与asp.net(c#)互相调用方法" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg6.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/21389.htm" title="javascript与asp.net(c#)互相调用方法">javascript与asp.net(c#)互相调用方法</a></p><div class="item-info"><div class="js">js与C#之间相互调用的一些方法 </div><span class="lbtn" style="float:right"> 2009-12-12 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/33170.htm" title="js修改table中Td的值(定义td的双击事件)" class="img-wrap" target="_blank"> <img alt="js修改table中Td的值(定义td的双击事件)" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg7.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/33170.htm" title="js修改table中Td的值(定义td的双击事件)">js修改table中Td的值(定义td的双击事件)</a></p><div class="item-info"><div class="js">这次是更改后的代码实现以下功能：去掉了“确定”，“取消”按钮。变单击为双击事件，用户按ESC键，取消更改感兴趣的朋友可以了解下</div><span class="lbtn" style="float:right"> 2013-01-01 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/59557.htm" title="流量统计器如何鉴别C#：WebBrowser中伪造referer" class="img-wrap" target="_blank"> <img alt="流量统计器如何鉴别C#：WebBrowser中伪造referer" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg8.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/59557.htm" title="流量统计器如何鉴别C#：WebBrowser中伪造referer">流量统计器如何鉴别C#：WebBrowser中伪造referer</a></p><div class="item-info"><div class="js">这篇文章主要介绍了流量统计器如何鉴别C#：WebBrowser中伪造referer,需要的朋友可以参考下</div><span class="lbtn" style="float:right"> 2015-01-01 </span></div></div></div></div></li>
+<li><div class="item-inner"><a href="https://www.jb51.net/article/170760.htm" title="layer 关闭指定弹出层的例子" class="img-wrap" target="_blank"> <img alt="layer 关闭指定弹出层的例子" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/bcimg9.png"> </a><div class="rbox"><div class="rbox-inner"><p><a class="link title" target="_blank" href="https://www.jb51.net/article/170760.htm" title="layer 关闭指定弹出层的例子">layer 关闭指定弹出层的例子</a></p><div class="item-info"><div class="js">今天小编就为大家分享一篇layer 关闭指定弹出层的例子，具有很好的参考价值，希望对大家有所帮助。一起跟随小编过来看看吧</div><span class="lbtn" style="float:right"> 2019-09-09 </span></div></div></div></div></li>
+</ul>
+					</div>
+					<div class="lbd clearfix mt5">
+						<div style=""><div style="margin-top:0px;"><div><iframe width="820" frameborder="0" height="120" scrolling="no" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/s(2).html"></iframe><div style="width:0px;height:0px;padding-top:0px;"></div></div></div></div><script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/qq.js"></script>
+
+					</div>
+					<a href="https://www.jb51.net/article/147092.htm#comments"></a>
+					<div id="comments">
+						<h2>最新评论</h2>
+						<div class="pd5"><div id="SOHUCS" sid="art_147092"></div></div>
+					</div>
+				  </div><!--endborder-->
+			  </div><!--end fl-->
+		  
+			<div class="main-right">
+				<div id="sidebar-right">
+					<div class="r300 clearfix"><script async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6384567588307613" data-ad-slot="4845332105" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0px;width:300px;height:250px;" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/saved_resource(1).html"></iframe></ins></ins></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+                    <div class="sidebox-recomm">
+<a class="style03" href="https://www.jb51.net/news/704337.html" target="_blank">
+	<div class="title"><strong>站长推荐</strong></div>
+	<div class="tj_ico3"></div>
+	<h2>Office 2019专业增强版</h2>
+	<p>Office 专业增强版 2019 正版办公软件，最低价仅需[<i> ￥398元</i>]</p>
+</a>
+</div><div class="r300 clearfix"><div class="blank5"></div><a href="http://click.aliyun.com/m/1000091557/" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/aliyun300.png" width="300" height="100"></a><div class="blank5"></div><a href="https://www.uibot.com.cn/sem/jbzj.html" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/uibot300.gif" width="300" height="100"></a><div class="blank5"></div><a href="https://shimo.im/docs/3yqPhR3cPDyWkpY8/" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/ptxie.png" width="300" height="100"></a></div>
+					<div class="sidebox bor-blue">
+						<div class="bor-default pb10">
+							<h4 class="blue">大家感兴趣的内容</h4>
+                            <ul class="newsList newList-in">
+							<li><em class="no1">1</em><a href="https://www.jb51.net/article/14397.htm" title="js刷新页面方法大全" target="_blank">js刷新页面方法大全</a></li><li><em class="no2">2</em><a href="https://www.jb51.net/article/35535.htm" title="JS中setTimeout()的用法详解" target="_blank">JS中setTimeout()的用法详解</a></li><li><em class="no3">3</em><a href="https://www.jb51.net/article/42482.htm" title="JS截取字符串常用方法详细整理" target="_blank">JS截取字符串常用方法详细整理</a></li><li><em class="no4">4</em><a href="https://www.jb51.net/article/25403.htm" title="js页面跳转常用的几种方式" target="_blank">js页面跳转常用的几种方式</a></li><li><em class="no5">5</em><a href="https://www.jb51.net/article/35691.htm" title="JS打开新窗口的2种方式" target="_blank">JS打开新窗口的2种方式</a></li><li><em class="no6">6</em><a href="https://www.jb51.net/article/52038.htm" title="js数组与字符串的相互转换方法" target="_blank">js数组与字符串的相互转换方法</a></li><li><em class="no7">7</em><a href="https://www.jb51.net/article/64330.htm" title="JS设置cookie、读取cookie、删除cookie" target="_blank">JS设置cookie、读取cookie、删除</a></li><li><em class="no8">8</em><a href="https://www.jb51.net/article/43136.htm" title="js 将json字符串转换为json对象的方法解析" target="_blank">js 将json字符串转换为json对象的</a></li><li><em class="no9">9</em><a href="https://www.jb51.net/article/24101.htm" title="javascript深入理解js闭包" target="_blank">javascript深入理解js闭包</a></li><li><em class="no10">10</em><a href="https://www.jb51.net/article/34502.htm" title="js关闭当前页面(窗口)的几种方式总结" target="_blank">js关闭当前页面(窗口)的几种方式</a></li>
+                            </ul>
+						</div>
+					</div>
+					<div class="r300 clearfix mt10"><script async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/adsbygoogle.js"></script><!--thea+300*250--><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6389290466807248" data-ad-slot="6788945816" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0px;width:300px;height:250px;" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/saved_resource(2).html"></iframe></ins></ins></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script><div class="blank5"></div><a href="https://www.50vm.com/server.html?pg=34" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/99idc300.jpg" width="300" height="100"></a><div class="blank5"></div><a href="https://www.naimao.com/" target="_blank"><img alt="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/naimao300.gif" width="300" height="100"></a>
+</div>
+					<div class="sidebox bor-blue">
+						<div class="bor-default pb10">
+							<h4 class="blue">最近更新的内容</h4>
+                            <ul class="newsListA">
+							<li><a href="https://www.jb51.net/article/24222.htm" title="JavaScript性能优化 创建文档碎片(document.createDocumentFragment)" target="_blank">JavaScript性能优化 创建文档碎片(docume</a></li><li><a href="https://www.jb51.net/article/20553.htm" title="写入cookie的JavaScript代码库 cookieLibrary.js" target="_blank">写入cookie的JavaScript代码库 cookieLib</a></li><li><a href="https://www.jb51.net/article/15101.htm" title="关于树形菜单 Checkbox的全选" target="_blank">关于树形菜单 Checkbox的全选</a></li><li><a href="https://www.jb51.net/article/105845.htm" title="js实现兼容PC端和移动端滑块拖动选择数字效果" target="_blank">js实现兼容PC端和移动端滑块拖动选择数字</a></li><li><a href="https://www.jb51.net/article/32203.htm" title="extjs 04_grid 单击事件新发现" target="_blank">extjs 04_grid 单击事件新发现</a></li><li><a href="https://www.jb51.net/article/64801.htm" title="JS实现简单的键盘打字的效果" target="_blank">JS实现简单的键盘打字的效果</a></li><li><a href="https://www.jb51.net/article/107838.htm" title="bootstrap实现动态进度条效果" target="_blank">bootstrap实现动态进度条效果</a></li><li><a href="https://www.jb51.net/article/109141.htm" title="js+canvas实现动态吃豆人效果" target="_blank">js+canvas实现动态吃豆人效果</a></li><li><a href="https://www.jb51.net/article/4840.htm" title="用js得到网页中所有的div的id" target="_blank">用js得到网页中所有的div的id</a></li><li><a href="https://www.jb51.net/article/21723.htm" title="用AJAX返回HTML片段中的JavaScript脚本" target="_blank">用AJAX返回HTML片段中的JavaScript脚本</a></li>
+                            </ul>
+						</div>
+					</div>
+					<div class="r300 clearfix mt10">
+						<div class="idc3"><a href="http://tools.jb51.net/" target="_blank"><h1>在线工具</h1><span>代码格式化等</span> </a><a href="https://www.jb51.net/s/idc/" target="_blank"><h1>高防主机</h1><span>600G 防护</span> </a><a href="http://www.33ip.com/" target="_blank"><h1>枫信科技</h1><span>IDC服务商</span> </a></div>
+
+					</div>
+                    <div class="sidebox bor-blue">
+						<div class="bor-default pb10">
+							<h4 class="blue">常用在线小工具</h4>
+							<ul class="newsListA"><li><a href="http://tools.jb51.net/code/css" target="_blank"><font color="red">CSS代码工具</font></a></li><li><a href="http://tools.jb51.net/code/js" target="_blank"><font color="red">JavaScript代码格式化工具</font></a></li><li><a href="http://tools.jb51.net/code/xmlformat" target="_blank">在线XML格式化/压缩工具</a></li><li><a href="http://tools.jb51.net/code/phpformat" target="_blank"><font color="red">php代码在线格式化美化工具</font></a></li><li><a href="http://tools.jb51.net/code/sqlcodeformat" target="_blank">sql代码在线格式化美化工具</a></li><li><a href="http://tools.jb51.net/transcoding/html_transcode" target="_blank">在线HTML转义/反转义工具</a></li><li><a href="http://tools.jb51.net/code/json" target="_blank">在线JSON代码检验/检验/美化/格式化</a></li><li><a href="http://tools.jb51.net/regex/javascript" target="_blank">JavaScript正则在线测试工具</a></li><li><a href="http://tools.jb51.net/transcoding/jb51qrcode" target="_blank">在线生成二维码工具(加强版)</a></li><li><a href="http://tools.jb51.net/" target="_blank">更多在线工具</a></li>
+</ul>
+						</div>
+					</div>
+					<div class="r300 clearfix mt10"><a href="http://tuidc.com/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tengyou300.gif" width="300" height="100"></a><div class="blank5"></div><a href="http://www.enkj.com/encloud/" target="_blank"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/enkj300.gif" alt="云服务器" width="300" height="100"></a>
+</div>
+					<div class="mt10 rFixedBox" style="position: static; top: 0px;">
+						<div class="r300 clearfix"><script async="" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-6384567588307613" data-ad-slot="2129515335" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><ins id="aswift_3_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent;"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0px;width:300px;height:250px;" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/saved_resource(3).html"></iframe></ins></ins></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+						<div class="r300 clearfix mt10">
+							<div id="_orsl4wgzqd" style="width: 100%;"><em style="display:none;"></em><iframe width="300" frameborder="0" height="250" scrolling="no" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/s(3).html"></iframe></div><script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/k-blu.js"></script>
+
+						</div>
+					</div>
+				  </div>
+			  </div><!--end fr-->
+		  </div>
+	  </div>
+	  <!--share start-->
+	 <div id="right-share" style="display: block;">
+		<div class="right-share jb-share" id="jb-share">
+			<a class="rshare-weixin" title="">微信</a>
+			<a rel="nofollow" class="rshare-qzone" target="_blank" href="http://tougao.jb51.net/" title="投稿">投稿</a>
+			<a rel="nofollow" class="rshare-tsina2" target="_blank" href="http://tools.jb51.net/" title="在线工具">在线工具</a>
+		</div>
+		<a class="rshare-top2" onclick="javascript:;"></a>
+		<div id="weixin-code" class="hide">
+		<div class="popup_weixin_head"><p>关注微信公众号</p> 
+		<div id="code"><img src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/erwm.jpg" alt="扫一扫" width="100" hight="100"></div>
+		</div>
+		</div>	
+	 </div>
+	<!--share end-->
+
+</div><!--end content-->
+<div id="footer">
+	<div class="footer-bottom">
+		<p>
+			<a rel="nofollow" href="https://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+			<a rel="nofollow" href="https://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+			<a rel="nofollow" href="https://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+			<a rel="nofollow" href="https://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+			<a rel="nofollow" href="https://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+			<a rel="nofollow" href="tencent://message/?uin=461478385&amp;Site=https://www.jb51.net" target="_blank">投诉建议</a> - 
+			<a rel="nofollow" href="https://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+		</p>
+		<p>&#169;CopyRight 2006-2020 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+	</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/shThemeDefault.css">
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/shCore.js"></script>
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/shAutoloader.js"></script>
+<script type="text/javascript"> 
+/*更多导航*/
+$("#nav p").hover(function(){$(this).addClass("hover")},function(){$(this).removeClass("hover")});
+if (top.location != self.location)top.location=self.location;
+var varwindow=$(window);
+$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 800 && !$(this).hasClass("nohref")){
+            img.style.width = "800px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+ $(window).scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = varwindow.height();
+        var top = varwindow.scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+330)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			$('.rFixedBox').css({'position':'fixed','top': 0});
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+	   
+	   /*右侧快捷菜单*/
+	   sideFixed();
+    });
+	
+	var ww = varwindow.width();
+	function sideFixed(){
+	var scrolltop = document.body.scrollTop || document.documentElement.scrollTop;
+	var a1 = 550;
+	if(ww>440){
+		if(a1<=scrolltop){
+			$('#right-share').slideDown();
+			}
+		else{
+			$('#right-share').slideUp();
+			}
+		}
+	}
+	$('.rshare-weixin').hover(function(){
+			$('#weixin-code').removeClass('hide');
+		},function(){
+			$('#weixin-code').addClass('hide');
+		});
+	/*二维码*/
+	$('#right-share .rshare-top2').on('click',function(){
+        $('html,body').animate({'scrollTop':0},500);
+    });
+if(suoyin=="ok"){
+	GenerateContentList();
+}
+
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+
+var ourl="https://blog.csdn.net/tangjie109411/article/details/80853663";
+
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/arc2019.js"></script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<script>jbLoader();</script>
+<!--右侧浮动临时增加-->
+<script>jbLoader();</script>
+<div id="tongji">
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/tongji.js"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/stat.php" language="JavaScript"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/core.php" charset="utf-8" type="text/javascript"></script><a href="https://www.cnzz.com/stat/website.php?web_id=1585378" target="_blank" title="站长统计">站长统计</a><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/stat(1).php" language="JavaScript"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/core(1).php" charset="utf-8" type="text/javascript"></script><a href="https://www.cnzz.com/stat/website.php?web_id=1255898178" target="_blank" title="站长统计">站长统计</a>
+</div>
+<script type="text/javascript">
+//tu+
+var cpro_id = "u1893014";
+document.write('<scri'+'pt src="//cpro.baidustatic.com/cpro/ui/i.js" type="text/javascript"></s'+'cript>');
+(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?2f793ca9dd6f4c32488903eed5c7fbcb":"https://jspassport.ssl.qhimg.com/11.0.1.js?2f793ca9dd6f4c32488903eed5c7fbcb";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/i.js" type="text/javascript"></script><script src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/11.0.1.js" id="sozz"></script><script charset="utf-8" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/ab77b6ea7f3fbf79.js"></script> 
+<script type="text/javascript" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/pl.asp"></script>
+<script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "https://www.jb51.net/article/147092.htm",
+            "appid": "1549322409310619",
+            "title": "原生JS实现前端本地文件上传",
+            "description": "这篇文章主要为大家详细介绍了原生JS实现前端本地文件上传，具有一定的参考价值，感兴趣的小伙伴们可以参考一下",
+            "pubDate": "2018-09-08T14:55:28",
+			"upDate": "2018-09-08T14:55:29"
+        }
+</script>
+
+
+<!-- published at 2019/10/25 13:25:26By dxycms qq:461478385  -->
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_4_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0px;width:0px;height:0px;" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/saved_resource(4).html"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_3237117909632" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/saved_resource(5).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./原生JS实现前端本地文件上传_javascript技巧_脚本之家_files/zrt_lookup.html" data-ad-client="ca-pub-6384567588307613" style="display: none;"></iframe></html>

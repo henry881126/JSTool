@@ -1,0 +1,199 @@
+@mixin overText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+@mixin scrollBarforCustomize($thumb-color, $piece-color) {
+    ::-webkit-scrollbar-track-piece {
+        background-color: $piece-color !important;
+        height: 0 !important;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        background-color: $thumb-color;
+        height: .05rem !important;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px !important;
+    }
+}
+
+@mixin exportButton1920 {
+    border-color: $greenColor;
+    background: #ffffff;
+    color: $greenColor;
+    font-size: $fontSize18;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+@mixin exportButton1440 {
+    border-color: $greenColor;
+    background: #ffffff;
+    color: $greenColor;
+    font-size: $defaultFontSize;
+    height: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+}
+
+@mixin elRadio1920 {
+    .el-radio {
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    .el-radio__label {
+        font-size: 16px;
+        color: #ffffff;
+    }
+
+    .el-radio__inner {
+        width: 16px;
+        height: 16px;
+
+        background: unset;
+        border-color: #ffffff;
+    }
+
+    .is-checked {
+        .el-radio__inner {
+            background: $greenColor;
+            border: unset;
+        }
+
+        .el-radio__inner::after {
+            width: 7px;
+            height: 7px;
+        }
+    }
+
+    .el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+        box-shadow: unset;
+    }
+}
+
+@mixin elRadio1440 {
+    .el-radio {
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    .el-radio__label {
+        font-size: 16px;
+        color: #ffffff;
+    }
+
+    .el-radio__inner {
+        width: 16px;
+        height: 16px;
+
+        background: unset;
+        border-color: #ffffff;
+    }
+
+    .is-checked {
+        .el-radio__inner {
+            background: $greenColor;
+            border: unset;
+        }
+
+        .el-radio__inner::after {
+            width: 7px;
+            height: 7px;
+        }
+    }
+
+    .el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+        box-shadow: unset;
+    }
+}
+
+@mixin elDate1920($bgColor, $borderStyle, $color) {
+    .el-range-editor {
+        .el-input__inner {
+            background: $bgColor;
+            border-radius: 20px;
+            color: $color;
+            border: $borderStyle;
+        }
+
+        .el-input.is-focus .el-input__inner {
+            border: $borderStyle !important;
+        }
+    }
+
+    .el-input__inner {
+        background: $bgColor;
+        border-radius: 20px;
+        color: $color;
+        border: $borderStyle;
+    }
+
+    .el-date-editor .el-range-input,
+    .el-date-editor .el-range-separator {
+        background: $bgColor;
+        color: $color;
+    }
+
+    .el-date-editor .el-range-separator {
+        width: unset;
+    }
+}
+
+@mixin elDate1440($bgColor, $borderStyle, $color) {
+    .el-input__inner {
+        height: 30px;
+    }
+
+    .el-input__icon {
+        margin-top: -4px;
+    }
+
+    .el-range-editor {
+        height: 30px;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+
+        .el-input__inner {
+            height: 30px;
+            background: $bgColor;
+            border-radius: 20px;
+            color: $color;
+            border: $borderStyle;
+        }
+
+        .el-input.is-focus .el-input__inner {
+            border: $borderStyle !important;
+        }
+    }
+
+    .el-input__inner {
+        background: $bgColor;
+        border-radius: 20px;
+        color: $color;
+        border: $borderStyle;
+    }
+
+    .el-date-editor .el-range-input,
+    .el-date-editor .el-range-separator {
+        background: $bgColor;
+        color: $color;
+        line-height: 25px;
+    }
+
+    .el-range__icon,
+    .el-range__close-icon {
+        line-height: 25px;
+    }
+
+    .el-date-editor .el-range-separator {
+        width: unset;
+    }
+}

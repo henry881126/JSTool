@@ -1,0 +1,11 @@
+<el-input v-model="rowChange.formData.value"
+                      @input="rowChange.formData.value=rowChange.formData.value.replace(/[^\d|^\.]+/g, '').replace(/^(\d+)\.(\d\d\d\d).*$/,'$1.$2')"></el-input>
+
+
+<el-input
+                        type="number"
+                        maxlength=5
+                        oninput="if(isNaN(value)) { value = parseFloat(value) }if(value>10000){value=value.slice(0,value.length-1)} if(value.indexOf('.')>0){value=value.slice(0,value.indexOf('.')+5)}"
+                        v-model="item.gasNum"
+                        placeholder="请输入日交割量"
+                      ></el-input>

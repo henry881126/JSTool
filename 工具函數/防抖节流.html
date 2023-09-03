@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+
+<body>
+  <p>
+    <div></div>
+  </p>
+  <script>
+    function isType(target, type) {
+      if (Object.prototype.toString.call(target).indexOf(type) != -1) {
+        return true
+      } else {
+        return false
+      }
+    }
+    let arr = [1, 2]
+    console.log(isType(arr, 'Object'));
+    // 第二版
+    function create() {
+      // 1、获得构造函数，同时删除 arguments 中第一个参数
+      Con = [].shift.call(arguments);
+      // 2、创建一个空的对象并链接到原型，obj 可以访问构造函数原型中的属性
+      var obj = Object.create(Con.prototype);
+      // 3、绑定 this 实现继承，obj 可以访问到构造函数中的属性
+      var ret = Con.apply(obj, arguments);
+      // 4、优先返回构造函数返回的对象
+      return ret instanceof Object ? ret : obj;
+    };
+    create()
+    // 节流：一个函数执行一次后，只有大于设定的执行周期，才会执行第二次
+    //节流函数
+    function throttle(fn, delay) {
+      //记录上一次函数触发的时间
+      var lastTime = 0;
+      console.log(this)
+      return function () {
+        //记录当前函数触发的时间
+        var nowTime = Date.now();
+        if (nowTime - lastTime > delay) {
+          //修正this的指向
+          fn.call(this);
+          console.log(this);
+          lastTime = nowTime;
+        }
+      }
+    }
+    document.onscroll = throttle(function () {
+      console.log('触发了scroll' + Date.now())
+    }, 200)
+
+    // 防抖：有个需要频繁触发函数，出于优化性能角度，在规定的时间内，只让函数触发的第一次生效，后面的不生效。
+    function debounce(fn, delay) {
+      //记录上一次的延时器
+      var timer = null;
+      return function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.apply(this);
+        }, delay);
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // arg1除数 arg2被除数 d小数保留位数
+
+    function numDiv (arg1, arg2) {
+      if (arg1 && arg2 || arg1 === 0) {
+        var r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = 6;
+        m = (r2.split(".")[1] ? r2.split(".")[1].length : 0)
+          - (r1.split(".")[1] ? r1.split(".")[1].length : 0);
+        resultVal = Number(r1.replace(".", "")) / Number(r2.replace(".", ""))
+          * Math.pow(10, m);
+        return typeof d !== "number" ? Number(resultVal) : Number(resultVal
+          .toFixed(parseInt(6)));
+      }
+
+    }
+    console.log(numDiv(1.5, 1000));
+    console.log(numDiv(2.9, 1000));
+    console.log(numDiv(3, 1000));
+    console.log(numDiv(4, 1000));
+    console.log(numDiv(5, 1000));
+    console.log(numDiv(6, 1000));
+    console.log(numDiv(7, 1000));
+    console.log(numDiv(8, 1000));
+    console.log(numDiv(9.9, 1000));
+    console.log(numDiv(10, 1000));
+    let s = '123465453XXX35454YYY123'
+    console.log(s.match(/XXX.*YYY$/g));
+  </script>
+</body>
+
+</html>

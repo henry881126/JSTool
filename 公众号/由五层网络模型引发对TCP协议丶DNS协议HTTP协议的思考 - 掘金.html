@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage -->
+<html lang="zh-Hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"><meta name="google-site-verification" content="cCHsgG9ktuCTgWgYfqCJql8AeR4gAne4DTZqztPoirE"><meta name="apple-itunes-app" content="app-id=987739104"><meta name="baidu-site-verification" content="qiK2a1kcFc"><meta name="360-site-verification" content="4c3c7d57d59f0e1a308462fbc7fd7e51"><meta name="sogou_site_verification" content="c49WUDZczQ"><style>body {
+        font-size: 16px;
+        line-height: 2;
+      }
+      a, button, input {
+        margin: 1rem 1.5rem;
+      }
+      img {
+        width: 0;
+        height: 0;
+      }
+      #juejin {
+        overflow-x: hidden;
+      }</style><meta data-vue-meta="true" data-vmid="keywords" name="keywords" content="前端"><meta data-vue-meta="true" data-vmid="description" name="description" content="五层网络模型 组成 应用层 组成 应用层 表示层 作用：用来做数据格式化或者加密等操作 会话层 作用：为应用软件提供了很多服务，构建于协议之上。 应用层协议（类比暗号） 分类 HTTP协议 DNS协议（域名解析） FTP协议（文件传输） "><title data-vue-meta="true">由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金</title><link rel="apple-touch-icon" sizes="180x180" href="https://b-gold-cdn.xitu.io/favicons/v2/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://b-gold-cdn.xitu.io/favicons/v2/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://b-gold-cdn.xitu.io/favicons/v2/favicon-16x16.png"><link rel="manifest" href="https://b-gold-cdn.xitu.io/favicons/v2/manifest.json"><link rel="mask-icon" href="https://b-gold-cdn.xitu.io/favicons/v2/safari-pinned-tab.svg" color="#5bbad5"><link rel="shortcut icon" href="https://b-gold-cdn.xitu.io/favicons/v2/favicon.ico"><meta name="msapplication-config" content="https://b-gold-cdn.xitu.io/favicons/v2/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="search" title="掘金" href="https://b-gold-cdn.xitu.io/conf/search.xml" type="application/opensearchdescription+xml"><link rel="stylesheet" href="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/ionicons.min.css"><link rel="stylesheet" href="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/iconfont.css"><link href="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/0.9c3b1301627380d53cfd.css" rel="stylesheet"><script async="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/hm.js.下载"></script><script async="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/analytics.js.下载"></script><script type="text/javascript" async="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/vds.js.下载"></script><script charset="utf-8" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/4.b383af7c6a91e4cc0a43.js.下载"></script></head><body><div id="juejin" data-v-5cbcd4ce=""><div class="global-component-box" data-v-5cbcd4ce=""><!----><div data-v-3760a24d="" data-v-5cbcd4ce="" class="alert-list alert-list"></div><div data-v-6926f421="" data-v-5cbcd4ce="" class="suspension-panel suspension-panel"><button data-v-6926f421="" title="回到顶部" class="btn to-top-btn" style="display: none;"><i data-v-6926f421="" class="ion-android-arrow-dropup"></i></button><button data-v-6926f421="" title="建议反馈" class="btn meiqia-btn" style=""><i data-v-6926f421="" class="ion-chatbubble-working"></i></button></div><!----><!----><div class="emoji-barrage" data-v-8cc59058="" data-v-5cbcd4ce=""><!----></div><div class="book-new-user-award-popup" style="display:none;" data-v-7ab29b6f="" data-v-5cbcd4ce=""><div class="content-box" style="display:;" data-v-7ab29b6f=""><div class="close ion-close-round" data-v-7ab29b6f=""></div><div class="header" data-v-7ab29b6f=""><div class="icon" data-v-7ab29b6f=""><img src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/icon.a87e5ae.svg" data-v-7ab29b6f=""></div><div class="txt" data-v-7ab29b6f="">新人专享好礼</div></div><div class="desc" data-v-7ab29b6f="">凡未购买过小册的用户，均可领取三张 5 折新人专享券，购买小册时自动使用专享券，最高可节省 45 元。</div><div class="tickets" data-v-7ab29b6f=""><div class="ticket" data-v-7ab29b6f=""><div class="ticket__inner" data-v-7ab29b6f=""><div class="enjoy" data-v-7ab29b6f=""><span class="new-title" data-v-7ab29b6f="">小册新人 5 折券</span></div><div class="sale" data-v-7ab29b6f="">最高可省 15 元</div></div></div><div class="ticket" data-v-7ab29b6f=""><div class="ticket__inner" data-v-7ab29b6f=""><div class="enjoy" data-v-7ab29b6f=""><span class="new-title" data-v-7ab29b6f="">小册新人 5 折券</span></div><div class="sale" data-v-7ab29b6f="">最高可省 15 元</div></div></div><div class="ticket" data-v-7ab29b6f=""><div class="ticket__inner" data-v-7ab29b6f=""><div class="enjoy" data-v-7ab29b6f=""><span class="new-title" data-v-7ab29b6f="">小册新人 5 折券</span></div><div class="sale" data-v-7ab29b6f="">最高可省 15 元</div></div></div></div><div class="remark" data-v-7ab29b6f="">注：专享券的使用期限在领券的七天内。</div><div class="submit-btn" data-v-7ab29b6f="">一键领取</div></div><div class="model success" style="display:none;" data-v-7ab29b6f=""><div class="heading" data-v-7ab29b6f="">领取成功</div><div class="content-text" data-v-7ab29b6f="">购买小册时自动使用专享券</div><div class="btn-success-footer" data-v-7ab29b6f=""><div class="btn-ok" data-v-7ab29b6f="">知道了</div><div class="btn-ok btn-link" data-v-7ab29b6f="">前往小册首页</div></div></div><div class="model fail" style="display:none;" data-v-7ab29b6f=""><div class="heading" data-v-7ab29b6f="">领取失败</div><div class="content-text" data-v-7ab29b6f="">本活动仅适用于小册新用户</div><div class="btn-ok" data-v-7ab29b6f="">知道了</div></div></div><!----><!----><div class="bind-phone-number-modal-box" data-v-c407a50c="" data-v-5cbcd4ce=""><div st:block="bindPhoneNumberModal" class="modal-mask" style="display:none;" data-v-c407a50c=""></div><form class="bind-phone-number-form" style="display:none;" data-v-c407a50c=""><i title="关闭" class="close-btn ion-close-round" data-v-c407a50c=""></i><h1 class="title" data-v-c407a50c="">提示</h1><h2 class="hint" data-v-c407a50c="">根据我国<a href="http://www.cac.gov.cn/2017-08/25/c_1121541842.htm" target="_blank" style="color:#007fff">《互联网跟帖评论服务管理规定》</a>，您需要绑定手机号后才可在掘金社区内发布内容。</h2><div class="input-group" data-v-c407a50c=""><div class="input-box" data-v-c407a50c=""><input maxlength="64" placeholder="请输入要绑定的手机号码" value="" class="input" data-v-c407a50c=""></div><!----><!----></div><button st:name="bindBtn" class="btn" data-v-c407a50c="">绑定手机</button></form></div></div><!----><div data-v-0591b948="" data-v-0526462d="" data-v-5cbcd4ce="" class="view-container"><div data-v-0591b948="" class="main-header-box"><header data-v-3732c85f="" data-v-0591b948="" class="main-header main-header unauthorized visible"><div data-v-3732c85f="" class="container"><a data-v-3732c85f="" href="https://juejin.im/" class="logo"><img data-v-3732c85f="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/logo.a7995ad.svg" alt="掘金" class="logo-img"><img data-v-3732c85f="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/simplify-logo.3e3c253.svg" alt="掘金" class="mobile"></a><nav data-v-3732c85f="" role="navigation" class="main-nav"><ul data-v-3732c85f="" class="nav-list"><li data-v-3732c85f="" class="main-nav-list"><div data-v-3732c85f="" class="phone-show-menu"><span data-v-3732c85f="">首页</span><div data-v-3732c85f="" class="icon ion-arrow-down-b"></div></div><ul data-v-3732c85f="" class="phone-hide"><li data-v-3732c85f="" class="nav-item link-item route-active"><a data-v-3732c85f="" href="https://juejin.im/">首页</a></li><li data-v-3732c85f="" class="nav-item link-item activities"><a data-v-3732c85f="" href="https://juejin.im/pins">沸点</a></li><li data-v-3732c85f="" class="nav-item link-item"><a data-v-3732c85f="" href="https://juejin.im/topics">话题</a></li><li data-v-3732c85f="" class="nav-item link-item book"><a data-v-3732c85f="" href="https://juejin.im/books">小册</a></li><li data-v-3732c85f="" class="nav-item link-item"><a data-v-3732c85f="" href="https://juejin.im/events/all">活动</a></li></ul></li><li data-v-3732c85f="" class="nav-item search"><form data-v-3732c85f="" role="search" class="search-form"><input data-v-3732c85f="" type="search" maxlength="32" placeholder="搜索掘金" class="search-input"><img data-v-3732c85f="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/juejin-search-icon.6f8ba1b.svg" alt="搜索" class="search-icon"></form></li><!----><!----><!----><li data-v-3732c85f="" class="nav-item submit"><img data-v-3732c85f="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/submit-icon.53f4253.svg" class="icon"><span data-v-3732c85f="">写文章</span><!----></li><li data-v-3732c85f="" class="nav-item auth"><span data-v-3732c85f="" class="login">登录</span><span data-v-3732c85f="" class="register">注册</span></li></ul></nav></div></header></div><main data-v-0591b948="" class="container main-container"><div data-v-0526462d="" data-v-0591b948="" class="view column-view"><div data-v-0526462d="" data-v-0591b948="" class="main-area article-area shadow"><article data-v-0526462d="" itemscope="itemscope" itemtype="http://schema.org/Article" class="article" data-v-0591b948=""><meta itemprop="url" content="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f"><meta itemprop="headline" content="由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考"><meta itemprop="keywords" content="前端"><meta itemprop="datePublished" content="2019-11-03T06:58:05.271Z"><meta itemprop="image" content="https://user-gold-cdn.xitu.io/2019/11/3/16e300e496898145?w=500&amp;h=333&amp;f=jpeg&amp;s=19609"><div itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="name" content="William陈"><meta itemprop="url" content="https://juejin.im/user/5af14ce95188256717764163"></div><div itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="掘金"><div itemprop="logo" itemscope="itemscope" itemtype="https://schema.org/ImageObject"><meta itemprop="url" content="https://b-gold-cdn.xitu.io/icon/icon-white-180.png"><meta itemprop="width" content="180"><meta itemprop="height" content="180"></div></div><div data-v-0526462d="" class="author-info-block"><a data-v-0526462d="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" class="avatar-link"><div data-v-10f5e1e2="" data-v-762a6aba="" data-v-0526462d="" data-src="https://user-gold-cdn.xitu.io/2019/5/28/16afc32c0f0ff09a?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" class="lazy avatar avatar loaded" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2019/5/28/16afc32c0f0ff09a?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1&quot;);"></div></a><div data-v-0526462d="" class="author-info-box"><a data-v-db47c888="" data-v-0526462d="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" class="username username ellipsis">William陈<a data-v-0ba9b815="" data-v-db47c888="" href="https://juejin.im/book/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022" target="_blank" rel="" class="rank"><img data-v-0ba9b815="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/lv-2.f597b88.svg" alt="lv-2"></a></a><div data-v-0526462d="" class="meta-box"><time data-v-0526462d="" datetime="2019-11-03T06:58:05.271Z" title="Sun Nov 03 2019 14:58:05 GMT+0800 (中国标准时间)" class="time">2019年11月03日</time><span data-v-0526462d="" class="views-count">阅读 486</span><!----></div></div><button data-v-0bccdb0e="" data-v-0526462d="" class="follow-button follow">关注</button></div><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-0526462d="" data-src="https://user-gold-cdn.xitu.io/2019/11/3/16e300e496898145?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1" class="lazy thumb article-hero loaded" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2019/11/3/16e300e496898145?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1&quot;); background-size: cover;"></div><h1 data-v-0526462d="" class="article-title">由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考</h1><div data-v-0526462d="" data-id="5dbe7a7d6fb9a0206c32103d" itemprop="articleBody" class="article-content"><h2 class="heading" data-id="heading-0">五层网络模型</h2>
+<ul>
+<li>组成
+<ul>
+<li>应用层
+<ul>
+<li>组成
+<ul>
+<li>应用层</li>
+<li>表示层
+<ul>
+<li>作用：用来做数据格式化或者加密等操作</li>
+</ul>
+</li>
+<li>会话层</li>
+</ul>
+</li>
+<li>作用：为应用软件提供了很多服务，构建于协议之上。</li>
+<li>应用层协议（类比暗号）
+<ul>
+<li>分类
+<ul>
+<li>HTTP协议</li>
+<li>DNS协议（域名解析）</li>
+<li>FTP协议（文件传输）</li>
+<li>SMTP协议（邮件传输）</li>
+</ul>
+</li>
+<li>作用：就像是能识别HTTP协议的程序才能解读HTTP协议里传输的数据内容</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>传输层
+<ul>
+<li>作用：对数据传输连接的建立和管理，在网络的世界闻名称之为传输层。</li>
+<li>传输层协议
+<ul>
+<li>UDP协议
+<ul>
+<li>UDP协议是尽最大努力保证数据送到，但是不保证数据一定能够送到。我们经常用到的Ping命令，来测试主机之间是否联通，原理就是UDP协议。这种在送信过程途中把信弄丢了的情况，在网络世界我们称之为：丢包。</li>
+</ul>
+</li>
+<li>TCP协议
+<ul>
+<li>TCP协议是会保证数据的正确性，也会保证数据的顺序性。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>网络层
+<ul>
+<li>作用：为数据在节点之间传输创建逻辑链路</li>
+<li>网络层协议
+<ul>
+<li>IP协议
+<ul>
+<li>这里的每一栋楼房都相当于连接到网络中的一台计算机，每个屋子都相当于计算机上的一个端口，而交通网络就像是计算机世界的网络。</li>
+<li>在网络的世界中，我们称之为网络层。在现实世界中我们要找到一个人的住址我们需要的地址和门牌号，地址和门牌号具有一定的格式，这种格式类比到网络世界中就是一种协议，我们称之为网络层协议。</li>
+<li>我们在网络世界中通常用IP加端口来定位一个程序的位置，这种方式就是一种网络层协议，我们称之为IP协议。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据链路层
+<ul>
+<li>作用：为通讯在实体间创建逻辑链路</li>
+<li>数据链路层又分为两个部分或者称为两个子层，一个是地图上显示的路线我们称之为：逻辑链路控制子层。</li>
+<li>另一个是现实世界的路线，我们称之为：媒体访问控制子层，这层的缩写大家肯定熟悉--MAC，也就是人们常说的MAC地址。</li>
+</ul>
+</li>
+<li>物理层
+<ul>
+<li>作用：是定义物理设备如何传输数据（光缆丶网线）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>过程
+<ul>
+<li>五层网络模型在数据运输的过程中，先是从A处的应用层到运输层到网络层到数据链路层到物理层，将数据运送到B处，然后再从B处的物理层到数据链路层到网络层到运输层到运用层。</li>
+<li>每层协议本质上就是在外面套一层特殊格式的数据。所以在将数据送到的时候，需要将这一层层的协议拆开，如何才能得到里面的数据。</li>
+</ul>
+</li>
+</ul>
+<h2 class="heading" data-id="heading-1">TCP协议</h2>
+<ul>
+<li>TCP三次握手
+<ul>
+<li>作用：三次握手主要目的是为了确认两台主机都具备收和发的能力</li>
+<li>过程
+<ul>
+<li>第一次握手
+<ul>
+<li>主要传递两个信息，一个是请求建立连接（SYN=1），二是发出一个序列号（seq=n）。</li>
+<li>作用：第一次握手让B主机知道A可以发出信息</li>
+</ul>
+</li>
+<li>第二次握手
+<ul>
+<li>这次回复三个信息，以是同意建立连接（SYN=1），二是确认收到了刚才的信息（ack=刚才的seq+1），三是发出自己的序列号（seq=x）。</li>
+<li>作用：第二次握手让A知道了B能收到也能发出。</li>
+</ul>
+</li>
+<li>第三次握手
+<ul>
+<li>这次回复三个信息，一是表示现在开始发送（SYN=0），二是成功收到了刚才的信息（ack=刚才的seq+1），三是发出自己的序号（最开始发出序号+1）。</li>
+<li>作用：第二次握手让B知道了A能收到也能发出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP四次握手
+<ul>
+<li>核心在于四个时间点，分别是：发完了，知道发完了，收完了，知道收完了。</li>
+<li>过程
+<ul>
+<li>第一次挥手
+<ul>
+<li>A告诉B数据发送完了</li>
+</ul>
+</li>
+<li>第二次挥手
+<ul>
+<li>B知道A发完了</li>
+</ul>
+</li>
+<li>第三次挥手
+<ul>
+<li>B告诉A接收完了</li>
+</ul>
+</li>
+<li>第四次挥手
+<ul>
+<li>A知道B接收完了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>为什么握手只需要三次而挥手需要四次？
+<ul>
+<li>就是因为A告诉B发完了的时候，B还有可能没有接收完信息，所以只能先回复一部分，告诉A已经知道发完了的消息了。当消息完全接收完毕之后，才会告诉A已经接收完了。</li>
+</ul>
+</li>
+<li>TCP和UDP区别
+<ul>
+<li>连接方面
+<ul>
+<li>TCP面向连接的（如打电话要先拨号建立连接）</li>
+<li>UPD是无法连接的，即发送数据之前不需要建立连接。</li>
+</ul>
+</li>
+<li>安全方面
+<ul>
+<li>TCP提供可靠的服务，提供TCP连接传送的数据，无差别，不丢失，不重复，且按序到达。</li>
+<li>UDP尽最大努力交付，即不保证可靠交付。</li>
+</ul>
+</li>
+<li>传输效率的区别
+<ul>
+<li>TCP传输效率相对较低</li>
+<li>UDP传输效率较高，适用于对高速传输和实时性有较高的通信和广播通信。</li>
+</ul>
+</li>
+<li>连接对象数量的区别
+<ul>
+<li>TCP连接只能是点到点丶一对一的。</li>
+<li>UDP支持一对一丶一对多丶多对一和多对多的交互通信。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP和IP协议区别
+<ul>
+<li>TCP：又叫传输控制协议，是一种面向连接的丶端对端的丶可靠的丶基于IP和传输层协议。主要特点是3次握手建立连接，4次挥手断开连接。</li>
+<li>IP：又叫因特网协议，IP协议位于网络层，IP协议规定了数据传输时的基本单元（数据包）和格式，IP协议还定义了数据包的递交方法和路由选择。</li>
+<li>整个网络中的传输流程是：IP层接收由更底层（网络接口例如以太网设备驱动程序）发来的数据包，并把该数据发送到更高层-TCP层，相反，IP层也把从TCP接收来的数据包传送到更低层。</li>
+<li>TCP和IP的关系是：IP提供基本的数据传送，而高层的TCP对这些数据包  做进一步的加工，如提供端口号等等。</li>
+</ul>
+</li>
+</ul>
+<h2 class="heading" data-id="heading-2">HTTP</h2>
+<ul>
+<li>
+<p>定义</p>
+<ul>
+<li>HTTP全称是HyperText Transfer Protocal，即超文本传输协议，是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。</li>
+<li>HTTP是一个基于TCP/IP通信协议来传输数据</li>
+</ul>
+</li>
+<li>
+<p>HTTP工作原理</p>
+<ul>
+<li>HTTP协议工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向WEB服务器发送所有的请求。</li>
+</ul>
+</li>
+<li>
+<p>特点</p>
+<ul>
+<li>支持客户端/服务器模式</li>
+<li>简单快速
+<ul>
+<li>客户端向服务端请求服务时，只需传送请求方法和路径。请求常用的有GET丶HEAD丶POST。每种方法规定了客户端和服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务的程序规模小，因而通信速度很快。</li>
+</ul>
+</li>
+<li>灵活
+<ul>
+<li>HTTP允许传输任意类型的数据类型。</li>
+<li>正在传输的类型由Content-Type  (Content-Type是HTTP包用来表示内容类型的标识)加以标记。</li>
+</ul>
+</li>
+<li>HTTP是无连接。
+<ul>
+<li>无连接的含义是限制每次连接只处理一个请求。</li>
+<li>服务器处理完客户的请求，并收到客户的应答后，即断开连接。</li>
+<li>采用这种方式可以节省传输时间。</li>
+</ul>
+</li>
+<li>HTTP是无状态的
+<ul>
+<li>HTTP协议是无状态协议。无状态协议是指对于事务处理没有记忆能力。缺少状态意味着如果后续处理前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。</li>
+<li>另一方面，在服务器不需要先前信息时它的应答就较快。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>组成</p>
+<ul>
+<li>请求行</li>
+<li>首部</li>
+<li>实体</li>
+</ul>
+</li>
+<li>
+<p>HTTP状态码</p>
+<ul>
+<li>定义：
+<ul>
+<li>用来描述返回的结果，记住状态码，我们可以知道的处理了请求还是处理了错误，状态码响应类别一共有五种。比如200，数字中的第一位指响应类别，后两位为分类。</li>
+</ul>
+</li>
+<li>五种类型分别是
+<table>
+<thead>
+<tr>
+<th>1XX（信息性状态码）</th>
+<th style="text-align:left">接受的请求正在处理，不常见</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2XX（成功状态码）</td>
+<td style="text-align:left">请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX（重定向状态码）</td>
+<td style="text-align:left">需要进行附加操作已完成请求</td>
+</tr>
+<tr>
+<td>4XX（客户端错误码）</td>
+<td style="text-align:left">服务器无法请求类别</td>
+</tr>
+<tr>
+<td>5XX（服务端错误状态码）</td>
+<td style="text-align:left">服务器处理请求出错</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>常用状态码
+<ul>
+<li>2XX 成功
+<table>
+<thead>
+<tr>
+<th>200</th>
+<th style="text-align:left">客户端请求在服务端正常处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>204</td>
+<td style="text-align:left">请求成功但是没有资源返回</td>
+</tr>
+<tr>
+<td>206</td>
+<td style="text-align:left">表示了客户端进行了范围请求，而服务器成功执行了这部分的GET请求，首部字段中有content-rage意思是客户端进行了范围请求</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>3XX 重定向
+<table>
+<thead>
+<tr>
+<th>301</th>
+<th style="text-align:left">永久性重定向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>302</td>
+<td style="text-align:left">临时性重定向</td>
+</tr>
+<tr>
+<td>303</td>
+<td style="text-align:left">请求的资源存在另一个URI，应使用GET方法定向获取请求资源</td>
+</tr>
+<tr>
+<td>304</td>
+<td style="text-align:left">当浏览器多次访问同一个资源的时候，如果第一次请求的结果还在缓存，还没有过期，那么在此访问这个资源的时候，为了减少网络传输的消耗，如果这个资源还没有被修改过，则可以让浏览器继续使用之前缓存的内容，这样就不用将资源再发送一遍了，所以减少了很多网络开销。</td>
+</tr>
+<tr>
+<td>307</td>
+<td style="text-align:left">临时重定向</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>4XX 客户端错误码
+<table>
+<thead>
+<tr>
+<th>400</th>
+<th style="text-align:left">请求报文存在语法错误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401</td>
+<td style="text-align:left">发送的请求需要通过HTTP认证的认证信息，如果之前请求过一次，则表示用户认证失败。</td>
+</tr>
+<tr>
+<td>403</td>
+<td style="text-align:left">不允许访问该资源</td>
+</tr>
+<tr>
+<td>404</td>
+<td style="text-align:left">服务器上没有该资源</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>5XX 服务器错误
+<table>
+<thead>
+<tr>
+<th>500</th>
+<th style="text-align:left">服务器端在执行请求时发生错误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>503</td>
+<td style="text-align:left">服务器暂时处于超负荷或正在停机维护，无法处理请求。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>HTTP请求方式</p>
+<table>
+<thead>
+<tr>
+<th>get</th>
+<th style="text-align:left">从服务器取出资源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>post</td>
+<td style="text-align:left">在服务器新建一个资源</td>
+</tr>
+<tr>
+<td>put</td>
+<td style="text-align:left">在服务器更新资源</td>
+</tr>
+<tr>
+<td>delete</td>
+<td style="text-align:left">从服务器删除资源</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>GET和POST真正区别
+<ul>
+<li>在本质上，GET请求和POST请求都能拉取数据。</li>
+<li>我们常说的HTTP协议实际上是基于RFC规范的，实际上GET和POST请求的语法是完全相同的，但是在RFC规范中，给GET请求和POST请求规定了语法，规定GET用来获取信息，POST用来发送信息。</li>
+<li>如果什么前提都没有，也就是不用任何规范的话，我们只考虑语法来说，这两个方式是没有任何区别的，只是名字不一样。</li>
+<li>如果是基于RFC规范的，那么问题就又来了。是基于RFC理论  的，还是基于具体的实现的。
+<ul>
+<li>如果是基于RFC理论的，我们称这个为Specification。那么GET和POST是具有相同的语法，但是不具备相同的语义，GET方式用作获取信息，POST方式用作发送信息。</li>
+<li>如果是基于RFC的具体实现的，我们称之为implementation。其实要区分是具体的哪一种实现，我们通常默认指的是浏览器实现的RFC。当然不止浏览器，我们任何人都可以设计一种HTTP协议的接口，使用RFC规范，当然这些是我们不用考虑的，因为并不通用。
+<ul>
+<li>GET的数据在URL中对所有人都是可见的。POST的数据不会显示在URL中。</li>
+<li>GET对数据长度有限制，当发送数据时，GET方法向URL添加数据；URL的长度是受限制的（URL是最大长度是2048个字符）。POST无限制。</li>
+<li>GET可收藏为书签，POST不可收藏为书签。</li>
+<li>GET后退按钮/刷新无影响，POST数据会被重新提交（浏览器应该告知用户数据会被重新提交）</li>
+<li>GET编码类型aplication/x-www-form-url，POST编码类型encodeapplication/x-www-form-urlencoded或multipart/form-data。为二进制数据使用多重编码。</li>
+<li>GET历史参数会保留在浏览器历史中。POST参数不会保存在浏览器历史中。</li>
+<li>GET只允许SCII字符。POST没有限制。也允许二进制数据。</li>
+<li>与POST相比，GET的安全性比较差，因为所发送的数据是URL的一部分。在发送密码或其他敏感信息的时候绝不要要善于GET！POST比GET更安全，因为参数不会被保存在浏览器历史或web服务器日志中。</li>
+<li>GET请求只会有一次TCP连接，而POST请求会有两次TCP连接。
+<ul>
+<li>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）。</li>
+<li>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</li>
+<li>在网络环境好的情况下，发一次包的时候和发两次包的时候差别基本可以无视。而在网络差的环境的情况下，两次包的TCP在验证数据包的完整性上，有非常大的优点。</li>
+<li>并不是所有的浏览器在POST中发送两次包，Firefox只发送一次。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>HTTP缓存机制</p>
+<ul>
+<li>
+<p>浏览器加载一个页面的简单流程：</p>
+<ul>
+<li>浏览器先根据这个资源的HTTP头信息来判断是否命中强缓存。如果命中则直接加载缓存中资源，则不会将请求发送到服务器。</li>
+<li>如果未命中强缓存，则浏览器会将资源加载请求发送到服务器。服务器来判断浏览器本地缓存是否失效。若可以使用，则服务器并不会返回资源信息，浏览器继续从缓存中加载资源。</li>
+<li>如果未命中协商缓存，则服务器会将完整的资源返回给浏览器，浏览器加载新资源，并更新缓存。</li>
+</ul>
+</li>
+<li>
+<p>强缓存</p>
+<ul>
+<li>命中强缓存时，浏览器并不会将请求发送给服务器。在Chrome的开发者工具中看到的HTTP的返回码是200，但是在Size列会显示为（from cache）。</li>
+<li>强缓存是利用HTTP的返回头中的Expires或者Cache-Control两个字段来控制的，用来表示资源的缓存时间。</li>
+</ul>
+</li>
+<li>
+<p>协商缓存</p>
+<ul>
+<li>若未命中强缓存，则浏览器会将请求发送至服务器。服务器根据HTTP头信息中的Last-Modify/If-Modify-Since或If-None-Match来判断是否命中协商缓存。如果命中，则HTTP返回码为304，浏览器从缓存中加载资源。</li>
+</ul>
+</li>
+<li>
+<p>cache-control</p>
+<ul>
+<li>max-age
+<ul>
+<li>作用：缓存的资源，超过一定时间就不要了，就要重新请求。</li>
+<li>max-age后面通常跟着一串数字，表示缓存的秒数。</li>
+</ul>
+</li>
+<li>max-stale
+<ul>
+<li>作用：过期一点的时间无所谓。</li>
+<li>max-stale后面也跟着秒数，表示过期多长时间的东西也可以继续使用。</li>
+<li>max-stale多数的时候会跟着max-age一起使用</li>
+</ul>
+</li>
+<li>no-cache
+<ul>
+<li>作用：不会直接使用缓存，而是每次使用资源之前，都要先向服务器询问一下这个资源还能不能用，如果能用就继续用，如果不能用就重新请求。</li>
+</ul>
+</li>
+<li>no-store
+<ul>
+<li>作用：每次都要向服务器请求资源。</li>
+</ul>
+</li>
+<li>public
+<ul>
+<li>作用：表示任何地方都可以缓存资源。</li>
+</ul>
+</li>
+<li>private
+<ul>
+<li>作用：只允许客户端进行缓存，代理服务器不能缓存这个资源。</li>
+</ul>
+</li>
+<li>must-revalidation
+<ul>
+<li>max-age和must-revalidation都是本地过期之后去服务端重新请求资源。</li>
+<li>但是区别在于，如果使用max-age，那么如果资源没过期，新开的窗口也会使用这个资源。如果是must-revalidation，每次新打开窗口，都会向服务器去请求资源。</li>
+</ul>
+</li>
+<li>no-transform
+<ul>
+<li>作用：通常当传输图片或资源时，有时代理服务器为了有更好的性能，会对图片或者资源进行压缩，或者格式的转换。但是如果在响应头中带有这个字段，就表示不允许在传输的中途对资源做任何修改。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>总结：浏览器第一次请求，无缓存，向WEB服务器请求，请求响应，协商缓存，呈现。</p>
+</li>
+<li>
+<p>浏览器再次请求时</p>
+<pre><code class="hljs objc copyable" lang="objc">浏览器请求
+    |
+  有缓存      
+    |
+  是否过期？是--&gt; Etag? --&gt; 是 --&gt; 向Web服务器请求带If-None-Match           --&gt;|
+    |             |                                                          |
+    |             否                                                         |
+   否             |                                                          |
+    |          last-Modified --&gt; 是 --&gt; 向Web服务器请求带If-Modified-Since  --&gt;| 
+    |             |                                                      服务器决策
+ 从缓存读取        否                                                         |
+    |             |                                                     <span class="hljs-number">200</span> or  <span class="hljs-number">304</span>
+    |        向Web服务器请求                                               |       |
+    |             |                                                       |       |
+            请求响应，缓存协商           &lt;---- <span class="hljs-number">200</span>            &lt;--          <span class="hljs-number">200</span>      |
+                  |                                                            从缓存读取
+                  |                                                                |
+      --&gt;        呈现                                      &lt;--                     |
+<span class="copy-code-btn">复制代码</span></code></pre></li>
+</ul>
+</li>
+<li>
+<p>HTTP和HTTPS区别</p>
+<ul>
+<li>HTTPS还是通过了HTTP来传输信息，但是信息通过TLS协议进行了加密。</li>
+<li>在TLS中使用两种加密技术。
+<ul>
+<li>对称加密
+<ul>
+<li>对称加密就是两边都拥有相同的秘钥，两边都知道如何将密文加密。</li>
+<li>这种加密方式固定很好，但是问题就在于如何让双方知道秘钥。因为传输数据都是走的网络，如果将秘钥通过网络的方式进行传递的话，一旦秘钥被截获就没有加密的意义的。</li>
+</ul>
+</li>
+<li>非对称加密
+<ul>
+<li>有公钥私钥之分，公钥所有人都知道，可以将数据加密，但是将数据解密必须使用私钥解密，私钥只有分发公钥的一方才知道。</li>
+<li>这种加密方式就可以完美解决对称加密存在的问题。加速两端需要使用对称加密，那么在这之前，可以先使用非对称加密交换秘钥。</li>
+<li>简单流程：首先服务端将公钥公布出去，那么客户端也就知道公钥了。接下来客户端创建一个秘钥，如果通过公钥加密并发送给服务端，服务端收到密文以后通过私钥解密出正确的秘钥，这个时候两端都知道秘钥是什么了。</li>
+</ul>
+</li>
+<li>TLS握手流程
+<ul>
+<li>客户端发送一个随机值以及需要的协议和加密方式。</li>
+<li>服务端收到客户端的随机值，自己也产生一个随机值，并根据客户端需要的协议和加密方式来使用对应的方式，并且发送自己的证书（如果需要验证客户端需要说明）。</li>
+<li>客户端收到服务端的证书并验证是否有效，验证通过会再生成一个随机值，通过服务端证书的公钥去加密这个随机值并发送给服务端，如果服务端需要验证客户端证书的话会附带证书。</li>
+<li>服务端收到加密的随机值并使用私钥解密获得第三个随机值，这时候两端都拥有了三个随机值，可以通过这三个随机值按照之前约定的加密方式生成秘钥，接下来的通信就可以通过该密钥来加密解密。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="heading" data-id="heading-3">（DNS协议）域名解析过程</h2>
+<ul>
+<li>定义：从我们输入域名开始直到我们获得要访问的ip地址的过程</li>
+<li>过程
+<ul>
+<li>当我们输入一个URL的时候，浏览器会先从本地的缓存中看，有没有这个域名对应。</li>
+<li>当要访问的URL没有命中本地的浏览器缓存时，就要查看计算机本地的HOST指向，有没有相关的记录。计算机本地的HOST是一个文件，记录着域名和IP的映射关系。</li>
+<li>当浏览器缓存和计算机HOST都没有命中的时候，就要求助于本地的DNS解析服务器了。本地的DNS解析服务器我们称之为LDNS。这些服务器距离我们比较近，可能在每个城市都会有。
+<ul>
+<li>每个城市的DNS也不可能记住全世界所有的网址，所有的LDNS也有可能找不到相应的域名对应的IP。</li>
+</ul>
+</li>
+<li>当本地的DNS解析找不到的时候，就会求助更权威的机构。也就是gTLD Server。gTLD Server全称是Generic top-level domain Server，通用顶级域Server。
+<ul>
+<li>我们常见的域名后缀有.com的，有.net的，有.org的等等很多。每个顶级域名都有一个记录者所有注册过相应域名的记录。比如.com域名的服务器就会记录着全部注册过的.com的域名。</li>
+<li>每个域名后缀的顶级域名也不可能只有一台，毕竟一台机器无法承受这么大的访问量，可能有好多台。</li>
+<li>但是LDNS只会访问其中的一台，当被访问的状态gTLD Server收到了这个域名之后，会告诉LDNS你应该去询问哪台机器，然后LDNS再去相应的机器去询问这个域名对应的IP。</li>
+<li>当LDNS从gTLD获取到了域名对应的IP之后就会把这个信息返回到发出请求的计算机，然后LDNS会在本地进行缓存，相应的浏览器也会对这个域名和IP进行缓存，以保证下次再有访问这个域名的时可以很快的响应。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="heading" data-id="heading-4">你的点赞是我持续输出的动力，希望能帮助到大家，互相学习，有任何问题下面留言，一定回复!!!</h2>
+</div></article><div data-v-0526462d="" data-v-0591b948="" class="tag-list-box"><div data-v-0526462d="" data-v-0591b948="" class="tag-list-title">关注下面的标签，发现更多相似文章</div><div data-v-0526462d="" data-v-0591b948="" st:block="tagList" class="tag-list"><a data-v-0526462d="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" class="item" data-v-0591b948=""><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-0526462d="" data-src="https://lc-gold-cdn.xitu.io/bac28828a49181c34110.png?imageView2/2/w/42/h/42/q/85/format/webp/interlace/1" class="lazy thumb tag-icon" style="background-image: none; background-size: contain;"></div><div data-v-0526462d="" class="tag-title">前端</div></a></div></div><a data-v-0526462d="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" data-v-0591b948=""><div data-v-0526462d="" class="footer-author-block"><div data-v-38b80de5="" data-v-0526462d="" itemscope="itemscope" itemtype="http://schema.org/Person" class="author"><meta itemprop="url" content="https://juejin.im/user/5af14ce95188256717764163"><meta itemprop="image" content="https://user-gold-cdn.xitu.io/2019/5/28/16afc32c0f0ff09a?w=534&amp;h=300&amp;f=jpeg&amp;s=15852"><meta itemprop="name" content="William陈"><meta itemprop="jobTitle" content="前端"><!----><div data-v-38b80de5="" class="author-info-block"><a data-v-38b80de5="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" class="avatar-link"><div data-v-10f5e1e2="" data-v-762a6aba="" data-v-38b80de5="" data-src="https://user-gold-cdn.xitu.io/2019/5/28/16afc32c0f0ff09a?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" class="lazy avatar avatar" style="background-image: none;"></div></a><div data-v-38b80de5="" class="author-info-box"><div data-v-38b80de5="" class="profile-box"><a data-v-db47c888="" data-v-38b80de5="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" class="username username ellipsis">William陈<a data-v-0ba9b815="" data-v-db47c888="" href="https://juejin.im/book/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022" target="_blank" rel="" class="rank"><img data-v-0ba9b815="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/lv-2.f597b88.svg" alt="lv-2"></a></a><span data-v-38b80de5="" class="position ellipsis">前端</span></div><div data-v-38b80de5="" class="meta-box"><a data-v-38b80de5="" href="https://juejin.im/user/5af14ce95188256717764163/posts" target="_blank" rel="" class="posts"><span data-v-38b80de5="" class="count post-count">发布了 31 篇专栏 · </span></a><span data-v-38b80de5="" class="count">获得点赞 225 · </span><span data-v-38b80de5="" class="count">获得阅读 12,590</span></div></div><button data-v-0bccdb0e="" data-v-38b80de5="" class="follow-button follow">关注</button></div></div></div></a><div data-v-0526462d="" data-v-0591b948="" st:block="banner" class="article-banner"><a data-v-0526462d="" data-v-0591b948="" st:name="link" st:state="https://juejin.im/extension/?utm_source=juejin.im&amp;utm_medium=post&amp;utm_campaign=extension_promotion" class="banner-title" href="https://juejin.im/extension/?utm_source=juejin.im&amp;utm_medium=post&amp;utm_campaign=extension_promotion" target="_blank">安装掘金浏览器插件</a><div data-v-0526462d="" data-v-0591b948="" class="banner-content">打开新标签页发现好内容，掘金、GitHub、Dribbble、ProductHunt 等站点内容轻松获取。快来安装掘金浏览器插件获取高质量内容吧！</div></div><!----><div data-v-15295e2a="" data-v-0526462d="" class="books-recommend books-recommend-footer book-box"><div data-v-15295e2a="" class="heading">你可能感兴趣的小册</div><div data-v-15295e2a="" class="book-list"><div data-v-15295e2a="" class="book"><div data-v-15295e2a="" class="poster"><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-15295e2a="" data-src="https://user-gold-cdn.xitu.io/2018/8/29/16584f1faa1c4262?imageView2/1/w/200/h/280/q/95/format/webp/interlace/1" class="lazy thumb poster-img" style="background-image: none; background-size: cover;"></div></div><div data-v-15295e2a="" class="info"><div data-v-15295e2a="" class="title">微信小程序开发入门：从 0 到 1 实现天气小程序</div><div data-v-15295e2a="" class="bought"><span data-v-15295e2a="" class="try-read">试读</span><span data-v-15295e2a="" class="txt">13小节</span><span data-v-15295e2a="" class="txt">4883人已购买</span></div></div></div><div data-v-15295e2a="" class="book"><div data-v-15295e2a="" class="poster"><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-15295e2a="" data-src="https://user-gold-cdn.xitu.io/2018/11/12/16706202cc6428df?imageView2/1/w/200/h/280/q/95/format/webp/interlace/1" class="lazy thumb poster-img" style="background-image: none; background-size: cover;"></div></div><div data-v-15295e2a="" class="info"><div data-v-15295e2a="" class="title">Taro 多端开发实现原理与项目实战</div><div data-v-15295e2a="" class="bought"><span data-v-15295e2a="" class="try-read">试读</span><span data-v-15295e2a="" class="txt">27小节</span><span data-v-15295e2a="" class="txt">3846人已购买</span></div></div></div></div></div><div data-v-2a11cbec="" data-v-0526462d="" class="comment-list-box" id="comment-box" data-v-0591b948=""><div data-v-2a11cbec="" class="title">评论</div><div data-v-7fd274eb="" data-v-2a11cbec="" class="comment-form comment-form"><div data-v-7fd274eb="" class="avatar-box"><div data-v-10f5e1e2="" data-v-762a6aba="" data-v-7fd274eb="" data-src="https://b-gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg" class="lazy avatar avatar" style="background-image: none;"></div></div><div data-v-7fd274eb="" class="form-box"><div data-v-7fd274eb="" class="input-box"><div data-v-05e78a7f="" data-v-7fd274eb="" class="auth-card"><!----><div data-v-7fd274eb="" data-v-05e78a7f="" contenteditable="true" spellcheck="false" placeholder="输入评论..." class="rich-input empty"><br data-v-7fd274eb="" data-v-05e78a7f=""></div></div><!----></div><!----></div><input data-v-7fd274eb="" type="file" class="hidden"></div><!----><!----></div></div><div data-v-0533d49e="" data-v-0526462d="" class="action-box action-bar" data-v-0591b948=""><div data-v-0533d49e="" class="praise-action action"><div data-v-0533d49e="" class="action-title-box"><svg data-v-0533d49e="" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"><path data-v-0533d49e="" fill="none" fill-rule="evenodd" stroke="#8A93A0" stroke-linecap="round" stroke-linejoin="round" d="M5 8.692V21H3.372C2.616 21 2 20.131 2 19.064v-8.283c0-1.112.642-2.089 1.372-2.089H5zm6.705-6.027c.146-.99.962-1.683 1.856-1.665 1.278.025 2.039 1.11 2.303 1.647.482.98.495 2.595.165 3.632-.3.938-.993 2.171-.993 2.171h5.194c.549 0 1.058.275 1.399.752.345.487.458 1.12.302 1.695l-2.35 8.685c-.213.835-.922 1.418-1.72 1.418H7V8.864c2.346-.517 4.44-4.41 4.705-6.199z"></path></svg><span data-v-0533d49e="" class="action-title">3</span></div></div><div data-v-0533d49e="" class="comment-action action"><div data-v-0533d49e="" class="action-title-box"><svg data-v-0533d49e="" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"><path data-v-0533d49e="" fill="none" fill-rule="evenodd" stroke="#8A93A0" stroke-linejoin="round" d="M11.5 18.37c-5.247 0-9.5-3.664-9.5-8.185C2 5.665 6.253 2 11.5 2S21 5.665 21 10.185c0 1.783-.662 3.433-1.785 4.778-.164.196.518 4.037.518 4.037l-4.136-1.428c-1.263.465-2.63.798-4.097.798z"></path></svg> <span data-v-0533d49e="" class="action-title">评论</span></div></div><div data-v-0533d49e="" class="collect-action action"><div data-v-0533d49e="" class="action-title-box"><svg data-v-0533d49e="" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23"><path data-v-0533d49e="" fill="none" fill-rule="evenodd" stroke="#8A93A0" d="M12.43 17.73c-.515-.286-1.347-.286-1.862 0L6.86 19.77c-1.029.565-1.702.05-1.507-1.148l.71-4.322c.098-.6-.159-1.43-.577-1.856l-2.998-3.06c-.833-.85-.572-1.682.576-1.856l4.143-.63c.575-.089 1.25-.602 1.507-1.148l1.853-3.933c.516-1.09 1.35-1.088 1.863 0l1.856 3.933c.256.546.93 1.06 1.507 1.148l4.144.63c1.15.174 1.406 1.009.575 1.856l-3 3.06c-.416.426-.674 1.256-.576 1.856l.709 4.322c.196 1.2-.481 1.713-1.507 1.148l-3.708-2.04z"></path></svg><span data-v-0533d49e="" class="action-title">收藏</span></div></div></div><div data-v-0526462d="" data-v-0591b948="" st:block="recommended" class="main-area recommended-area shadow"><div data-v-0526462d="" data-v-0591b948="" class="recommended-entry-list-title">相关推荐</div><ul data-v-b4f6e750="" data-v-0526462d="" st:block="adentryList" class="ad-entry-list ad-entry-list" data-v-0591b948=""><li data-v-b4f6e750="" class="item"><div data-v-39995bc9="" data-v-b4f6e750="" class="advertisement" index="0"><div data-v-39995bc9="" st:name="link" class="href"><div data-v-39995bc9="" class="context-box"><div data-v-39995bc9="" class="info-box"><div data-v-39995bc9="" class="meta-row"><ul data-v-39995bc9="" class="meta-list"><li data-v-39995bc9="" class="tag">广告</li><li data-v-39995bc9="" class="username"></li><li data-v-39995bc9="" class="date">1天前 </li></ul></div><div data-v-39995bc9="" class="info-row"><div data-v-39995bc9="" class="title">深度挖掘Concent的effect，全面提升useEffect的开发体验</div><div data-v-39995bc9="" class="description"></div></div></div><!----></div></div></div></li></ul><ul data-v-5d291c1e="" data-v-0526462d="" st:block="entryList" class="entry-list recommended-entry-list" data-v-0591b948=""><!----><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de92189e51d45581634e4e0|1" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5de91d0f51882512400acafd" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5c73623a51882561de4ab504" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5c73623a51882561de4ab504" target="_blank" rel="" st:name="user" st:state="5c73623a51882561de4ab504" data-v-6a37d855="">蚂蚁保险体验技术</a></div></li><li data-v-4f2b1add="" class="item">2天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5de91d0f51882512400acafd" target="_blank" rel="" st:name="title" class="title">前端防御性编程</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">546</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5de91d0f51882512400acafd#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">33</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><!----></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5deb5e7df265da33dd2f4c42|2" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5deb5d7e6fb9a01649393f43" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5b4491cd6fb9a04f951d0271" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5b4491cd6fb9a04f951d0271" target="_blank" rel="" st:name="user" st:state="5b4491cd6fb9a04f951d0271" data-v-6a37d855="">柳菁</a></div></li><li data-v-4f2b1add="" class="item">21小时前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5deb5d7e6fb9a01649393f43" target="_blank" rel="" st:name="title" class="title">TS类型系统相关内容详解</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">2</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5deb5d7e6fb9a01649393f43#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><!----></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><!----></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de71739518825123e7ad4ab|3" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5de7169451882512454b18d8" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5ca40a18f265da30b8178b31" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5ca40a18f265da30b8178b31" target="_blank" rel="" st:name="user" st:state="5ca40a18f265da30b8178b31" data-v-6a37d855="">Tusi</a></div></li><li data-v-4f2b1add="" class="item">3天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/JavaScript" target="_blank" rel="" st:name="tag" st:state="55964d83e4b08a686cc6b353" class="tag">JavaScript</a><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5de7169451882512454b18d8" target="_blank" rel="" st:name="title" class="title">前端API层架构，也许你做得还不够</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">596</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5de7169451882512454b18d8#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">170</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-4f2b1add="" data-src="https://user-gold-cdn.xitu.io/2019/12/4/16eceb1fbff626c5?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1" class="lazy thumb thumb" style="background-image: none; background-size: cover;"></div></div></a></div></div></li><!----><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de79183e51d4557f42b557a|4" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5d8336d2f265da03df5f4a06" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5af16c03f265da0b7f44827a" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5af16c03f265da0b7f44827a" target="_blank" rel="" st:name="user" st:state="5af16c03f265da0b7f44827a" data-v-6a37d855="">深圳湾码农</a></div></li><li data-v-4f2b1add="" class="item">3天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5d8336d2f265da03df5f4a06" target="_blank" rel="" st:name="title" class="title">你需掌握的CSS知识都在这了（长文建议收藏，文末有福利）</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">418</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5d8336d2f265da03df5f4a06#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">16</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><!----></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5deb6fe5518825127424a2de|5" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5deb5dd4518825123a5aa8e4" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5af3bb3b5188256709613960" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5af3bb3b5188256709613960" target="_blank" rel="" st:name="user" st:state="5af3bb3b5188256709613960" data-v-6a37d855="">这瓜保甜吗</a></div></li><li data-v-4f2b1add="" class="item">19小时前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5deb5dd4518825123a5aa8e4" target="_blank" rel="" st:name="title" class="title">这些天遇到的那个cookie</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">1</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5deb5dd4518825123a5aa8e4#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><!----></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-4f2b1add="" data-src="https://user-gold-cdn.xitu.io/2019/12/7/16edfacd478faa08?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1" class="lazy thumb thumb" style="background-image: none; background-size: cover;"></div></div></a></div></div></li><!----><!----><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5dea43c85188251284217cba|4" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5dea4292518825122c4c9b8e" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5a9f77666fb9a028c14a01eb" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5a9f77666fb9a028c14a01eb" target="_blank" rel="" st:name="user" st:state="5a9f77666fb9a028c14a01eb" data-v-6a37d855="">腾讯IVWEB团队</a></div></li><li data-v-4f2b1add="" class="item">1天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5dea4292518825122c4c9b8e" target="_blank" rel="" st:name="title" class="title">Web 一键复制与粘贴</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">103</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5dea4292518825122c4c9b8e#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">5</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><!----></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de5beb9f265da05c201cf72|5" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5de5be53f265da05c33fcbb4" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5ad2d884518825556e5e882a" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5ad2d884518825556e5e882a" target="_blank" rel="" st:name="user" st:state="5ad2d884518825556e5e882a" data-v-6a37d855="">火狼1</a></div></li><li data-v-4f2b1add="" class="item">5天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/JavaScript" target="_blank" rel="" st:name="tag" st:state="55964d83e4b08a686cc6b353" class="tag">JavaScript</a><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5de5be53f265da05c33fcbb4" target="_blank" rel="" st:name="title" class="title">前端常用的 59 个工具类【持续更新】</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">387</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5de5be53f265da05c33fcbb4#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">33</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-4f2b1add="" data-src="https://user-gold-cdn.xitu.io/2019/12/3/16ec97d8a99a35a0?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1" class="lazy thumb thumb" style="background-image: none; background-size: cover;"></div></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de06af0e51d4505f45f24b6|6" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5de06aa851882572d672c1ad" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><li data-v-4f2b1add="" class="item recommended">荐</li><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5b873f6051882542c7638698" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5b873f6051882542c7638698" target="_blank" rel="" st:name="user" st:state="5b873f6051882542c7638698" data-v-6a37d855="">前端技匠</a></div></li><li data-v-4f2b1add="" class="item">9天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5de06aa851882572d672c1ad" target="_blank" rel="" st:name="title" class="title">一步步从零开始用 webpack 搭建一个大型项目</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">840</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5de06aa851882572d672c1ad#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">58</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><!----></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de46f3a5188255e4b105f5d|7" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5ddff3abe51d4502d56bd143" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5c6256596fb9a049bd42c770" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5c6256596fb9a049bd42c770" target="_blank" rel="" st:name="user" st:state="5c6256596fb9a049bd42c770" data-v-6a37d855="">刘小夕</a></div></li><li data-v-4f2b1add="" class="item">6天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a><a data-v-4f2b1add="" href="https://juejin.im/tag/Babel" target="_blank" rel="" st:name="tag" st:state="58a3deef8d6d810057e64970" class="tag">Babel</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5ddff3abe51d4502d56bd143" target="_blank" rel="" st:name="title" class="title">不容错过的 Babel7 知识</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">563</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5ddff3abe51d4502d56bd143#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">82</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><div data-v-10f5e1e2="" data-v-84bb7888="" data-v-4f2b1add="" data-src="https://user-gold-cdn.xitu.io/2019/12/2/16ec4746663424a5?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1" class="lazy thumb thumb" style="background-image: none; background-size: cover;"></div></div></a></div></div></li><li data-v-5d291c1e="" data-growing-container="true" data-growing-title="entryList" class="item"><div data-v-fda393a0="" data-v-5d291c1e="" class="entry-box"><div data-v-4f2b1add="" data-v-fda393a0="" st:block="entry" st:state="5de4d9756fb9a071b971128a|8" class="entry"><a data-v-4f2b1add="" href="https://juejin.im/post/5de4d126f265da05c33fcb9d" target="_blank" rel="" st:name="link" class="entry-link"><div data-v-4f2b1add="" class="content-box"><div data-v-4f2b1add="" class="info-box"><div data-v-4f2b1add="" class="info-row meta-row"><ul data-v-4f2b1add="" class="meta-list"><!----><!----><li data-v-4f2b1add="" class="item post">专栏</li><li data-v-4f2b1add="" class="item username clickable"><div data-v-6a37d855="" data-v-4f2b1add="" st:block="userPopover" st:state="5bcee48e518825102423e40d" class="user-popover-box"><!----><a data-v-4f2b1add="" href="https://juejin.im/user/5bcee48e518825102423e40d" target="_blank" rel="" st:name="user" st:state="5bcee48e518825102423e40d" data-v-6a37d855="">前端先锋</a></div></li><li data-v-4f2b1add="" class="item">5天前</li><li data-v-4f2b1add="" class="item tag"><a data-v-4f2b1add="" href="https://juejin.im/tag/Vue.js" target="_blank" rel="" st:name="tag" st:state="555e9a98e4b00c57d9955f68" class="tag">Vue.js</a><a data-v-4f2b1add="" href="https://juejin.im/tag/%E5%89%8D%E7%AB%AF" target="_blank" rel="" st:name="tag" st:state="5597a05ae4b08a686ce56f6f" class="tag">前端</a></li><!----></ul></div><div data-v-4f2b1add="" class="info-row title-row"><!----><!----><a data-v-4f2b1add="" href="https://juejin.im/post/5de4d126f265da05c33fcb9d" target="_blank" rel="" st:name="title" class="title">15个 Vue.js 高级面试题</a></div><div data-v-4f2b1add="" class="info-row action-row"><ul data-v-4f2b1add="" class="action-list"><li data-v-4f2b1add="" st:name="likeBtn" class="item like clickable"><a data-v-4f2b1add="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-4f2b1add="" class="count">308</span></a></li><li data-v-4f2b1add="" st:name="commentBtn" class="item comment clickable"><a data-v-4f2b1add="" href="https://juejin.im/post/5de4d126f265da05c33fcb9d#comment" target="_blank" rel="" class="title-box"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.4d5744f.svg" class="icon"><span data-v-4f2b1add="" class="count">44</span></a></li><li data-v-4f2b1add="" st:name="shareBtn" title="分享" class="item share clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/share.1d55e69.svg" class="icon"><div data-v-4f2b1add="" class="share-panel"><div data-v-4f2b1add="" st:name="shareItem" st:state="weibo" class="share-item weibo"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/weibo.8e2f5d6.svg" class="icon">微博</div><div data-v-4f2b1add="" st:name="shareItem" st:state="wechat" class="share-item wechat"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/wechat.844402c.svg" class="icon">微信扫一扫<div data-v-4f2b1add="" class="qr-code-box"><img data-v-4f2b1add="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="qr-code"></div></div></div></li><li data-v-4f2b1add="" title="收藏" st:name="collectBtn" class="item collect clickable hover"><img data-v-4f2b1add="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/collect.02e2979.svg" class="icon"><!----></li><!----></ul></div></div><!----></div></a></div></div></li><li data-v-5d291c1e="" class="item"><!----></li><!----></ul></div><div data-v-7270e0d6="" data-v-0526462d="" st:block="sidebar" class="sidebar sidebar" data-v-0591b948=""><div data-v-d124b962="" data-v-b262d70a="" data-v-7270e0d6="" class="sidebar-block author-block shadow"><div data-v-d124b962="" class="block-title">关于作者</div><div data-v-d124b962="" class="block-body"><a data-v-b262d70a="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" class="user-item item" data-v-d124b962=""><div data-v-10f5e1e2="" data-v-762a6aba="" data-v-b262d70a="" data-src="https://user-gold-cdn.xitu.io/2019/5/28/16afc32c0f0ff09a?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" class="lazy avatar avatar loaded" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2019/5/28/16afc32c0f0ff09a?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1&quot;);"></div><div data-v-b262d70a="" class="info-box"><a data-v-db47c888="" data-v-b262d70a="" href="https://juejin.im/user/5af14ce95188256717764163" target="_blank" rel="" class="username">William陈<a data-v-0ba9b815="" data-v-db47c888="" href="https://juejin.im/book/5c90640c5188252d7941f5bb/section/5c9065385188252da6320022" target="_blank" rel="" class="rank"><img data-v-0ba9b815="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/lv-2.f597b88.svg" alt="lv-2"></a></a><div data-v-b262d70a="" title="前端" class="position">前端</div></div></a><div data-v-b262d70a="" data-v-d124b962="" class="stat-item item"><svg data-v-b262d70a="" data-v-d124b962="" xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" class="zan"><g data-v-b262d70a="" data-v-d124b962="" fill="none" fill-rule="evenodd" transform="translate(0 .57)"><ellipse data-v-b262d70a="" data-v-d124b962="" cx="12.5" cy="12.57" fill="#E1EFFF" rx="12.5" ry="12.57"></ellipse> <path data-v-b262d70a="" data-v-d124b962="" fill="#7BB9FF" d="M8.596 11.238V19H7.033C6.463 19 6 18.465 6 17.807v-5.282c0-.685.483-1.287 1.033-1.287h1.563zm4.275-4.156A1.284 1.284 0 0 1 14.156 6c.885.016 1.412.722 1.595 1.07.334.638.343 1.687.114 2.361-.207.61-.687 1.412-.687 1.412h3.596c.38 0 .733.178.969.488.239.317.318.728.21 1.102l-1.628 5.645a1.245 1.245 0 0 1-1.192.922h-7.068v-7.889c1.624-.336 2.623-2.866 2.806-4.029z"></path></g></svg> <span data-v-b262d70a="" data-v-d124b962="" class="content">获得点赞<span data-v-b262d70a="" data-v-d124b962="" class="count">225</span></span></div><div data-v-b262d70a="" data-v-d124b962="" class="stat-item item"><svg data-v-b262d70a="" data-v-d124b962="" width="25" height="25" viewBox="0 0 25 25" class="icon stat-view-icon"><g data-v-b262d70a="" data-v-d124b962="" fill="none" fill-rule="evenodd"><circle data-v-b262d70a="" data-v-d124b962="" cx="12.5" cy="12.5" r="12.5" fill="#E1EFFF"></circle> <path data-v-b262d70a="" data-v-d124b962="" fill="#7BB9FF" d="M4 12.5S6.917 7 12.75 7s8.75 5.5 8.75 5.5-2.917 5.5-8.75 5.5S4 12.5 4 12.5zm8.75 2.292c1.208 0 2.188-1.026 2.188-2.292 0-1.266-.98-2.292-2.188-2.292-1.208 0-2.188 1.026-2.188 2.292 0 1.266.98 2.292 2.188 2.292z"></path></g></svg> <span data-v-b262d70a="" data-v-d124b962="" class="content">文章被阅读<span data-v-b262d70a="" data-v-d124b962="" class="count">12,590</span></span></div><!----></div></div><!----><!----><!----><!----><div data-v-d124b962="" data-v-cf863246="" data-v-7270e0d6="" class="sidebar-block related-entry-sidebar-block shadow" st:block="relatedEntrySidebarBlock"><div data-v-d124b962="" class="block-title">相关文章</div><div data-v-d124b962="" class="block-body"><div data-v-cf863246="" data-v-d124b962="" class="entry-list"><a data-v-cf863246="" href="https://juejin.im/post/5ddcf2d06fb9a071b07ba5d7" target="_blank" rel="" st:name="link" class="item" data-v-d124b962=""><div data-v-cf863246="" class="entry-title">来聊聊前端的异步</div><div data-v-cf863246="" class="entry-meta-box"><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-cf863246="" class="count">29</span></div><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.a7c8341.svg" class="icon"><span data-v-cf863246="" class="count">0</span></div></div></a><a data-v-cf863246="" href="https://juejin.im/post/5db869a3e51d4529eb1887ac" target="_blank" rel="" st:name="link" class="item" data-v-d124b962=""><div data-v-cf863246="" class="entry-title">由重排重绘引发对虚拟DOM以及性能优化的思考</div><div data-v-cf863246="" class="entry-meta-box"><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-cf863246="" class="count">33</span></div><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.a7c8341.svg" class="icon"><span data-v-cf863246="" class="count">2</span></div></div></a><a data-v-cf863246="" href="https://juejin.im/post/5cdb75e66fb9a0323d6e287f" target="_blank" rel="" st:name="link" class="item" data-v-d124b962=""><div data-v-cf863246="" class="entry-title">应届生都掌握的基本操作系统知识</div><div data-v-cf863246="" class="entry-meta-box"><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-cf863246="" class="count">27</span></div><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.a7c8341.svg" class="icon"><span data-v-cf863246="" class="count">6</span></div></div></a><a data-v-cf863246="" href="https://juejin.im/post/5db5846d51882564696fd606" target="_blank" rel="" st:name="link" class="item" data-v-d124b962=""><div data-v-cf863246="" class="entry-title">一文理清由闭包引发内存泄漏和垃圾回收机制</div><div data-v-cf863246="" class="entry-meta-box"><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-cf863246="" class="count">17</span></div><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.a7c8341.svg" class="icon"><span data-v-cf863246="" class="count">6</span></div></div></a><a data-v-cf863246="" href="https://juejin.im/post/5da72293f265da5ba12cf2e0" target="_blank" rel="" st:name="link" class="item" data-v-d124b962=""><div data-v-cf863246="" class="entry-title">记一次应届生的处女面 (翻车~~)</div><div data-v-cf863246="" class="entry-meta-box"><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/zan.e9d7698.svg" class="icon"><span data-v-cf863246="" class="count">4</span></div><div data-v-cf863246="" class="entry-meta"><img data-v-cf863246="" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/comment.a7c8341.svg" class="icon"><span data-v-cf863246="" class="count">11</span></div></div></a></div></div></div><div data-v-7270e0d6="" class="sticky-block-box"><div data-v-d124b962="" data-v-9153c524="" data-v-7270e0d6="" class="sidebar-block catalog-block pure"><nav data-v-0fe86e86="" data-v-9153c524="" class="article-catalog" data-v-d124b962="" style=""><div data-v-0fe86e86="" class="catalog-title">目录</div><div data-v-0fe86e86="" class="catalog-body"><ul data-v-0fe86e86="" class="catalog-list" style="margin-top: 0px;"><li data-v-0fe86e86="" class="item d1"><a href="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage#heading-0" title="五层网络模型">五层网络模型</a><!----></li><li data-v-0fe86e86="" class="item d1"><a href="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage#heading-1" title="TCP协议">TCP协议</a><!----></li><li data-v-0fe86e86="" class="item d1"><a href="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage#heading-2" title="HTTP">HTTP</a><!----></li><li data-v-0fe86e86="" class="item d1"><a href="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage#heading-3" title="（DNS协议）域名解析过程">（DNS协议）域名解析过程</a><!----></li><li data-v-0fe86e86="" class="item d1"><a href="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage#heading-4" title="你的点赞是我持续输出的动力，希望能帮助到大家，互相学习，有任何问题下面留言，一定回复!!!">你的点赞是我持续输出的动力，希望能帮助到大家，互相学习，有任何问题下面留言，一定回复!!!</a><!----></li></ul></div></nav></div></div></div><div data-v-0adeb97a="" data-v-0526462d="" class="article-suspended-panel article-suspended-panel" data-v-0591b948=""><div data-v-0adeb97a="" badge="3" class="like-btn panel-btn like-adjust with-badge"></div><div data-v-0adeb97a="" badge="0" class="comment-btn panel-btn comment-adjust"></div><div data-v-0adeb97a="" class="collect-btn panel-btn"><!----></div><div data-v-0adeb97a="" class="share-title">分享</div><div data-v-0adeb97a="" class="weibo-btn share-btn panel-btn"></div><div data-v-0adeb97a="" class="qq-btn share-btn panel-btn"></div><div data-v-0adeb97a="" class="wechat-btn share-btn panel-btn"><img data-v-0adeb97a="" src="https://juejin.im/post/5dbe7a3a6fb9a0206139a08f?from=groupmessage" class="wechat-qr-code-img shadow" style="display: none;"></div></div><div data-v-60d429be="" data-v-0526462d="" class="image-viewer-box" data-v-0591b948=""><!----></div><!----></div></main></div><div data-v-5beeadc6="" data-v-5cbcd4ce="" class="recommend-box"><div data-v-5beeadc6="" class="extension"><div data-v-5beeadc6="" data-growing-container="true" data-growing-title="掘金插件" class="link"><div data-v-5beeadc6="" class="title">掘金浏览器插件 - 下载插件，送你<span data-v-5beeadc6="" class="price">45元</span>买小册</div></div><div data-v-5beeadc6="" class="ion-close"></div></div><!----></div></div>
+      
+      
+      <script type="text/javascript" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/runtime.17cb348ef7939a8ddc67.js.下载"></script><script type="text/javascript" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/0.fe4569301a1cedcdd80f.js.下载"></script><script type="text/javascript" src="./由五层网络模型引发对TCP协议丶DNS协议HTTP协议的思考 - 掘金_files/1.f4ad926611baa1ef398a.js.下载"></script>
+    <div id="fatkun-drop-panel">
+        <a id="fatkun-drop-panel-close-btn">×</a>
+            <div id="fatkun-drop-panel-inner">
+                <div class="fatkun-content">
+                    <svg class="fatkun-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5892"><path d="M494.933333 782.933333c2.133333 2.133333 4.266667 4.266667 8.533334 6.4h8.533333c6.4 0 10.666667-2.133333 14.933333-6.4l2.133334-2.133333 275.2-275.2c8.533333-8.533333 8.533333-21.333333 0-29.866667-8.533333-8.533333-21.333333-8.533333-29.866667 0L533.333333 716.8V128c0-12.8-8.533333-21.333333-21.333333-21.333333s-21.333333 8.533333-21.333333 21.333333v588.8L249.6 475.733333c-8.533333-8.533333-21.333333-8.533333-29.866667 0-8.533333 8.533333-8.533333 21.333333 0 29.866667l275.2 277.333333zM853.333333 874.666667H172.8c-12.8 0-21.333333 8.533333-21.333333 21.333333s8.533333 21.333333 21.333333 21.333333H853.333333c12.8 0 21.333333-8.533333 21.333334-21.333333s-10.666667-21.333333-21.333334-21.333333z" p-id="5893"></path></svg>
+                    <div class="fatkun-title">拖拽到此处</div>
+                    <div class="fatkun-desc">图片将完成下载</div>
+                </div>
+            </div>
+    </div><div id="download_plus_animation"></div></body></html>

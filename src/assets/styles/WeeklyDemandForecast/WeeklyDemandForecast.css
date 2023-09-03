@@ -1,0 +1,820 @@
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body,
+html {
+  width: 100%;
+  margin: 0;
+}
+
+.el-container {
+  height: 100%;
+}
+
+.el-main {
+  padding: 0;
+}
+
+
+
+.el-input__inner {
+  font-size: 16px !important;
+}
+
+/*时间区间开始*/
+.el-range-editor.el-input__inner {
+  font-size: 18px !important;
+  border-radius: 25px;
+  width: 220px;
+}
+
+.el-date-editor .el-range-separator {
+  padding: 0;
+  line-height: 40px;
+}
+
+.el-date-editor .el-range__icon {
+  position: absolute;
+  width: 54.2px;
+  right: 0px;
+  border-left: 1px solid #DEE2EB;
+}
+
+.el-date-editor .el-range__close-icon {
+  display: none;
+}
+
+.el-date-editor>.el-input__inner {
+  border-radius: 25px;
+}
+
+/*时间区间结束*/
+
+
+/*不是时间区间开始*/
+.fa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.el-date-editor .el-input__prefix {
+  width: 54.2px;
+  left: 145px !important;
+  border-left: 1px solid #DEE2EB;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*不是时间区间结束*/
+.el-main>.el-row:first-child {
+  background-color: #DCE1EC;
+}
+
+.el-main>.el-row:last-child {
+  height: 51%;
+  background-color: white;
+}
+
+.el-main>.el-row>.el-col {
+  /* height: 100%; */
+  background-color: #DCE1EC;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.el-button.is-circle {
+  background: rgb(255, 255, 255);
+  border: 0px;
+  width: 50px;
+  height: 50px;
+  padding: 0px;
+  border-radius: 25px;
+  margin-right: 0.8%;
+}
+
+.el-button+.el-button {
+  margin-left: 0;
+}
+
+.el-button {
+  color: #3D5695;
+}
+
+.el-button.active:hover {
+  background-color: #0fb2ab;
+  outline: 0;
+}
+
+.el-button:active {
+  background-color: #0fb2ab;
+  border-color: 0px;
+  outline: 0;
+}
+
+.el-button.active {
+  color: #fff !important;
+  background-color: #0fb2ab !important;
+}
+
+.el-card {
+  height: 80%;
+  border-radius: 12px;
+}
+
+.el-card__body {
+  height: 100%;
+  padding: 0;
+}
+
+.panel {
+  width: 100%;
+}
+
+.panel_header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  font-size: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
+
+  color: #3D3D3D;
+}
+
+.panel_headerColor {
+  color: #3F5896
+}
+
+.panel_header>div:first-child {
+  display: flex;
+  width: 80%;
+  font-size: 21.33px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.panel_header>div:first-child>.el-input {
+  width: 223px;
+  margin-left: 10px;
+  border-radius: 25px
+}
+
+.panel_header>div:first-child>.el-input>input {
+  height: 40px;
+  margin-left: 10px;
+  border-radius: 25px
+}
+
+.panel_header>div:first-child>.el-input>.el-input__prefix {
+  left: 12px;
+  top: 4px
+}
+
+.panel_header>div:last-child {
+  display: flex;
+  width: 20%;
+  justify-content: flex-end;
+  font-size: 18.66px;
+  color: #666666;
+}
+
+.panel_header1 {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  font-size: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.el-select .el-input .el-select__caret {
+  color: #000
+}
+
+.panel_title {
+  width: 100%;
+  display: flex;
+  font-size: 12px;
+  height: 15%;
+}
+
+.panel_title>div:first-child {
+  width: 50%;
+  display: flex;
+  /* font-size: 33px; */
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
+}
+
+.el-table .tableRowClassName {
+  background-color: #F0F2F7;
+}
+
+.panel_title>div:last-child {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.el-table {
+  height: 100%;
+  overflow-y: hidden;
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+  background-color: transparent;
+}
+
+
+
+.el-table.r-table .cell {
+  display: inline-block;
+  white-space: nowrap;
+  width: auto;
+  overflow: auto;
+}
+
+.el-table__body {
+  border-spacing: 0px 10px;
+}
+
+.el-table.r-table .el-table__body-wrapper {
+  overflow-x: auto;
+}
+
+.el-table th .cell {
+  font-size: 18.66px;
+  color: #505356;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.el-table::before {
+  height: 0px;
+  top: 0px;
+  width: 0;
+}
+
+.el-table td .cell {
+  font-size: 18.66px;
+  color: #505356;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.el-table td,
+.el-table th.is-leaf {
+  border: 0;
+}
+
+.ChartsRow {
+  margin-top: 1%;
+  width: 100%;
+  height: 45%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.el-card.is-always-shadow {
+  webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0);
+}
+
+.el-card {
+  border: 0px;
+}
+
+.boxBorder {
+  width: 100%;
+  height: 87%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow-y: auto;
+}
+
+.boxBorderDiv {
+  width: 14.28%;
+  height: 25%;
+  border: 1px solid #d8d8e0;
+}
+
+.borderDivTime {
+  width: 100%;
+  height: 30%;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.boxBGBluecolor {
+  background-color: #F0F2F7;
+  height: 100%;
+  padding-bottom: 5px;
+}
+
+.boxBGYellowcolor {
+  background-color: #FCF7F8;
+  height: 100%;
+  padding-bottom: 5px;
+}
+
+.tableSelect {
+  width: 100%;
+  border-radius: 7px;
+  border: 1px solid #D2D2DC;
+  height: 30px;
+  text-align: left;
+  text-align-last: left;
+  padding-left: 10px;
+  font-size: 12px;
+}
+
+.divTable {
+  padding: 20px;
+  padding-bottom: 0px;
+  height: 80%
+}
+
+
+.totalDiv {
+  margin-top: 11px;
+  height: 51px;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.totalDiv>div {
+  display: flex;
+  border-radius: 30px;
+}
+
+.totalDiv>div>div {
+  font-size: 18.66px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* #timeDiv .el-input__inner {
+  background: rgba(0, 0, 0, 0.13);
+  color: #D2D7FB;
+  border: 0px;
+  border-radius: 19px;
+} */
+
+.entBox {
+  width: 188px;
+  height: 40px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 45%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 7px;
+  opacity: 0.19;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.entBoxDiv {
+  position: absolute;
+  right: 182px;
+  font-size: 20px;
+  color: #000;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.entradius {
+  width: 118px;
+  height: 39px;
+  border: 1px solid #bbc8dc;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #000;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.timeNote {
+  font-size: 12px;
+  color: #000;
+}
+
+.iInput {
+  position: absolute;
+  width: 43%;
+  height: 16px;
+  left: 18px;
+  top: 13px;
+  border-bottom: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  text-align: center;
+}
+
+.el-icon-info {
+  font-size: 21px;
+  margin-left: 10px;
+}
+
+.calendar-day {
+  text-align: center;
+  color: #202535;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.is-selected {
+  font-size: 18px;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.el-calendar-table thead th {
+  text-align: center;
+}
+
+.el-calendar__body {
+  padding: 0
+}
+
+.el-calendar__header {
+  padding: 0;
+}
+
+.el-calendar-table .el-calendar-day {
+  padding: 0px;
+  height: 100%;
+}
+
+
+.el-backtop,
+.el-calendar-table td.is-today {
+  color: black
+}
+
+.el-calendar__header {
+  display: none;
+}
+
+.el-dialog__body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.el-input__icon {
+  line-height: 0;
+}
+
+.el-input__inner {
+  padding: 0;
+  height: 50px;
+}
+
+
+.selectBor {
+  height: 37px;
+  width: 1px;
+  position: absolute;
+  border: 1px solid #DEE2EB;
+  right: 76px;
+}
+
+.typeSelect {
+  font-size: 18px;
+  width: 181px;
+  height: 39px;
+  background: #F0F2F7;
+  border-radius: 19px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  color: #d2d7fb;
+  text-align: center;
+  text-align-last: center;
+  /* background: url("../../images/public/Path.png") 95% 50% no-repeat scroll transparent; */
+  padding-right: 10px;
+}
+
+.entSel>.el-select {
+  width: 260px;
+}
+
+.el-select {
+  width: 200px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.el-select>.el-input>.el-input__inner {
+  background: #ffffff;
+  border-radius: 33.33px;
+  text-align: center;
+  border:1px solid #ddd;
+  color:#000;
+  position: relative;
+  right:20px;
+  height:50px;
+}
+
+.el-select-dropdown__item.selected {
+  color: #0FB2AB
+}
+
+.el-select>.el-input>.el-input__suffix {
+  border-left: 1px solid #DEE2EB;
+  width: 54.2px;
+}
+
+
+.cell>.el-select {
+  width: 85px;
+  margin: 0 !important;
+}
+
+.cell>.el-select>.el-input>.el-input__suffix {
+  width: 25px;
+}
+
+.cell>.el-select>.el-input>.el-input__inner {
+  background: #F0F2F7;
+  border: 1px solid #DEE2EB;
+  border-radius: 3px;
+  text-align: center;
+  height: 27px;
+  font-size: 18.66px !important;
+}
+
+.cell>.el-select>.el-input>.el-input__suffix {
+  border-left: 0px
+}
+
+/* 方案偏差分析跳转按钮 */
+.fapcBtn {
+  width: 174px;
+  height: 43px;
+  background: #0FB2AB;
+  border-radius: 21.6px;
+  font-size: 21.33px;
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding-left: 28px;
+}
+
+.fapcBtn>.fa {
+  position: absolute;
+  right: 25px;
+}
+
+.fapcBtn:active {
+  background: #0FB2AB;
+  color: #fff;
+}
+
+.fapcBtn:hover {
+  background: #0FB2AB;
+  color: #fff;
+}
+
+.el-calendar-table td {
+  border: 0px;
+  padding: 15px;
+  height: 128px;
+}
+
+.calendarTBTitle {
+  background-color: #F0F2F7;
+}
+
+.calendarHBTitle {
+  background-color: #FCF7F8;
+}
+
+.notHB {
+  padding-left: 15px;
+  margin-left: 10px;
+}
+
+.calendarTB {
+  background-color: rgba(93, 188, 100, 0.1);
+  border-radius: 15px;
+  border-radius: 15px;
+  color: #4FB756;
+  width: 80%;
+  display: flex;
+  padding-left: 12px;
+  margin-left: 10px;
+}
+
+.calendarHB {
+  background-color: rgba(229, 97, 87, 0.1);
+  border-radius: 15px;
+  border-radius: 15px;
+  color: #E56157;
+  width: 80%;
+  display: flex;
+  padding-left: 12px;
+  margin-left: 10px;
+}
+
+.el-calendar-table td.is-selected {
+  background-color: transparent;
+}
+
+.el-calendarDay {
+  padding-left: 25px;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+}
+
+.el-date-table-calendar th {
+  text-align: left;
+  padding-left: 33px !important;
+}
+
+.el-date-picker-calendar__header {
+  display: none;
+}
+
+.el-date-table-calendar td.available {
+  color: #606266 !important;
+  font-weight: 500 !important;
+}
+
+.el-date-table-calendar td.available:hover {
+  color: #606266 !important;
+}
+
+.el-dialog__header {
+  border-bottom: 1px solid #DEE2EB;
+}
+
+.el-dialog__body>div {
+  font-size: 16px;
+  color: #405169;
+}
+
+.el-dialog__body>div>span {
+  font-size: 14px;
+  color: #A1ACB3;
+}
+
+.el-table tr th:first-child {
+  border-radius: 30px 0 0 30px !important;
+}
+
+.el-table tr th:nth-last-child(2) {
+  border-radius: 0 30px 30px 0 !important;
+}
+
+.tableRowClassName td:first-child {
+  border-radius: 25px 0 0 25px !important;
+}
+
+.tableRowClassName td:last-child {
+  border-radius: 0 25px 25px 0 !important;
+}
+
+.BigTitle {
+  font-size: 32px !important;
+}
+
+.hisTitle {
+  font-size: 26.66px !important;
+}
+
+.HB {
+  width: 80%;
+  text-align: left;
+  font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.el-dialog {
+  border-radius: 9px;
+}
+
+.el-dialog__title {
+  font-size: 20px;
+  color: #3F5896
+}
+
+.el-dialog__body>div>.el-col:first-child {
+  font-size: 14px;
+  color: #A1ACB3;
+  height: 30px;
+}
+
+.el-dialog__body>div>.el-col:last-child {
+  font-size: 16px;
+  color: #405169;
+  height: 30px;
+}
+
+@media (max-width: 1440px) {
+  * {
+    font-size: 14px;
+  }
+
+  .el-dialog__title {
+    font-size: 16px;
+  }
+
+  .el-dialog__body>div>.el-col:first-child {
+    font-size: 12px;
+    color: #A1ACB3
+  }
+
+  .el-dialog__body>div>.el-col:last-child {
+    font-size: 12px;
+    color: #405169
+  }
+
+  .el-input__inner {
+    font-size: 14px !important;
+  }
+
+  .fapcBtn>span {
+    font-size: 16px !important;
+  }
+
+  .panel_header>div:first-child {
+    font-size: 16px;
+  }
+
+  .panel_header>div:last-child {
+    font-size: 14px;
+  }
+
+  .el-table th .cell {
+    font-size: 14px;
+  }
+
+  .el-table td .cell {
+    font-size: 14px;
+  }
+
+  .cell>.el-select>.el-input>.el-input__inner {
+    font-size: 14px !important;
+  }
+
+  .totalDiv>div>div {
+    font-size: 14px;
+  }
+
+  .BigTitle {
+    font-size: 24px !important;
+  }
+
+  .hisTitle {
+    font-size: 20px !important;
+  }
+
+  .el-calendarDay {
+    font-size: 14px;
+  }
+
+  .HB {
+    font-size: 14px;
+  }
+
+  .DayUnitTitle {
+    font-size: 14px !important;
+  }
+
+  .pcfcTitle {
+    font-size: 24px !important;
+  }
+}
+
+@media (min-width: 1441px) {}

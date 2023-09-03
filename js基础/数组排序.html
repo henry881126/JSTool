@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    //冒泡排序
+    var array = [{ "name": "aa", index: 100 }, { "name": "aa", index: 200 }, { "name": "aa", index: 300 }];
+    var len = array.length;
+    for (var i = 0; i < len - 1; i++) { //-1 是为了j+1不会发生数组越界，且不会和自己比较  
+        for (var j = 0; j < len - i - 1; j++) {
+            if (array[j] < array[j + 1]) {
+                var temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp; //交换位置  
+            }
+        }
+    }
+    console.log(array)
+    // 快速排序
+    var arr1 = [{ "name": "aa", index: 200 }, { "name": "aa", index: 100 }, { "name": "aa", index: 300 }];
+
+    function qSort(arr, i, j) {
+        if (i >= j) return;
+        var tempi = i,
+            tempj = j;
+        var key = arr[i];
+        while (i < j) {
+            while (i < j && arr[j].index > key.index) j--; //从右向左找第1个小于key的数  
+            if (i < j) arr[i++] = arr[j];
+            while (i < j && arr[i].index < key.index) i++; //从左向右找第1个大于key的数  
+            if (i < j) arr[j--] = arr[i];
+        }
+        arr[i] = key;
+        qSort(arr, tempi, i - 1);
+        qSort(arr, i + 1, tempj);
+    }
+    qSort(arr1, 0, 2)
+    console.log(arr1)
+    // 选择排序
+    var arr2 = [{ "name": "aa", index: 200 }, { "name": "aa", index: 100 }, { "name": "aa", index: 300 }];
+    var min, len = arr2.length;
+    for (var i = 0; i < len - 1; i++) {
+        min = i;
+        for (var j = i + 1; j < len; j++) {
+            if (arr2[j].index < arr2[min].index) {
+                min = j;
+            }
+        }
+        var temp = arr2[min];
+        arr2[min] = arr2[i];
+        arr2[i] = temp;
+    }
+    console.log(arr2)
+    </script>
+</body>
+
+</html>

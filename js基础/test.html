@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: blue !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: red;"></div>
+    <script type="text/javascript">
+    <!-- 函数链式调用，自己调用自己，给自己的名字加个属性，储存所有的参数console会调用toString方法，
+    把保存的参数求和返回删除这个属性 -->
+    function add(...arg) {
+        add.arr = add.arr ? add.arr.concat(arg) : arg;
+        add.toString = function() {
+            var sum = 0;
+            add.arr.forEach(function(el, i) {
+                sum += el;
+            });
+            delete add.arr;
+            return sum;
+        }
+        return add;
+    }
+    console.log('', add(1))
+    console.log('', add(1)(2))
+    console.log('', add(1)(2)(3, 4))
+    console.log('-----------')
+    var arr = [1, 2, 3, 4, 5, 6, 5, 4, 3]
+    function a(arr, t) {
+        var res = []
+        for (var i = 0; i < arr.length; i++) {
+            var tem = t - arr[i];
+            var l = arr.indexOf(tem)
+            if (l !== -1) {
+                var obj = []
+                obj.push(i)
+                obj.push(l)
+                res.push(obj)
+            }
+        }
+        return res
+    }
+    var rr = a(arr, 7)
+    console.log(rr)
+    // 防抖
+    function debounce(fn, wait) {
+        var timeout = null;
+        return function() {
+            if (timeout !== null) clearTimeout(timeout);
+            timeout = setTimeout(fn, wait);
+        }
+    }
+    // 处理函数
+    function handle() {
+        console.log(Math.random());
+    }
+    // 滚动事件
+    window.addEventListener('scroll', debounce(handle, 1000));
+    var throttle = function(func, delay) {
+        var prev = Date.now();
+        return function() {
+            var context = this;
+            var args = arguments;
+            var now = Date.now();
+            if (now - prev >= delay) {
+                func.apply(context, args);
+                prev = Date.now();
+            }
+        }
+    }
+
+    function handle() {
+        console.log(Math.random());
+    }
+    window.addEventListener('scroll', throttle(handle, 1000));
+
+
+    function add() {
+        // 把参数转成数组存下来，
+        add.args = add.args ? add.args.concat(...arguments) : [...arguments]
+        // 指定 toString的值，用以隐示取值计算
+        add.toString = function() {
+            return add.args.reduce((v1, v2) => {
+                return v1 + v2;
+            });
+        };
+        return add;
+    }
+
+    console.log(add(1, 2));
+    // 生产范围内的随机数
+    function arr1(l, start, end) {
+        let res = []
+        for (var i = 0; i < l; i++) {
+            let tem = Math.floor(Math.random() * (end - start) + start)
+            res.push(tem)
+        }
+        return res
+    }
+    var a = arr1(10, 1, 100)
+    console.log(a)
+
+    function deepclone(origin, target) {
+        var target = target || {},
+            toStr = Object.prototype.toString,
+            arrStr = "[object Array]";
+        for (var key in origin) {
+            if (origin.hasOwnProperty(key)) {
+                if (origin[key] !== 'null' && typeof(origin[key] == 'object')) {
+                    if (toStr.call(origin[key]) == arrStr) {
+                        target[key] = []
+                    } else {
+                        target[key] = {}
+                    }
+                    deepclone(origin[key], target[key])
+                } else {
+                    target[key] = origin[key]
+                }
+            }
+        }
+    }
+    var o1 = {
+        name: 0,
+        arr: [1, 2, 3],
+        arr1: [{
+            n: 1,
+            m: 2
+        }],
+        fn: function() {
+            console.log('1')
+        },
+        ob: {
+            na: 12,
+            a: [
+                1, 2, 3
+            ]
+        }
+    }
+    var o2 = {};
+    deepclone(o1, o2)
+    console.log(o2)
+    </script>
+</body>
+
+</html>

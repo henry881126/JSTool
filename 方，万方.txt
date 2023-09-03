@@ -1,0 +1,23 @@
+numDiv (num1, num2) {
+      if (!num1 && num1 !== 0) {
+        return ''
+      }
+      var baseNum1 = 0,
+        baseNum2 = 0;
+      var baseNum3, baseNum4;
+      num1 = num1 + ''
+      num2 = num2 + ''
+      try {
+        baseNum1 = num1.split(".")[1].length;
+      } catch (e) {
+        baseNum1 = 0;
+      }
+      try {
+        baseNum2 = num2.split(".")[1].length;
+      } catch (e) {
+        baseNum2 = 0;
+      }
+      baseNum3 = Number(num1.replace(".", ""));
+      baseNum4 = Number(num2.replace(".", ""));
+      return (baseNum3 / baseNum4) * Math.pow(10, baseNum2 - baseNum1);
+    },

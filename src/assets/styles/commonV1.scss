@@ -1,0 +1,94 @@
+.gas-page-bg {
+    width     : 100%;
+    background: linear-gradient(180deg, #3F70B7 0%, #1E4290 100%);
+    ;
+    background-size  : 100% 540px;
+    background-repeat: no-repeat;
+    opacity          : 1;
+    overflow         : hidden;
+    padding-bottom   : 30px;
+    min-width        : 1440px;
+    position         : relative;
+    box-sizing       : border-box;
+}
+
+.gas-page-bg-diaodu {
+    width            : 100%;
+    background       : linear-gradient(180deg, #3F70B7 0%, #1E4290 100%);
+    background-size  : 100% 540px;
+    background-repeat: no-repeat;
+    opacity          : 1;
+    overflow         : hidden;
+    min-width        : 1440px;
+    position         : relative;
+    box-sizing       : border-box;
+}
+
+.content-wrapper-diaodu {
+    position     : relative;
+    background   : #fff;
+    border-radius: 10px;
+    margin       : 20px;
+    margin-top   : 0px;
+    padding      : 20px;
+    box-sizing   : border-box;
+}
+
+.crumb-diaodu {
+    margin     : 10px 0 10px 20px;
+    font-size  : 14px;
+    height     : 20px;
+    line-height: 20px;
+}
+
+.crumb-title1 {
+    color: #94B2D8;
+}
+
+.crumb-title2 {
+    color: #FFFFFF;
+}
+
+.banner-card-wrapper {
+    width        : calc(100% - 64px);
+    background   : #ffffff;
+    box-shadow   : 0px 10px 20px rgba(38, 51, 88, 0.07);
+    opacity      : 1;
+    border-radius: 12px;
+    margin-left  : 30px;
+    margin-top   : 30px;
+    position     : relative;
+    overflow     : hidden;
+}
+
+.page-bg {
+    width              : 100%;
+    background-size    : 100% 550px;
+    background-repeat  : no-repeat;
+    background-position: top left;
+    opacity            : 1;
+    padding-bottom     : 40px;
+    min-width          : 1220px;
+    position           : relative;
+    box-sizing         : border-box;
+}
+
+.separator-wrapper {
+    height        : 41px;
+    padding-left  : 20px;
+    padding-top   : 10px;
+    padding-bottom: 10px;
+    box-sizing    : border-box;
+}
+
+.card-wrapper {
+    width        : calc(100% - 40px);
+    background   : $bgColor;
+    box-shadow   : 0px 10px 20px rgba(38, 51, 88, 0.07);
+    opacity      : 1;
+    border-radius: 4px;
+    margin-left  : 20px;
+    position     : relative;
+    overflow     : hidden;
+    color        : $fontColor;
+}

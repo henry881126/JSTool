@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		function toDecimal2 (x) {
+			var f = parseFloat(x)
+			if (isNaN(f)) {
+				return false
+			}
+			var f = Math.round(x * 100) / 100
+			var s = f.toString()
+			var rs = s.indexOf('.')
+			if (rs < 0) {
+				rs = s.length
+				s += '.'
+			}
+			while (s.length <= rs + 2) {
+				s += '0'
+			}
+			return s
+		}
+		function toDecimal4 (x) {
+			var f = parseFloat(x)
+			if (isNaN(f)) {
+				return false
+			}
+			var f = Math.round(x * 10000) / 10000
+			var s = f.toString()
+			var rs = s.indexOf('.')
+			if (rs < 0) {
+				rs = s.length
+				s += '.'
+			}
+			while (s.length <= rs + 2) {
+				s += '0'
+			}
+			return s
+		}
+		// js丢失精度运算
+		//除法
+		function numDiv (arg1, arg2) {
+			if (arg1 && arg2) {
+				// 把计算的数字转换为字符串
+				var r1 = arg1.toString(), r2 = arg2.toString(), m, resultVal, d = 6
+				// m 为整数的位数之差
+				m = (r2.split(".")[1] ? r2.split(".")[1].length : 0)
+					- (r1.split(".")[1] ? r1.split(".")[1].length : 0)
+				console.log('m', m)
+				// 两个数去掉小数点相除 Math.pow(10, m) 10的m次方
+				resultVal = Number(r1.replace(".", "")) / Number(r2.replace(".", ""))
+					* Math.pow(10, m)
+				console.log('parseInt(6)最多保留6位小数，5舍6入', parseInt(6))
+				// return typeof d !== "number" ? Number(resultVal) : Number(resultVal
+				// 	.toFixed(parseInt(6)))
+				return typeof d !== "number" ? Number(resultVal) : toDecimal6(Number(resultVal))
+				// 处理5舍6入
+				function toDecimal6 (x) {
+					var f = parseFloat(x)
+					if (isNaN(f)) {
+						return false
+					}
+					var f = Math.round(x * 1000000) / 1000000
+					var s = f.toString()
+					var rs = s.indexOf('.')
+					if (rs < 0) {
+						rs = s.length
+						s += '.'
+					}
+					while (s.length <= rs + 2) {
+						s += '0'
+					}
+					return s / 1
+				}
+
+			} else {
+				return arg1
+			}
+		}
+		// 减法
+		function Subtr (arg1, arg2) {
+			if (arg1 && arg2) {
+				var r1, r2, m, n
+				try { r1 = arg1.toString().split(".")[1].length } catch (e) { r1 = 0 }
+				try { r2 = arg2.toString().split(".")[1].length } catch (e) { r2 = 0 }
+				m = Math.pow(10, Math.max(r1, r2))
+				n = (r1 >= r2) ? r1 : r2
+				return ((arg1 * m - arg2 * m) / m).toFixed(n)
+			} else {
+				return arg1
+			}
+
+		}
+		// 加法
+		function accAdd (arg1, arg2) {
+			var r1, r2, m
+			try { r1 = arg1.toString().split(".")[1].length } catch (e) { r1 = 0 }
+			try { r2 = arg2.toString().split(".")[1].length } catch (e) { r2 = 0 }
+			m = Math.pow(10, Math.max(r1, r2))
+			return (arg1 * m + arg2 * m) / m
+		}
+		//乘法 
+		function accMul (arg1, arg2) {
+			if (arg1 && arg2) {
+				var m = 0, s1 = arg1.toString(), s2 = arg2.toString()
+				try { m += s1.split(".")[1].length } catch (e) { }
+				try { m += s2.split(".")[1].length } catch (e) { }
+				return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+			} else {
+				return arg1
+			}
+
+		}
+		// 原生
+		Number.prototype.toFixed = function (n) {
+			if (n > 20 || n < 0) {
+				throw new RangeError('toFixed() digits argument must be between 0 and 20')
+			}
+			const number = this
+			if (isNaN(number) || number >= Math.pow(10, 21)) {
+				return number.toString()
+			}
+			if (typeof (n) == 'undefined' || n == 0) {
+				return (Math.round(number)).toString()
+			}
+			let result = number.toString()
+			const arr = result.split('.')
+			// 整数的情况
+			if (arr.length < 2) {
+				result += '.'
+				for (let i = 0; i < n; i += 1) {
+					result += '0'
+				}
+				return result
+			}
+			const integer = arr[0]
+			const decimal = arr[1]
+			if (decimal.length == n) {
+				return result
+			}
+			if (decimal.length < n) {
+				for (let i = 0; i < n - decimal.length; i += 1) {
+					result += '0'
+				}
+				return result
+			}
+			result = integer + '.' + decimal.substr(0, n)
+			const last = decimal.substr(n, 1)
+			// 四舍五入，转换为整数再处理，避免浮点数精度的损失  正数+1 负数-1
+			if (parseInt(last, 10) >= 5) {
+				const x = Math.pow(10, n)
+				result = (Math.round((parseFloat(result) * x)) + (parseFloat(result) > 0 ? 1 : -1)) / x
+				result = result.toFixed(n)
+			}
+			return result
+		}
+
+
+		console.log(2.66.toFixed(1))
+		console.log(2.665.toFixed(2))
+		console.log(2.6665.toFixed(3))
+		console.log(2.66665.toFixed(4))
+		console.log(2.666665.toFixed(5))
+		console.log(2.6666665.toFixed(6))
+		console.log(2.66666665.toFixed(7));
+
+
+
+	</script>
+</body>
+
+</html>

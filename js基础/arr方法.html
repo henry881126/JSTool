@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <article>
+        <h1 class="csdn_top">是否改变原数组的常用方法归纳</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                原创                </span>
+                <span class="time">2017年09月09日 19:56:29</span>
+            </div>
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" style="display: none;">
+                <li class="tit">标签：</li>
+                <!--          [startarticletags]-->
+                <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li>
+                    <button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">1825</span></button>
+                </li>
+                <li class="edit" style="display: none;">
+                    <a class="btn-noborder" href="https://mp.csdn.net/postedit/77917404">
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del" style="display: none;">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post" style="overflow: hidden;">
+            <div class="markdown_views">
+                <p><strong>改变原数组的：</strong></p>
+                <ol>
+                    <li>shift：将<strong>第一个元素</strong>删除并且返回删除元素，空即为undefined </li>
+                    <li>unshift：向数组<strong>开头添加</strong>元素，并返回新的长度</li>
+                    <li>pop：删除<strong>最后一个</strong>并返回删除的元素 </li>
+                    <li>push：向数组<strong>末尾添加</strong>元素，并返回新的长度</li>
+                    <li>reverse：颠倒数组顺序</li>
+                    <li>sort：对数组排序</li>
+                    <li>splice:splice(start,length,item)删，增，替换数组元素，返回被删除数组，无删除则不返回</li>
+                </ol>
+                <p><strong>不改变原数组的：</strong></p>
+                <ol>
+                    <li>concat：连接多个数组，返回新的数组 </li>
+                    <li>join：将数组中所有元素以参数作为分隔符放入一个字符</li>
+                    <li>slice：slice(start,end)，返回选定元素 </li>
+                    <li>map,filter,forEach,some,every等不改变原数组</li>
+                </ol>
+                <p><strong>splice和slice的区别：</strong>
+                    <br> splice(i,j,”a”) 删除，添加元素，splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改。从i开始删j个(包括i),并将”a”插入到i处。
+                    <br> slice(start,end) 从某个已有的数组返回选定的元素，从start位开始返回到end（包括start不包括end）如果是负数，表示从数组尾部进行计算（同样：包括start不包括end）,请注意，该方法并不会修改数组，而是返回一个子数组。</p>
+                <p><img src="https://img-blog.csdn.net/20170909195508215?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY3Jpc3RpbmFfc29uZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+                <p><img src="https://img-blog.csdn.net/20170909195610535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY3Jpc3RpbmFfc29uZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                    <br>
+                    <strong>splice()的强大(删、增、替换数组的元素)</strong></p>
+                <pre class="prettyprint"><code class="hljs xml has-numbering"><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"font-size:18px;"</span>&gt;</span>处理数组的方法很多，javascript splice()算是最强大的了，它可以用于插入、删除或替换数组的元素。下面来一一介绍！   
+
+1.删除-用于删除元素，两个参数，第一个参数（要删除第一项的位置），第二个参数（要删除的项数）   
+2.插入-向数组指定位置插入任意项元素。三个参数，第一个参数（其实位置），第二个参数（0），第三个参数（插入的项）   
+3.替换-向数组指定位置插入任意项元素，同时删除任意数量的项，三个参数。第一个参数（起始位置），第二个参数（删除的项数），第三个参数（插入任意数量的项）   
+
+<span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>看下面这段代码就明白了<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span>   
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>  </code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li><li style="color: rgb(153, 153, 153);">2</li><li style="color: rgb(153, 153, 153);">3</li><li style="color: rgb(153, 153, 153);">4</li><li style="color: rgb(153, 153, 153);">5</li><li style="color: rgb(153, 153, 153);">6</li><li style="color: rgb(153, 153, 153);">7</li><li style="color: rgb(153, 153, 153);">8</li><li style="color: rgb(153, 153, 153);">9</li></ul></pre>
+                <pre class="prettyprint"><code class="hljs cs has-numbering">&lt;span style=<span class="hljs-string">"font-size:18px;"</span>&gt;<span class="hljs-keyword">var</span> lang = [<span class="hljs-string">"php"</span>,<span class="hljs-string">"java"</span>,<span class="hljs-string">"javascript"</span>];   
+<span class="hljs-comment">//删除   </span>
+<span class="hljs-keyword">var</span> removed = lang.splice(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);   
+alert(lang); <span class="hljs-comment">//php,javascript   </span>
+alert(removed); <span class="hljs-comment">//java ,返回删除的项   </span>
+<span class="hljs-comment">//插入   </span>
+<span class="hljs-keyword">var</span> insert = lang.splice(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-string">"asp"</span>); <span class="hljs-comment">//从第0个位置开始插入   </span>
+alert(insert); <span class="hljs-comment">//返回空数组   </span>
+alert(lang); <span class="hljs-comment">//asp,php,javascript   </span>
+<span class="hljs-comment">//替换   </span>
+<span class="hljs-keyword">var</span> replace = lang.splice(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-string">"c#"</span>,<span class="hljs-string">"ruby"</span>); <span class="hljs-comment">//删除一项，插入两项   </span>
+alert(lang); <span class="hljs-comment">//asp,c#,ruby ，javascript  </span>
+alert(replace); <span class="hljs-comment">//php,返回删除的项 &lt;/span&gt;  </span></code><ul class="pre-numbering" style=""><li style="color: rgb(153, 153, 153);">1</li><li style="color: rgb(153, 153, 153);">2</li><li style="color: rgb(153, 153, 153);">3</li><li style="color: rgb(153, 153, 153);">4</li><li style="color: rgb(153, 153, 153);">5</li><li style="color: rgb(153, 153, 153);">6</li><li style="color: rgb(153, 153, 153);">7</li><li style="color: rgb(153, 153, 153);">8</li><li style="color: rgb(153, 153, 153);">9</li><li style="color: rgb(153, 153, 153);">10</li><li style="color: rgb(153, 153, 153);">11</li><li style="color: rgb(153, 153, 153);">12</li><li style="color: rgb(153, 153, 153);">13</li></ul></pre> </div>
+            <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/production/markdown_views-ea0013b516.css">
+        </div>
+        <script>
+        $(".MathJax").remove();
+        </script>
+    </article>
+</body>
+
+</html>

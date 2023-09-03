@@ -1,0 +1,54 @@
+//弃用
+.el-dialog {
+  border-radius: 8px;
+  .el-dialog__header {
+    padding: 12px 17px 10px;
+
+    .el-dialog__title {
+      color: #3F5896;
+      font-size: 16px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+    }
+    .el-dialog__headerbtn {
+      top: 18px;
+      right:18px;
+      .el-dialog__close {
+        // font-size: 12px;
+        color: rgba(151, 151, 151, 1);
+      }
+    }
+
+  }
+
+  .el-dialog__body {
+    // padding: 20px 30px;
+    padding: unset;
+  }
+}
+
+
+.el-select {
+  .el-input__inner {
+    background: transparent;
+    border-radius: 20px;
+    padding-left: 25px;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    border: unset;
+    background: #567db9;
+  }
+
+  .el-input__suffix {
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 4px;
+    border-left: 1px solid #C0C4CC;
+  }
+}
+
+.el-select .el-input.is-focus .el-input__inner {
+  border: unset;
+}

@@ -1,0 +1,42 @@
+@import "@/assets/styles/mixins";
+.main-contract {
+  display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    .contract-body {
+      background: #ffffff;
+      border-radius: 12px 12px 0 0;
+      margin-top: -40px;
+      margin-bottom: 20px;
+      .head-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 20px 0px 20px;
+      }
+      @media screen and (min-width:1920px) {
+        .contract-table {
+          height: 468px;
+        }
+        .common-table {
+          height: 488px;
+        }
+        .export-button {
+          @include exportButton1920;
+
+        }
+      }
+      @media screen and (max-width:1919px) {
+        .contract-table{
+          height: 445px;
+        }
+        .common-table{
+          height: 465px;
+        }
+        .export-button {
+          @include exportButton1440;
+          
+        }
+      }
+    }
+  }

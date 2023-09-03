@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>js object 常用方法总结</h2>
+    <ul>
+      <li>Object.assign(target,source1,source2,...)</li>
+      <pre>
+        该方法主要用于对象的合并，将源对象source的所有可枚举属性合并到目标对象target上,此方法只拷贝源对象的自身属性，不拷贝继承的属性。
+        Object.assign方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。同名属性会替换。
+  
+        Object.assign只能进行值的复制，如果要复制的值是一个取值函数，那么将求值后再复制。
+  
+        Object.assign可以用来处理数组，但是会把数组视为对象。
+  
+        const target = {
+            x : 0,
+            y : 1
+        };
+        const source = {
+            x : 1,
+            z : 2 ,
+            fn : {
+                number : 1
+            }
+        };
+        Object.assign(target, source);  
+        // target  {x : 1, y : 1, z : 2, fn : {number : 1}}    // 同名属性会被覆盖
+        // source  {x : 1, z : 2, fn : {number : 1}}
+        target.fn.number = 2;                                  // 拷贝为对象引用
+        // source  {x : 1, z : 2, fn : {number : 2}}
+        
+        function Person(){
+            this.name = 1
+        };
+        Person.prototype.country = 'china';
+        let student = new Person();
+        student.age = 29 ;
+        const young = {insterst : 'sport'};
+        Object.assign(young,student);
+        // young {instest : 'sport' , age : 29, name: 1}               // 只能拷贝自身的属性，不能拷贝prototype
+        
+        
+        Object.assign([1, 2, 3], [4, 5])                      // 把数组当作对象来处理
+        // [4, 5, 3]
+      </pre>
+      <li>Object.create(prototype[,propertiesObject])</li>
+      <pre>
+        使用指定的原型对象及其属性去创建一个新的对象
+
+        var parent = {
+            x : 1,
+            y : 1
+        }
+        var child = Object.create(parent,{
+            z : {                           // z会成为创建对象的属性
+                writable:true,
+                configurable:true,
+                value: "newAdd"
+            }
+        });
+        console.log(child)
+      </pre>
+      <li>Object.defineProperties(obj,props)</li>
+      <pre>
+        直接在一个对象上定义新的属性或修改现有属性，并返回该对象。
+
+        var obj = {};
+        Object.defineProperties(obj, {
+          'property1': {
+            value: true,
+            writable: true
+          },
+          'property2': {
+            value: 'Hello',
+            writable: false
+          }
+          // etc. etc.
+        });
+        console.log(obj)   // {property1: true, property2: "Hello"}
+      </pre>
+      <li>Object.defineProperty(obj,prop,descriptor)</li>
+      <pre>
+        在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
+
+        Object.defineProperty(Object, 'is', {
+          value: function(x, y) {
+            if (x === y) {
+              // 针对+0 不等于 -0的情况
+              return x !== 0 || 1 / x === 1 / y;
+            }
+            // 针对NaN的情况
+            return x !== x && y !== y;
+          },
+          configurable: true,
+          enumerable: false,
+          writable: true 
+        }); 
+        
+        // 注意不能同时设置(writable，value) 和 get，set方法，否则浏览器会报错 ： Invalid property descriptor. Cannot both specify accessors and a value or writable attribute
+      </pre>
+      <li>Object.keys(obj)</li>
+      <pre>
+        返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。
+
+        let arr = ["a", "b", "c"];
+        console.log(Object.keys(arr));
+        // ['0', '1', '2']
+        
+        /* Object 对象 */
+        let obj = { foo: "bar", baz: 42 },
+            keys = Object.keys(obj);
+        console.log(keys);
+        // ["foo","baz"] 
+      </pre>
+      <li>Object.values()</li>
+      <pre>
+        方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用for...in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )。
+
+        Object.values会过滤属性名为 Symbol 值的属性。
+        var an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+        console.log(Object.values(an_obj)); // ['b', 'c', 'a']
+        
+        var obj = { 0: 'a', 1: 'b', 2: 'c' };
+        console.log(Object.values(obj)); // ['a', 'b', 'c']
+      </pre>
+      <li>hasOwnProperty()</li>
+      <pre>
+        判断对象自身属性中是否具有指定的属性。
+
+        obj.hasOwnProperty('name')
+      </pre>
+    </ul>
+  </body>
+</html>

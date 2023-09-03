@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // async与defer
+
+    // async: 可选属性。表示应该立即下载脚本，但不应妨碍页面中的其他操作，
+    // 比如下载其他资源或等待加载其他脚本。
+    // 只对外部脚本文件有效（写在html文件中的js代码，添加此属性无效，仍按代码加载顺序执行）。
+
+    // defer: 可选属性。标识脚本可以延迟到文档完全被解析和显示之后再执行。只对外部脚本文件有效
+
+    // 伪元素与伪类
+
+    // 伪元素： 是一个附加至选择器末的关键词，允许你对被选择元素的特定部分修改样式。
+    // 例如:: before，:: after，:: first - letter等。它是创造出一个并不存在的“元素”内容，并附加样式。
+
+    // 伪类： 没有创造元素内容，只是选中某些状态下的已有元素，并附加样式。
+    // 比如: first - child，: active，: focus等等。
+
+    // 函数防抖： 当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，
+    // 如果设定的时间到来之前，又一次触发了事件，就重新开始延时。
+
+    function debounce(handle, delay) {
+      var timer = null;
+      return function () {
+        var _self = this,
+          _args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          handle.apply(_self, _args)
+        }, delay)
+      }
+    }
+
+    // 函数节流： 当持续触发事件时，保证一定时间段内只调用一次事件处理函数。
+    function throttle(handler, wait) {
+      var lastTime = 0;
+      return function (e) {
+        var nowTime = new Date().getTime();
+        if (nowTime - lastTime > wait) {
+          handler.apply(this, arguments);
+          lastTime = nowTime;
+        }
+      }
+    }
+
+    // call、apply、bind
+
+    // 为了改变方法内部this的指向，第一个参数为this的指向，其余参数是一个普通的参数列表。
+    // call： 第一个参数为this的指向，其余参数就是一个普通的参数列表。
+    // apply： 第一个参数为this的指向，其余参数接受一个数组类型的参数。
+    // bind： 第一个参数为this的指向，其余参数就是一个普通的参数列表。但是返回是函数。
+    // 当然，三者的参数不限定是 string 类型，允许是各种类型，包括函数 、 object 等等！
+
+    // prototype与__proto__
+
+    // __proto__是每个对象都有的一个属性，而prototype是函数才会有的属性。
+
+    // __proto__指向的是当前对象的原型对象，而prototype指向的，是以当前函数作为构造函数构造出来的对象的原型对象。
+
+    // ①只要创建了一个函数，该函数的原型对象也随之同时被创建出来，原型对象中的属性和方法被经由其相对应的构造函数所创建的实例所共享。
+
+    // ②每个函数在创建之后都会获得一个prototype的属性，这个属性指向该函数的原型对象。
+
+    // ③每个对象的__proto__属性都指向其构造函数的原型。
+  </script>
+</body>
+
+</html>

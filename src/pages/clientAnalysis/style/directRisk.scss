@@ -1,0 +1,349 @@
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .container-wrap {
+
+        .block-one {
+            width: 100%;
+            padding: 16px 0px 0px 8px;
+
+
+            .title {
+                font-size: 16px;
+                font-family: PingFangSC-Medium,
+                    PingFang SC;
+                font-weight: 500;
+                color: #3F5896;
+                padding-bottom: 16px;
+            }
+
+            .left-wrap {
+                width: 530px;
+
+                .table-wrap {
+                    .row-wrap:nth-child(odd) {
+                        background-color: #f2f4f8;
+                    }
+
+                    .row-wrap {
+                        height: 48px;
+                        border-radius: 32px;
+                        display: flex;
+                        align-items: center;
+                        padding-left: 20px;
+
+                        .header-style {
+                            font-size: 12px;
+                            font-family: PingFangSC-Semibold,
+                                PingFang SC;
+                            font-weight: 600;
+                            color: #333333;
+                            text-align: center;
+
+                            &:first-child {
+                                text-align: left;
+                                padding-left: 6px;
+                            }
+                        }
+
+                        .common-width-one {
+                            width: 40%;
+                        }
+
+                        .common-width-two {
+                            width: 15%;
+                            text-align: center;
+                        }
+
+                        .select {
+                            color: #45A20F !important;
+                        }
+
+                        .common-style {
+                            font-size: 14px;
+                            font-family: PingFangSC-Medium,
+                                PingFang SC;
+                            font-weight: 500;
+                            color: #505356;
+                            padding-left: 5px;
+                            padding-right: 5px;
+
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box; //作为弹性伸缩盒子模型显示。
+                            -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+                            -webkit-line-clamp: 2; //显示的行
+                        }
+                    }
+
+                }
+            }
+
+            .middle-wrap {
+                width: 240px;
+                height: 290px;
+                margin-left: 25px;
+            }
+
+            .right-wrap {
+                width: 300px;
+                margin-left: 16px;
+
+                .item {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    font-size: 12px;
+                    font-family: PingFangSC-Medium,
+                        PingFang SC;
+                    font-weight: 500;
+                    color: #505356;
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    height: 24px;
+
+                    /deep/ .el-input__inner {
+                        height: 24px;
+                        line-height: 24px;
+                        font-size: 12px;
+                        text-align: center;
+                    }
+
+                    .item-label {
+                        width: 35%;
+                        text-align: right;
+                    }
+
+                    .item-val {
+                        width: 35%;
+                    }
+
+                    .item-unit {
+                        width: 20%;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    i {
+                        padding-left: 5px;
+                        padding-top: 12px;
+                    }
+
+                    /deep/ .el-input-number {
+                        width: 100%;
+                        line-height: 22px;
+                    }
+                }
+
+                .pan-up {}
+
+                .pan-down {
+                    border-radius: 8px;
+                    border: 1px solid #D8D8D8;
+                }
+
+                /deep/ .el-input-number {
+                    /deep/ .el-input-number__decrease,
+                    .el-input-number__increase {
+                        width: 25px;
+                    }
+                }
+
+
+                /deep/ .el-input-number .el-input__inner {
+                    padding-left: 25px;
+                    padding-right: 25px;
+                }
+            }
+        }
+
+        .conclusion-wrap {
+            padding-top: $px40;
+            padding-left: $px38;
+            width: 97%;
+
+            .conclusion-title {
+                font-size: $px20;
+                font-family: $fontFamily;
+                font-weight: $fontweight500;
+                color: $color3F5896;
+                padding-bottom: $px15;
+            }
+
+            .conclusion {
+                background: $colorF0F3F9;
+                border-radius: $px3;
+                border: $px1 solid $colorEBEDF6;
+                padding: $px3 $px18 $px3 $px27;
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .container-wrap {
+        .block-one {
+            width: 100%;
+            padding: 10px 0px 0px 18px;
+
+            .title {
+                font-size: 20px;
+                font-family: PingFangSC-Medium,
+                    PingFang SC;
+                font-weight: 500;
+                color: #3F5896;
+                padding-bottom: 16px;
+            }
+
+            .left-wrap {
+                width: 830px;
+
+                .table-wrap {
+                    .row-wrap:nth-child(odd) {
+                        background-color: #f2f4f8;
+                    }
+
+                    .row-wrap {
+                        height: 64px;
+                        border-radius: 32px;
+                        display: flex;
+                        align-items: center;
+                        padding-left: 30px;
+
+                        .header-style {
+                            font-size: 16px;
+                            font-family: PingFangSC-Semibold,
+                                PingFang SC;
+                            font-weight: 600;
+                            color: #333333;
+                            text-align: center;
+
+                            &:first-child {
+                                text-align: left;
+                                padding-left: 6px;
+                            }
+                        }
+
+                        .common-width-one {
+                            width: 40%;
+                        }
+
+                        .common-width-two {
+                            width: 15%;
+                            text-align: center;
+                        }
+
+                        .select {
+                            color: #45A20F !important;
+                        }
+
+                        .common-style {
+                            font-size: 16px;
+                            font-family: PingFangSC-Medium,
+                                PingFang SC;
+                            font-weight: 500;
+                            color: #505356;
+                            padding-left: 5px;
+                            padding-right: 5px;
+
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box; //作为弹性伸缩盒子模型显示。
+                            -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+                            -webkit-line-clamp: 2; //显示的行
+                        }
+                    }
+
+                }
+            }
+
+            .middle-wrap {
+                width: 321px;
+                height: 386px;
+                margin-left: 16px;
+            }
+
+            .right-wrap {
+                width: 410px;
+                margin-left: 16px;
+
+                .item {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    font-size: 16px;
+                    font-family: PingFangSC-Medium,
+                        PingFang SC;
+                    font-weight: 500;
+                    color: #505356;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+
+                    .item-label {
+                        width: 35%;
+                        text-align: right;
+                    }
+
+                    .item-val {
+                        width: 35%;
+                    }
+
+                    .item-unit {
+                        width: 20%;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    i {
+                        padding-left: 5px;
+                        padding-top: 12px;
+                    }
+
+                    /deep/ .el-input-number {
+                        width: 100%;
+                    }
+
+                    /deep/ .el-input__inner {
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                }
+
+                .pan-up {}
+
+                .pan-down {
+                    border-radius: 8px;
+                    border: 1px solid #D8D8D8;
+
+                    /deep/ .el-input-number {
+                        /deep/ .el-input-number__decrease,
+                        .el-input-number__increase {
+                            width: 25px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .conclusion-wrap {
+            padding-top: $px40;
+            padding-left: $px38;
+            width: 97%;
+
+            .conclusion-title {
+                font-size: $px20;
+                font-family: $fontFamily;
+                font-weight: $fontweight500;
+                color: $color3F5896;
+                padding-bottom: $px15;
+            }
+
+            .conclusion {
+                background: $colorF0F3F9;
+                border-radius: $px3;
+                border: $px1 solid $colorEBEDF6;
+                padding: $px8 $px17 $px7 $px19;
+            }
+
+        }
+    }
+}

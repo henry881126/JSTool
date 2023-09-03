@@ -1,0 +1,76 @@
+/deep/ .el-table--border::after, .el-table--group::after{
+    width:0;
+  }
+  .el-table--border, .el-table--group{ //左边框线
+      border: none; 
+  }
+  /deep/.el-table::before { //下边框线
+    opacity:0;
+  }
+  /deep/.el-table {
+      background: transparent;
+      tr:last-child{
+        th{
+          border-bottom:none
+        }
+        th:nth-last-child(1){
+          border-radius: 0 0 12px 0;
+        }
+      }
+      tr:first-child{
+        th:nth-last-child(2){
+          border-right: none;
+          // border-radius: 0 12px 12px 0;
+        }
+        th:nth-last-child(1){
+          // opacity: 0;
+          border-bottom: none;
+          border-radius: 0 12px 0 0;
+        }
+        th:first-child{
+          border-radius: 12px 0 0 12px;
+        }
+  
+        th:nth-child(1){border-bottom:none}//表头下边线
+        th:nth-child(2){border-bottom:none}
+        th:nth-child(3){border-bottom:none}
+        th:nth-child(4){border-bottom:none}
+        th:nth-child(5){border-bottom:none}
+        th:nth-child(6){border-bottom:none}
+        th:nth-child(10){border-bottom:none}
+        th:nth-child(11){border-bottom:none}
+        th:nth-child(12){border-bottom:none}
+        
+      }    
+      td {
+          border: none;
+          border-right: 1px solid #EBEEF5;
+          &:first-child{
+            border-radius: 35px 0 0 35px;
+          }
+          &:last-child{
+            border-radius: 0 35px 35px 0;
+            border-right: none;
+          }
+      }
+  
+      tr {
+        border: 1px solid #ccc;
+        background: #ffffff;
+      }
+  
+      // tr:nth-child(even) { //奇数行底色
+      //     background: #f2f4f8;
+          
+      // }
+  }
+  /deep/ .el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #f2f4f8;
+  }
+  /deep/ .el-table thead.is-group .gutter{
+    // background-color: #f2f4f8;
+    opacity: 0;
+  }
+  /deep/ .el-table .cell{
+    white-space: pre-line;
+  }

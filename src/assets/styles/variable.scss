@@ -1,0 +1,116 @@
+$themeColor: #DFE7F2;
+$asideBgColor: #F8F9FC;
+$activeMenu: #0FB2AB;
+$lineColor: #ebeef5;
+$whiteColor: #ffff;
+$blueColor: #234888;
+$poolBlue: #4980D2;
+$greenColor: #0FB2AB;
+$poolGrey: #E8E9EC;
+$themeFontColor:rgba(63, 88, 150, 1);
+
+/* ---- fontSize ----- */
+$defaultFontSize: 14px;
+$middleFontSize: 16px;
+$largeFontSize: 24px;
+$fontSize18:18px;
+$fontSize20:20px;
+$fontSize24:24px;
+$fontSize28:28px;
+
+
+/* ---- fontWeight ----- */
+$fontweight400:400;
+$fontweight500:500;
+$fontweight600:600;
+
+/* ---- fontfamily ----- */
+$fontFamily: "Helvetica Neue",
+Helvetica,
+"PingFang SC",
+"Hiragino Sans GB",
+"Microsoft YaHei",
+"微软雅黑",
+Arial,
+sans-serif;
+/* ---- fontcolor ----- */
+$fontColor666666: #666666;
+$fontColor0CB2AB:#0CB2AB;
+
+/*------ border -----*/
+$border-radius20:20px;
+
+/* margin   padding*/
+$padding-left-76:76px;
+$padding-top-23:23px;
+$padding-right-76:76px;
+$padding-bottom-49:49px;
+$padding-bottom-17:17px;
+
+$margin-top--25:-25px;
+$margin-top--44:-44px;
+$margin-top-7:7px;
+$margin-top-13:13px;
+$margin-top-24:24px;
+$margin-left-41:41px;
+$margin-left-10:10px;
+$margin-bottom-15:15px;
+
+/* background-color   0_1 代表透明度为0.1*/
+$whiteBgColor0_1:#ffffff1a;
+
+$tableBgColor01:rgba(255, 255, 255, 1);
+$tableBgColor02:rgba(242, 244, 248, 1);
+$tableHColor: #333333;
+
+/* size */
+$px0:0px;
+$px1:1px;
+$px2:2px;
+$px3:3px;
+$px4:4px;
+$px6:6px;
+$px7:7px;
+$px8:8px;
+$px10:10px;
+$px12:12px;
+$px14:14px;
+$px15:15px;
+$px16:16px;
+$px17:17px;
+$px18:18px;
+$px19:19px;
+$px20:20px;
+$px23:23px;
+$px22:22px;
+$px26:26px;
+$px27:27px;
+$px28:28px;
+$px29:29px;
+$px32:32px;
+$px36:36px;
+$px38:38px;
+$px40:40px;
+$px48:48px;
+$px50:50px;
+$px55:55px;
+$px58:58px;
+$px65:65px;
+$px73:73px;
+$px90:90px;
+$px286:286px;
+$px360:360px;
+$px500:500px;
+
+/* color */
+$color3F5896:#3F5896;
+$colorF0F3F9:#F0F3F9;
+$colorEBEDF6:#EBEDF6;
+$color0FB2AB:#0FB2AB;
+
+// 通用主题变量
+$bgColor: var(--bg-color);
+$bgColor2: var(--bg-color-2);
+$borderColor: var(--border-color);
+$bgEleColor: var(--bg-ele-color);
+$fontColor: var(--font-color);

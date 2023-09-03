@@ -1,0 +1,54 @@
+﻿<b>VS<strong>    <i>VS<em>
+1. <header> 网页或section的头部
+    
+<asider> 网页的侧边栏内容
+    
+<nav> 定义页面的主要导航部分
+    
+<article> 独立完整的内容模块，通常用在博客、论坛、新闻、评论等，区别于section这种分段的标签
+    
+<section> 网页文档中的段、节，通常子元素包括标题：h1-h6
+    
+<footer> 网页或section底部的内容，可能包括：作者或者版权信息等；
+--------------------- 
+2. <details> 
+
+标签用于描述文档或文档某个部分的细节,summary是details元素的标题
+
+
+<details>
+    <summary>这是一个标题</summary>
+    <p>详细描述...</p>
+</details>
+
+
+
+cancas
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+
+往canvas上画图
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("scream");
+ctx.drawImage(img,10,10);
+
+跨域
+
+（1）跨域资源共享（CORS）
+Nginx代理
+JSONP
+4、使用HTML5中新引进的window.postMessage方法来跨域传送数据
+proxyTable
+
+
+前端性能优化
+
+1. 减少 HTTP请求数
+(3). 资源合并与压缩 gzip 精灵图
+Lazy Load Images
+5. 将 CSS放在 HEAD中   将外部脚本置底

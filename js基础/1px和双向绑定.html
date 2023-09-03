@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .scale-1px {
+        position: relative;
+        border: none;
+        width: 200px;
+        height: 200px;
+    }
+
+    .scale-1px:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        background: #000;
+        width: 100%;
+        height: 1px;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+
+    .scale-2px {
+        position: relative;
+        border: none;
+        margin-top: 30px;
+        width: 300px;height: 300px;
+    }
+
+    .scale-2px:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid red;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+    }
+    .box{
+    	width: 200px;height: 200px;
+    	border: 5px solid red;
+    	box-sizing: border-box;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="scale-1px"></div>
+    <div class="scale-2px"></div>
+	<div class="box"></div>
+    <body>
+        <input type="text" id="foo">
+        <p id="test"></p>
+        <script>
+        var user = {}
+
+        Object.defineProperty(user, 'inputValue', {
+            configurable: true,
+            get: function() {
+                return document.getElementById('foo').value
+            },
+            set: function(value) {
+                document.getElementById('foo').value = value
+                document.getElementById('test').innerHTML = value
+            }
+        })
+
+        document.getElementById('foo').addEventListener('keyup', function() {
+            document.getElementById('test').innerHTML = user.inputValue
+        })
+        </script>
+    </body>
+</body>
+
+</html>

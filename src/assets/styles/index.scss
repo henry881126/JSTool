@@ -1,0 +1,13 @@
+// $--font-path: "~element-ui/lib/theme-chalk/fonts";
+// @import "~element-ui/packages/theme-chalk/src/index";
+
+@import './common.scss';
+@import './override.scss';
+//@media screen and (min-width: 1910px) {
+//    @import './override1920.scss';
+//}
+//@media screen and (max-width: 1470px) {
+//    @import './override1440.scss';
+//
+//}
+@import './scrollBar.scss';
