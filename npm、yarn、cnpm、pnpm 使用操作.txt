@@ -1,0 +1,130 @@
+1.全局安装
+// 安装node自带npm，检查是否安装成功，执行如下命令
+npm -v  // 6.14.15
+
+// yarn
+npm install -g yarn
+
+// cnpm 
+npm install -g cnpm
+
+// pnpm
+npm install -g pnpm
+
+2.初始化一个项目
+npm init
+// OR
+yarn init
+
+// 快速生成的package.json默认配置
+npm/yarn init -y
+
+3.安装项目依赖
+// npm / cnpm / pnpm
+// 简写，全称 npm install
+npm i [package]
+
+// yarn
+yarn add [package]
+
+// 安装指定版本
+npm i [package]@[version]
+yarn add [package]@[version]
+
+// 小栗子
+// 安装 jquery
+npm i jquery@3.0.0
+
+// 查看package.json 
+"jquery": "^3.0.0"
+
+Tips1 意外情况
+我们经常会在安装一半退出在继续安装会报错，这是因为有缓存的原因。
+npm cache clean --force
+
+
+Tips2 --save--dev意思
+
+npm install vue
+npm install vue --save
+npm install @babel/core --save-dev
+
+当npm i时候，不会安装该依赖。
+dependencies 代表项目运行所依赖的模块  npm install express -S
+devDependencies 项目开发时候需要的依赖  npm install express -D
+
+
+Tips3 ^和~的区别
+
+"vue": "~2.6.0",
+"es6-promise": "^2.0.0"
+
+~符号
+假设vue版本已经更新到2.7.0以上，当我们重新安装项目依赖，只会匹配到2.6.x的最新版本，不会匹配到2.7.0及以上
+
+^符号
+假设es6-promise更新3.0.0，当我们重新安装项目依赖，es6-promise始终是2.0.0
+
+
+Tips4 版本号代表含义
+
+"vue": "2.6.0"
+
+第一位表示：主版本号，常用于大版本更新，可能不兼容旧版本。
+如Vue2.0和Vue3.0,虽然说向下兼容，但是部分语法存在兼容问题。
+
+第二位表示：次版本号，增加了新的功能，基本向下兼容。
+
+第三位表示：补丁号， 修复了bug等。
+
+
+
+全局包管理
+// 查看当前哪些包需要更新
+npm outdated -g --depth=0
+
+@vue/cli    4.5.9   4.5.13  4.5.13  global
+npm       6.14.15  6.14.15  7.24.0  global
+pnpm       5.17.3  5.18.10  6.15.1  global
+
+// 更新全局的依赖包
+npm update -g
+
+// 更新依赖包
+npm update pnpm
+
+// 可能报错 Remove the existing file and try again, or run npm with --force to overwrite files recklessly.
+
+1. 卸载 pnpm
+npm uninstall -g pnpm
+
+清理 npm 缓存
+npm cache clean --force
+
+重新安装
+npm i pnpm -g
+
+// 第二种 强制安装依赖
+npm install -g pnpm --force
+
+
+
+升级依赖包
+"vue": "^2.6.0"
+
+npm update vue
+
+yarn upgrade vue@2.6.14 指定版本
+yarn upgrade vue@^ //选择指定版本
+
+// "vue": "^2.6.14"
+
+
+删除依赖包
+"vue": "^2.6.0"
+
+npm uninstall vue
+
+yarn remove vue
+
+

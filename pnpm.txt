@@ -1,0 +1,8 @@
+安装 npm i pnpm -g
+查看版本  pnpm -V
+通过硬链接和软链接 电脑所有的依赖公用一份
+
+查看pnpm共享仓库的地址  pnpm store path
+C:\Users\Henry\AppData\Local\pnpm\store\v3
+
+npm的命令都可以用pnpm代替

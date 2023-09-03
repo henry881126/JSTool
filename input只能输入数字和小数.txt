@@ -1,0 +1,9 @@
+四位整数，四位小数
+
+
+this.newRowForm.adjustSettlementPrice = val.replace(
+        /^\D{0,4}(\d{0,4}(?:\.\d{0,4})?).*$/g,
+        '$1'
+      )
+// input只能输入15位整数
+x.value = x.value.replace(/[^0-9]/g, '').replace(/(.{15})(.{1,})$/, '$1')
