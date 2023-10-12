@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>管理员详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/admine.css" rel="stylesheet" />
+		<!--<link href="//at.alicdn.com/t/font_468062_o1h3tnes5x2vgqfr.css" rel="stylesheet" />-->
+		<link href="////at.alicdn.com/t/font_468062_zzqi8y3gbeimgqfr.css" rel="stylesheet" />
+		<!--<link href="//at.alicdn.com/t/font_468062_lka0hpdus7hhyqfr.css" rel="stylesheet" />-->
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</head>
+
+	<body>
+		<!--身份信息-->
+		<div class="mui-content">
+			<div class="mui-card" style="margin: 0;">
+				<ul class="mui-table-view">
+					<!-- 上传图片dom -->
+					<li class="mui-table-view-cell ">
+						<span class="photo">照片</span>
+						<input type="file" style="display: none" onchange="fileUp(this)" id="file-up">
+						<img  onclick="$('#file-up').click();" class="image mui-media-object mui-pull-right" src="img/20171212174759.png">
+					</li>
+				</ul>
+						
+				
+			</div>
+			
+		</div>
+
+	</body>
+    <script src="js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/base64image.js" type="text/javascript"></script>
+	<script src="js/exif.js" type="text/javascript"></script>
+    <script type="text/javascript">
+  	$(function(){
+		var isTrue=true;
+  		$('.btn').click(function(){
+			$(this).find('.icon-danxuankuang').toggleClass('isHide');
+  			$(this).find('.icon-danxuankuangxuanzhong').toggleClass('isHide');
+  			
+  		})
+  		$('.btt').click(function(){
+  			$(this).find('.icon-xuanzhong').toggleClass('isHide');
+  			$(this).find('.icon-fuxuankuang_weixuan').toggleClass('isHide');
+  		})
+  	})
+	var fileUp = function (me) {
+
+		base64Image({
+			file: me,                              /*【必填】对应的上传元素 */
+			callback: function (imageUrl) {        /*【必填】处理成功后的回调函数 */
+
+				/*imageUrl为得到的图片base64数据，这里可以进行上传到服务器或者其他逻辑操作 */
+				var img = document.querySelector(".image");
+				img.src = imageUrl;
+
+				AlpacaAjax({
+					url: G_URL_API + API['Manage_uploadBase64'],
+					data: {
+						user_avatar:imageUrl
+
+					},
+					success: function (data) {
+						alert(data);
+					},
+					beforeSend: function () {
+					},
+					complete: function () {
+					},
+				})
+			},
+			width:50,                          /*【选填】宽度默认750，如果图片尺寸大于该宽度，图片将被设置为该宽度*/
+			ratio:0.75,                         /*【选填】压缩率默认0.75 */
+		});
+	};
+
+
+
+
+	var manageSubmit = function (){
+		  var user_name = $('#user_name').val();
+		  var user_sex = $('#user_sex').val();
+		  var user_ages = $('#user_ages').val();
+		  var user_card = $('#user_card').val();
+		  var user_phone = $('#user_phone').val();
+
+		AlpacaAjax({
+			  url: G_URL_API + API['Manage_adds'],
+			  data: {
+				  user_name:user_name,
+				  user_sex:user_sex,
+				  user_ages:user_ages,
+				  user_card:user_card,
+				  user_phone:user_phone,
+
+			  },
+			  success: function (data) {
+				  if (data.code = 1) {
+					  alert(data.msg);
+				  }
+			  },
+			  beforeSend: function () {
+			  },
+			  complete: function () {
+			  },
+		  })
+	}
+
+    // 姓名
+    function xingming() {
+        var str_name = document.querySelector('.xingming').value;
+        var patt1 =  /^[\u4e00-\u9fa5]{2,10}$/;
+        if (!patt1.test(str_name)) {
+            alert("只能输入2-10个汉字！");
+        }
+    }
+
+    // 性别
+    function sec() {
+        var str_name = document.querySelector('.sec').value;
+        var patt1 =/^[\u7537\u5973]+$/;
+        if (!patt1.test(str_name)) {
+            alert("请选择正确的性别！");
+        }
+    }
+    // 年龄
+    function age() {
+        var str_name = document.querySelector('.age').value;
+        var patt1 =  /^\d\d$/;
+        if (!patt1.test(str_name)) {
+            alert("请输入正确的年龄！");
+        }
+    }
+
+    // 身份证号
+    function card() {
+        var str_name = document.querySelector('.card').value;
+        var patt1 =  /^\d{15}(?:\d{2}[\dX])?$/;
+        if (!patt1.test(str_name)) {
+            alert("请输入正确的身份证号码！");
+        }
+    }
+
+    // 手机号验证
+    function phone() {
+        var str_name = document.querySelector('.phone').value;
+        var patt1 = /(\+86|0086)?\s*1[34578]\d{9}/;
+        if (!patt1.test(str_name)) {
+            alert("请输入正确的手机号码！");
+        }
+    }
+  </script>
+</html>

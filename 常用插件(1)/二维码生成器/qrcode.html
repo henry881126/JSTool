@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div id="qrcode"></div>
+    <script src="./qrcode.min.js"></script>
+    <script type="text/javascript">
+    // clear the code.
+    // qrcode.clear(); 
+
+    // 传入的参数 id  配置参数
+    var qrcode = new QRCode("qrcode", {
+        text: "https://www.baidu.com",
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    </script>
+</body>
+
+</html>

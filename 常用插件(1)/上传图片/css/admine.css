@@ -1,0 +1,72 @@
+.photo{
+	display: inline-block;
+	padding-top: 10px;
+	font-size: 16px;
+}
+.biaoshi{
+	width: 26% !important;
+}
+.mui-input-row label ~ input, .mui-input-row label ~ select, .mui-input-row label ~ textarea{
+	width: 55%;
+	float: left;
+}
+.mui-icon-locked{
+	padding: 5px 3% 0 0;
+}
+.nm{
+	padding-left: 30px;
+}
+.list{
+	padding-left:20px ;
+	/*height: 40px;
+	line-height: 40px;*/
+}
+.list img{
+
+	width: 20px;
+	padding-top: 10px;
+}
+.mui-checkbox.mui-left label, .mui-radio.mui-left label{
+	padding-left: 50px;
+}
+.mui-table-view-cell .mui-navigate-right .iconfont{
+	position: absolute;
+}
+.icon-danxuankuangxuanzhong{
+	color: orange;
+}
+.isHide{
+	display: none;
+}
+.sele-three{
+	padding: 10px;
+}
+
+.sele-three .oli{
+	float: left;
+	width: 33.3%;
+	padding-left: 10px;
+}
+.mui-collapse-content .select-second .iconfont,.mui-collapse-content .sele-three .iconfont{
+	position: absolute;
+}
+
+.icon-xuanzhong{
+	font-weight: bold;
+	color: #fb6565;
+}
+
+.box{
+	float: left;
+
+}
+.wrap{
+	display: none;
+}
+.feel{
+	width: 85%;
+	margin: 20px auto;
+	padding: 10px 12px !important;
+	background: #ffb868;
+	border-radius: 10px;
+}
