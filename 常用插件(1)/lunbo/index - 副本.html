@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		padding: 0;margin: 0;
+	}
+		/*banner begin*/
+.banner {
+	height: 430px;
+	position: relative;
+	overflow: hidden;
+	
+}
+.banner #box {
+	/*width: 1366px;*/
+	width: 1920px;
+	height: 430px;
+}
+.banner #box ul {
+	width: 100000px;
+	position: absolute;
+	left: -300px;
+}
+.banner #box img{
+	width: 100%;
+}
+.banner ul li {
+	width: 1920px;
+	height: 430px;
+	/*overflow: hidden;*/
+	float: left;
+}
+.banner ol li {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	border-radius: 12px;
+	background-color: white;
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	margin-left: -300px;
+	cursor: pointer;
+}
+.banner ol .current {
+	background-color: yellowgreen;
+}
+.banner ol #li01 {
+	left: 840px;
+}
+.banner ol #li02 {
+	left: 900px;
+}
+.banner ol #li03 {
+	left: 960px;
+}
+.banner ol #li04 {
+	left: 1020px;
+}
+.banner ol #li05 {
+	left: 1080px;
+}
+.banner #arrow {
+	/*position: relative;*/
+	/*display: none;*/
+}
+.banner #arrow #left {
+	position: absolute;
+	top: 145px;
+	left: 20px;
+	display: inline-block;
+	width: 40px;
+	height: 140px;
+	cursor: pointer;
+	font:bold 100px/140px "SimSun";
+}
+.banner #arrow #right {
+	position: absolute;
+	top: 145px;
+	right: 20px;
+	display: inline-block;
+	width: 40px;
+	height: 140px;
+	cursor: pointer;
+	font:bold 100px/140px "SimSun";
+}
+/*banner end*/
+	</style>
+</head>
+<body>
+	<div class = "banner clearfix">
+		<div id="box">
+			<ul>
+				<li><img src="slider01.jpg" alt=""></li>
+				<li><img src="slider02.jpg" alt=""></li>
+				<li><img src="slider03.jpg" alt=""></li>
+				<li><img src="slider04.jpg" alt=""></li>
+				<li><img src="slider05.jpg" alt=""></li>
+			</ul>
+		</div>
+		<ol>
+			<li id = "li01"></li>
+			<li id = "li02"></li>
+			<li id = "li03"></li>
+			<li id = "li04"></li>
+			<li id = "li05"></li>
+		</ol>
+		<div id ="arrow">
+			<span id = "left">&lt;</span>
+			<span id = "right">&gt;</span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+			var box = document.getElementById("box");
+		var ul = box.children[0];
+		var ullis = ul.children;
+		// 指示点对象
+		var ol = box.nextElementSibling;
+		var ollis = ol.children;
+// 克隆第一张图
+		var firstImg = ullis[0].cloneNode(true);
+		// 把克隆的第一张图放到最后
+		ul.appendChild(firstImg);
+		// 第0个圆点默认激活
+		ollis[0].className = "current";
+		// 轮播盒子的宽度
+		var imgWidth = box.offsetWidth;
+
+	// 给所有知识点上加onmouseover事件
+		for(var i = 0; i < ollis.length; i++) {
+			// 每个点对象加个 对应的 第几个属性
+			ollis[i].index = i;
+			ollis[i].onmouseover = function() {
+				// 排他
+				for(var j = 0; j < ollis.length; j++) {
+					ollis[j].className = "";
+				}
+				this.className = "current";
+
+				var target = -this.index * imgWidth;
+				console.log(target)
+				animate1(ul,target);
+
+				pic = this.index;
+				square = this.index;
+			};
+		};
+
+		box.onmouseover = function() {
+			clearInterval(timer);
+		};
+		box.onmouseout = function() {
+			timer = setInterval(playNext,4000);
+		};
+
+
+ function animate1(obj, target) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            var step = 25;
+            
+            var step = obj.offsetLeft < target ? step : -step;
+
+            if (Math.abs(obj.offsetLeft - target) > Math.abs(step)) {
+                obj.style.left = obj.offsetLeft + step + "px";
+            } else {
+                //再迈一步就超过目标了
+                obj.style.left = target + "px";//手动把对象放置到目标上
+                clearInterval(obj.timer);//清理定时器
+            }
+        }, 15)
+    }
+
+
+
+		var pic = 0;
+		var square = 0;
+		timer = setInterval(playNext,4000);
+		function playNext() {
+			if(pic == ullis.length-1) {
+				ul.style.left = 0;
+				pic = 0;
+			}
+			pic++;
+			var target = -pic * imgWidth-300;
+			animate1(ul,target);
+			if(square < ollis.length-1) {
+				square++;
+			}else {
+				square = 0;
+			}
+			for(var i = 0; i < ollis.length; i++) {
+				ollis[i].className = "";
+			}
+			ollis[square].className = "current";
+		};
+		right.onclick = function() {
+			playNext();
+		};
+		left.onclick = function(){
+			 if(pic == 0) {
+			 	pic = ullis.length-1;
+			 	ul.style.left = -(ullis.length-1)*imgWidth + "px";
+			 }
+			 pic--;
+			 var target = -pic * imgWidth-300;
+			animate1(ul,target);	
+
+			if(square > 0) {
+				square--;
+			}else {
+				square = ollis.length-1;
+			}
+			for (var i = 0; i < ollis.length; i++) {
+            	ollis[i].className = "";
+        	}
+        	ollis[square].className = "current";
+		};
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="on" http-equiv="x-dns-prefetch-control">
+        <title>测试css3实现超出文本指定行数(指定文本长度)用省略号代替的效果</title>
+        <style>
+            .unilineText {  /*设置文本为单行，如果超出长度用省略号代替*/
+                width: 300px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
+                -webkit-text-overflow: ellipsis;
+                -moz-text-overflow: ellipsis;
+                white-space: nowrap;  /*规定段落中的文本不进行换行*/
+            }
+            
+            .multiLineText {  /*设置文本为多行，如果超出长度用省略号代替*/
+                width: 200px;
+                word-break: break-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;  /*限制在一个块元素显示的文本的行数*/
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>测试显示一行文本：</h1>
+        <div class="unilineText">
+            text-overflow: ellipsis可以用来多行文本的情况下，用省略号隐藏超出范围的文本 ；white-space: nowrap规定段落中的文本不进行换行; -webkit-box-orient：vertical限制在一个块元素显示的文本的行数
+        </div>
+        <h1>测试两行或者两行以上的文本:</h1>
+        <div class="multiLineText">
+            text-overflow: ellipsis可以用来多行文本的情况下，用省略号隐藏超出范围的文本 ；white-space: nowrap规定段落中的文本不进行换行; -webkit-box-orient：vertical限制在一个块元素显示的文本的行数
+        </div>
+
+    </body>
+
+</html>

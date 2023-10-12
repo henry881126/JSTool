@@ -1,0 +1,18 @@
+一、基本概念 
+encodeURI和decodeURI是成对来使用的，因为浏览器的地址栏有中文字符的话，可以会出现不可预期的错误，所以可以encodeURI把非英文字符转化为英文编码，decodeURI可以用来把字符还原回来。encodeURI方法不会对下列字符进行编码：":"、"/"、";" 和 "?"，encodeURIComponent方法可以对这些字符进行编码。 
+decodeURI()方法相当于java.net.URLDecoder.decode(URIString, "UTF-8"); 
+encodeURI()方法相当于java.net.URLEncoder.encode(URIString, "UTF-8"); 
+
+二、例子 
+复制代码 代码如下:
+
+<script type="text/javascript"> 
+var uriStr = "http://www.baidu.com?name=张三&num=001 zs"; 
+var uriec = encodeURI(uriStr); 
+document.write("编码后的" + uriec); 
+var uridc = decodeURI(uriec); 
+document.write("解码后的" + uridc); 
+</script> 
+
+编码后的http://www.baidu.com?name=%E5%BC%A0%E4%B8%89&num=001%20zs 
+解码后的http://www.baidu.com?name=张三&num=001 zs
