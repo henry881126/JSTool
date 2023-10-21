@@ -1,0 +1,27 @@
+在这里梳理一下上图中的函数，大体了解一下整个挂载的全过程，之后的章节会详细分析整个过程。
+
+Vue.createApp() 程序入口创建全局app
+baseCreateRenderer 包含了渲染时的核心代码，patch相关（虚拟Dom转为真实Dom），mountComponent（挂载组件），updateComponent都在其中定义（更新组件，render （渲染时执行的函数），还有多个在patch过程中需要对不同节点进行处理的方法例如processComponent（处理组件节点的方法），processText（处理纯文本的方法）。
+createAppAPI(render, hydrate) 定义全局app的全局方法，包括mount，component，use，provide，directive，mixin，unmount等方法。
+app.mount(‘#id’); 开始挂载指定id的dom元素。
+normalizeContainer(containerOrSelector) 将之前传入的dom元素转换为标准对象。
+createVNode(rootComponent, rootProps) 创建Vnode节点，定义type属性存放节点内容，通过type属性确定shapeFlag属性，该属性存放节点类型。type和shapeFlag用于在patch函数中对不同的节点类型进行不同的处理
+render = (vnode, container, isSVG) 在之前的baseCreateRenderer中定义的函数，是渲染的入口。
+patch(container._vnode || null, vnode, container, null, null, null, isSVG) 也是在baseCreateRenderer中定义的在其中生成虚拟Dom在转为真实Dom。
+processComponent 处理在patch过程中Vnode节点类型为组件的节点
+mountComponent(n2, container, anchor, parentComponent, parentSuspense, isSVG, optimized);也是在baseCreateRenderer 中定义的函数，用来挂载组件。
+createComponentInstance(initialVNode, parentComponent, parentSuspense) 定义组件实例instance，其中包括ctx等重要属性，ctx上下文存放了data，el等及全局定义的属性。
+setupComponent(instance) 创建组件，初始化props，执行setup函数，定义instance实例的proxy属性（vue3的代理核心，vue2使用的是数据劫持），初始化optionApi和生命周期等，这里有严格顺序，先初始化prop，再初始化setup，因为setup需要注入prop属性，在最后初始化optionApi。
+compileToFunction(template, options)，compile$1，baseCompile(template, options = {})，generate(ast, extend({}, options, { prefixIdentifiers }))，这几个都是将template生成为模版函数的方法，之后在讲解如何生成模版函数。
+createReactiveObject 创建响应对象，对传入的对象创建proxy代理，之后的访问会通过proxy代理进行处理，从而达到响应的目的。
+setupRenderEffect 创建组件渲染副作用函数当组件更新时调用该方法。
+createReactiveEffect 所有的更新都会通过该方法创建更新副作用函数，该函数创建effect()方法和对应effect对象，对象中保存着依赖，像Vue2中的watcher，但在Vue3中统一使用effect代替。
+updateComponent(n1, n2, optimized);更新组件的方法调用effect()来执行更新。
+其他的一些重要函数
+
+createGetter proxy的get方法，在函数模版中获取值时会调用该proxy的get方法
+createSetter proxy的set方法 设置新的值并且触发trigger函数进行依赖更新
+track(target, type, key) 收集当前项的依赖，当当前项更新时会在trigger函数中获取之前收集的项进行更新，会在后面单独的依赖收集章节详细讲解
+trigger(target, type, key, newValue, oldValue, oldTarget) 更新时的触发器，会在该函数中获取与之相关的项，并调用依赖他的项的effect函数进行更新，是依赖收集后触发更新的关键函数
+总结
+开篇第一章只是简单介绍了自己读源码的一个开始的过程，之后会陆续开篇 setup是如何挂载，optionApi是如何挂载，vue3版本是如何收集依赖，vue3如何生成模版函数，patch函数等相关内容，有问题的地方欢迎大家斧正。最后求求给孩子一个三连吧，这个对我真滴很重要，求求啦~
